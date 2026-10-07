@@ -2508,3 +2508,56 @@
     padding: 1.25rem;
   }
 }
+
+/* ---------- /home-v2: closing CTA, same design as the stroke rehab page ---------- */
+.home-v2 .cta-final {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 4.5rem 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  color: #fff;
+  background: radial-gradient(80% 120% at 100% 100%, #1d3a66, var(--color-kmc-secondary) 60%);
+}
+.home-v2 .cta-final h2 { max-width: 40rem; margin-inline: auto; color: #fff; }
+.home-v2 .cta-final__arcs { position: absolute; z-index: -1; width: 26rem; right: -7rem; bottom: -9rem; pointer-events: none; }
+.home-v2 .cta-final__arcs path { fill: rgb(143 188 217 / 0.14); }
+.home-v2 .cta-final__arcs path:last-child { fill: rgb(229 242 252 / 0.08); }
+.home-v2 .cta-final__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: rgb(255 255 255 / 0.8);
+}
+.home-v2 .cta-final__eyebrow::before { content: ""; width: 1.5rem; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--color-fog-3), var(--color-kmc-accent)); }
+.home-v2 .cta-final__lead { margin: 0.75rem 0 2rem; color: rgb(255 255 255 / 0.78); line-height: 1.8; }
+.home-v2 .cta-final__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+.home-v2 .cta-final__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.1rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: #fff;
+  color: var(--color-kmc-secondary);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.home-v2 .cta-final__btn:hover { background: var(--color-fog-1); transform: translateY(-1px); box-shadow: 0 10px 24px -12px rgb(0 0 0 / 0.6); }
+.home-v2 .cta-final__btn--ghost { color: #fff; background: rgb(255 255 255 / 0.06); border-color: rgb(255 255 255 / 0.35); backdrop-filter: blur(8px); }
+.home-v2 .cta-final__btn--ghost:hover { background: #fff; color: var(--color-kmc-secondary); }
+.home-v2 .cta-final__btn:focus-visible { outline: 3px solid var(--color-kmc-accent); outline-offset: 4px; }
+@media (max-width: 767px) {
+  .home-v2 .cta-final { padding: 3.5rem 1.5rem; border-radius: 1.5rem; }
+  .home-v2 .cta-final__actions { flex-direction: column; align-items: stretch; }
+}

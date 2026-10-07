@@ -35,17 +35,17 @@ export default function Header() {
     }, [r.pathname]));
   let [v, y] = (0, React.useState)(null),
     b = useReducedMotion(),
-    x = (r.pathname === `/` || r.pathname === `/home-v2`) && !c;
+    x = r.pathname === `/` && !c;
   return (
     (0, React.useEffect)(() => {
       s(!1);
     }, [r.pathname]),
     (0, React.useEffect)(() => {
       let e = () => {
-        // /home-v2 keeps the big logo for the whole pinned hero and brings the
+        // the homepage (v2) keeps the big logo for the whole pinned hero and brings the
         // navbar in half way through the hero's shrink-out (the same moment the
         // floating LINE / call buttons move to their corner, see FloatingContact).
-        let t = r.pathname === `/home-v2` && document.querySelector(`.hero-deck`);
+        let t = r.pathname === `/` && document.querySelector(`.hero-deck`);
         u(t ? t.getBoundingClientRect().bottom < window.innerHeight * 1.25 : window.scrollY > 40);
       };
       return (

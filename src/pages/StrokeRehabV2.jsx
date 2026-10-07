@@ -63,7 +63,7 @@ export default function StrokeRehabV2() {
   const hero = useRef(null);
   const [viewer, setViewer] = useState(null);
   const [galleryTab, setGalleryTab] = useState(0);
-  usePageMeta({ title: data.name, description: data.meta.description, keywords: data.meta.keywords, noindex: true });
+  usePageMeta({ title: data.name, description: data.meta.description, keywords: data.meta.keywords });
   useFaqSchema(data.faq, "stroke-v2-faq");
 
   useEffect(() => {

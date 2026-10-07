@@ -2,7 +2,7 @@
 // The original homepage at / stays untouched for comparison. Section
 // components come from src/components/v2, so editing them does not affect /.
 import { t as useTranslation } from "../vendor/i18n-CAiZPsdd.js";
-import { CalendarCheck, HeartPulse, ClipboardCheck, Plus, ArrowRight } from "lucide-react";
+import { CalendarCheck, HeartPulse, ClipboardCheck, Plus, ArrowRight, Phone } from "lucide-react";
 import { t as useHomeMeta } from "../routes/usePageMeta.jsx";
 import { n as Link } from "../vendor/react-SEPqUFC0.js";
 import Hero from "../components/v2/Hero.jsx";
@@ -27,7 +27,6 @@ import {
   packages,
   visitSteps,
   Photo,
-  ContactButtons,
   lineUrl,
   phoneNumber,
   i as faqGroups,
@@ -197,27 +196,32 @@ export default function HomePageV2() {
       </RevealSection>
       <CorporateCommunity />
       <NewsSection />
-      <RevealSection className={`mx-auto max-w-4xl px-6 pb-28 text-center`}>
-        <div className={`rounded-3xl bg-gradient-to-br from-fog-1 via-fog-2 to-fog-3 px-10 py-14`}>
+      {/* closing CTA, same design as the stroke rehab page: navy panel with the K-mark arcs */}
+      <RevealSection className={`mx-auto max-w-6xl px-6 pb-24`}>
+        <div className={`cta-final`}>
+          <svg className={`cta-final__arcs`} viewBox={`0 0 800 800`} aria-hidden={`true`}>
+            <path d={`M266.62,0H0c0,441.86,358.13,799.99,799.99,799.99v-266.62C505.41,533.38,266.62,294.59,266.62,0Z`} />
+            <path d={`M800,266.62V0C358.14,0,0,358.13,0,799.99h266.62c0-294.58,238.79-533.37,533.38-533.38Z`} />
+          </svg>
+          <p className={`cta-final__eyebrow font-display`}>{t ? `KMC HOSPITAL · พร้อมดูแล` : `KMC HOSPITAL · HERE FOR YOU`}</p>
           <AnimatedHeading
             as={`h2`}
-            className={`font-display text-2xl sm:text-3xl font-semibold text-kmc-secondary mb-3`}
+            className={`font-display text-3xl sm:text-4xl font-semibold`}
             text={t ? `พร้อมดูแลคุณและครอบครัว` : `Ready to care for you and your family`}
           />
-          <p className={`text-kmc-secondary/75`}>
-            {t ? `แชท LINE หรือโทรหาเราได้ทันที` : `Chat on LINE or call us any time`}
-          </p>
-          <ContactButtons
-            className={`mt-7`}
-            primary={{
-              label: t ? `แชท LINE` : `Chat on LINE`,
-              href: lineUrl,
-            }}
-            secondary={{
-              label: t ? `โทร ${phoneNumber}` : `Call ${phoneNumber}`,
-              href: `tel:${phoneNumber.replace(/-/g, ``)}`,
-            }}
-          />
+          <p className={`cta-final__lead`}>{t ? `แชท LINE หรือโทรหาเราได้ทันที` : `Chat on LINE or call us any time`}</p>
+          <div className={`cta-final__actions`} data-cta-placement={`home-final`}>
+            <a className={`cta-final__btn`} href={lineUrl} target={`_blank`} rel={`noopener noreferrer`} data-cta={``}>
+              <svg viewBox={`0 0 24 24`} width={20} height={20} fill={`currentColor`} aria-hidden={`true`}>
+                <path d={`M12 2C6.48 2 2 5.66 2 10.15c0 4.02 3.58 7.39 8.42 8.03.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1 .88.55 1.07-.46 5.8-3.42 7.92-5.85C21.44 13.5 22 11.9 22 10.15 22 5.66 17.52 2 12 2zm-3.3 10.6H7.05a.4.4 0 0 1-.4-.4V8.1a.4.4 0 1 1 .8 0v3.7h1.25a.4.4 0 1 1 0 .8zm2.1 0h-.8a.4.4 0 0 1-.4-.4V8.1a.4.4 0 1 1 .8 0v4.1a.4.4 0 0 1-.4.4zm4.65-.4a.4.4 0 0 1-.72.24l-1.88-2.56v2.32a.4.4 0 1 1-.8 0V8.1c0-.18.12-.34.29-.38a.4.4 0 0 1 .43.14l1.88 2.56V8.1a.4.4 0 1 1 .8 0v4.1zm2.65.4h-1.65a.4.4 0 0 1-.4-.4V8.1a.4.4 0 0 1 .4-.4h1.65a.4.4 0 1 1 0 .8h-1.25v.98h1.25a.4.4 0 1 1 0 .8h-1.25v.98h1.25a.4.4 0 1 1 0 .8z`} />
+              </svg>
+              {t ? `แชท LINE` : `Chat on LINE`}
+            </a>
+            <a className={`cta-final__btn cta-final__btn--ghost`} href={`tel:${phoneNumber.replace(/-/g, ``)}`} data-cta={``}>
+              <Phone size={18} aria-hidden={`true`} />
+              {t ? `โทร ${phoneNumber}` : `Call ${phoneNumber}`}
+            </a>
+          </div>
         </div>
       </RevealSection>
     </div>

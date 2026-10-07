@@ -13,7 +13,7 @@ import IntegratedCare from "./components/IntegratedCare.jsx";
 import CorporateCommunity from "./components/CorporateCommunity.jsx";
 import NewsSection from "./components/NewsSection.jsx";
 import PackageCard from "./components/PackageCard.jsx";
-import HomePage from "./pages/HomePage.jsx";
+import HomePage from "./pages/HomePage.jsx"; // original homepage, unrouted while v2 is live
 import HomePageV2 from "./pages/HomePageV2.jsx";
 import StrokeRehabV2 from "./pages/StrokeRehabV2.jsx";
 const __vite__mapDeps = (
@@ -5278,9 +5278,12 @@ function SiteRoutes() {
     <Routes>
       {!1}
       <Route element={<SiteLayout />}>
-        <Route path={`/`} element={<HomePage />} />
-        <Route path={`/home-v2`} element={<HomePageV2 />} />
-        <Route path={`/services/stroke-rehab-v2`} element={<StrokeRehabV2 />} />
+        {/* v2 designs are live; the originals (HomePage, the generic stroke-rehab service page) are
+            kept in the code but unrouted for now. Old -v2 addresses redirect to the live paths. */}
+        <Route path={`/`} element={<HomePageV2 />} />
+        <Route path={`/home-v2`} element={<Navigate to={`/`} replace={!0} />} />
+        <Route path={`/services/stroke-rehab`} element={<StrokeRehabV2 />} />
+        <Route path={`/services/stroke-rehab-v2`} element={<Navigate to={`/services/stroke-rehab`} replace={!0} />} />
         <Route path={`/about`} element={<_Element5 />} />
         {Zt.map((e) => (
           <Route key={e} path={e} element={<Navigate to={`/about`} replace={!0} />} />

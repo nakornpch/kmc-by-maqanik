@@ -118,7 +118,7 @@ export default function FloatingContact({ hideStack: e = !1 }) {
     n = t.language === `th`,
     r = Ne(0.3),
     stackRef = useRef(null);
-  useHeroDock(stackRef, useLocation().pathname === `/home-v2`);
+  useHeroDock(stackRef, useLocation().pathname === `/`);
   return (
     <jsxRuntime.Fragment>
       <div
