@@ -6,6 +6,10 @@
 // touch swipe) glides to exactly the next / previous stop, so a step is never
 // left half-done. Past the last stop (or before the first) the page scrolls
 // normally. A stop landed between (scrollbar drag, fling) is snapped to.
+//
+// Page mode (registerPage, used by /home-v2): every section of the page becomes a
+// stop too (its top, plus one stop per screen for sections taller than the screen),
+// merged with the pinned sections' own stops, so each gesture moves one full section.
 
 const sections = new Set();
 const TOL = 3; // px either side of a stop that still counts as "on" it
@@ -17,7 +21,45 @@ let waitForQuiet = false;
 let lastWheel = 0;
 let snapTimer = 0;
 let touchStartY = null;
+let touchStartX = null;
 let installed = false;
+let pageSections = null; // page mode: returns the page's section elements
+
+// layout position, ignoring transforms (sections are briefly shifted while they reveal)
+function layoutTop(el) {
+  let y = 0;
+  for (let n = el; n; n = n.offsetParent) y += n.offsetTop;
+  return y;
+}
+
+// page mode: one merged list of the pinned sections' stops plus a stop per section
+// (and per screen inside sections much taller than the screen), ending at the page bottom
+function pageStops(lists) {
+  const vh = window.innerHeight;
+  const max = document.documentElement.scrollHeight - vh;
+  // the pinned sections' own ranges: no extra stops inside them
+  const ranges = lists.map((l) => [l[0], l[l.length - 1]]);
+  const inside = (y) => ranges.some(([a, b]) => y > a + TOL && y < b - TOL);
+  const extra = [];
+  for (const el of pageSections()) {
+    const top = layoutTop(el);
+    const h = el.offsetHeight;
+    // a section that steps itself (pinned) keeps only its own stops
+    if (ranges.some(([a, b]) => a >= top - TOL && b <= top + h + TOL)) continue;
+    extra.push(top);
+    // only sections clearly taller than the screen get a stop per screen (no tiny nudges)
+    if (h - vh > vh * 0.25) {
+      for (let y = top + vh; y < top + h - vh - TOL; y += vh) extra.push(y);
+      extra.push(top + h - vh);
+    }
+  }
+  extra.push(max);
+  const all = [...lists.flat(), ...extra.filter((y) => !inside(y))]
+    .map((y) => Math.round(Math.max(0, Math.min(max, y))))
+    .sort((a, b) => a - b);
+  // drop near-duplicates (a section top that is also a pinned stop, etc.)
+  return all.filter((y, i) => i === 0 || y - all[i - 1] > 8);
+}
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 const reduceMotion = () => window.matchMedia(`(prefers-reduced-motion: reduce)`).matches;
@@ -28,7 +70,7 @@ function allStops() {
     const stops = get();
     if (stops && stops.length) list.push(stops);
   }
-  return list;
+  return pageSections ? [pageStops(list)] : list;
 }
 
 // the stop to go to from here in `dir` (1 down, -1 up), or null to scroll normally
@@ -120,16 +162,23 @@ function onKey(e) {
 
 function onTouchStart(e) {
   touchStartY = e.touches[0]?.clientY ?? null;
+  touchStartX = e.touches[0]?.clientX ?? null;
 }
+// a mostly sideways swipe (tab rows, carousels) is left alone
+const sideways = (dx, dy) => Math.abs(dx) > Math.abs(dy);
 function onTouchMove(e) {
   if (touchStartY == null) return;
   const dy = touchStartY - e.touches[0].clientY;
+  const dx = touchStartX - e.touches[0].clientX;
+  if (sideways(dx, dy)) return;
   if (animating || (Math.abs(dy) > 4 && targetFor(dy > 0 ? 1 : -1) != null)) e.preventDefault();
 }
 function onTouchEnd(e) {
   if (touchStartY == null || animating) return;
   const dy = touchStartY - (e.changedTouches[0]?.clientY ?? touchStartY);
+  const dx = touchStartX - (e.changedTouches[0]?.clientX ?? touchStartX);
   touchStartY = null;
+  if (sideways(dx, dy)) return;
   if (Math.abs(dy) > 30) step(dy > 0 ? 1 : -1);
 }
 
@@ -154,7 +203,7 @@ function install() {
   window.addEventListener(`scroll`, onScroll, { passive: true });
 }
 function uninstall() {
-  if (!installed || sections.size) return;
+  if (!installed || sections.size || pageSections) return;
   installed = false;
   window.removeEventListener(`wheel`, onWheel);
   window.removeEventListener(`keydown`, onKey);
@@ -171,6 +220,17 @@ export function registerStops(getStops) {
   install();
   return () => {
     sections.delete(getStops);
+    uninstall();
+  };
+}
+
+// Page mode: `getSections` returns the page's section elements; each becomes a stop.
+// Returns the unregister function (use it as an effect cleanup).
+export function registerPage(getSections) {
+  pageSections = getSections;
+  install();
+  return () => {
+    pageSections = null;
     uninstall();
   };
 }

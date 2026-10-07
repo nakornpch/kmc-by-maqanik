@@ -18,6 +18,8 @@ import CorporateCommunity from "../components/v2/CorporateCommunity.jsx";
 import NewsSection from "../components/v2/NewsSection.jsx";
 import TrustedBy from "../components/v2/TrustedBy.jsx";
 import P4Panels from "../components/v2/P4Panels.jsx";
+import { registerPage } from "../components/v2/stepScroll.js";
+import { useEffect } from "react";
 import {
   useStaggerReveal,
   jsxRuntime,
@@ -60,6 +62,78 @@ export default function HomePageV2() {
   let { i18n: e } = useTranslation(),
     t = e.language === `th`;
   useHomeMeta();
+  // the closing CTA and everything below it (spacing + footer) share the last screen:
+  // keep the height of what follows the CTA in --footer-h
+  useEffect(() => {
+    const footer = document.querySelector(`footer`);
+    const final = document.querySelector(`.home-final`);
+    if (!footer || !final) return;
+    const root = document.documentElement;
+    const set = () => {
+      const below = root.scrollHeight - (final.getBoundingClientRect().bottom + window.scrollY);
+      root.style.setProperty(`--footer-h`, `${Math.max(0, Math.round(below))}px`);
+    };
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(footer);
+    ro.observe(document.body); // anything below the CTA can change the page's tail
+    return () => {
+      ro.disconnect();
+      root.style.removeProperty(`--footer-h`);
+    };
+  }, []);
+  // content reveal for the stepped page: when a section arrives on screen its content blocks fade
+  // up one after another; when it has left the screen it resets, so it plays on every visit
+  useEffect(() => {
+    if (window.matchMedia(`(prefers-reduced-motion: reduce)`).matches) return;
+    const sections = [
+      ...document.querySelectorAll(
+        `.home-v2 > :is(.trusted, .p4p, .picker, .svc, .gal, .band-tint, .care-flow, .community-hero, .home-final)`,
+      ),
+    ];
+    // the blocks to reveal: the children of the first level that has more than one child
+    for (const section of sections) {
+      let box = section;
+      while (box.children.length === 1 && box.firstElementChild.children.length) box = box.firstElementChild;
+      [...box.children].forEach((el, i) => {
+        el.setAttribute(`data-reveal`, ``);
+        el.style.setProperty(`--ri`, i);
+      });
+    }
+    let frame = 0;
+    function check() {
+      frame = 0;
+      const vh = window.innerHeight;
+      for (const section of sections) {
+        const r = section.getBoundingClientRect();
+        const visible = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+        const share = visible / Math.min(vh, r.height || 1);
+        if (share > 0.6) section.setAttribute(`data-shown`, ``);
+        else if (visible <= 0) section.removeAttribute(`data-shown`);
+      }
+    }
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(check);
+    };
+    check();
+    window.addEventListener(`scroll`, onScroll, { passive: true });
+    window.addEventListener(`resize`, onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener(`scroll`, onScroll);
+      window.removeEventListener(`resize`, onScroll);
+    };
+  }, []);
+  // each scroll gesture moves one full section (or one screen inside tall sections)
+  useEffect(
+    () =>
+      registerPage(() =>
+        [...document.querySelectorAll(`.home-v2 > *`), document.querySelector(`footer`)].filter(
+          (el) => el && el.offsetHeight > 0,
+        ),
+      ),
+    [],
+  );
   let n = useStaggerReveal({
       delayEach: 100,
     }),
@@ -197,7 +271,7 @@ export default function HomePageV2() {
       <CorporateCommunity />
       <NewsSection />
       {/* closing CTA, same design as the stroke rehab page: navy panel with the K-mark arcs */}
-      <RevealSection className={`mx-auto max-w-6xl px-6 pb-24`}>
+      <RevealSection className={`home-final mx-auto max-w-6xl px-6 pb-24`}>
         <div className={`cta-final`}>
           <svg className={`cta-final__arcs`} viewBox={`0 0 800 800`} aria-hidden={`true`}>
             <path d={`M266.62,0H0c0,441.86,358.13,799.99,799.99,799.99v-266.62C505.41,533.38,266.62,294.59,266.62,0Z`} />

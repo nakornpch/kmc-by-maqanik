@@ -243,7 +243,9 @@
   .home-v2 .hero-deck__copy { align-self: start; }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  .home-v2 .hero-deck__inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .home-v2 .hero-deck__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; }
+  /* half-width column: smaller headline so "เพื่อคนที่คุณรัก" and "โรงพยาบาลของชุมชน" each fit on one line */
+  .home-v2 .hero-deck__copy h1 { font-size: 2rem; }
 }
 @media (min-width: 1024px) {
   /* the big logo PNG has ~2% transparent margin on the left; match its visible edge */
@@ -560,10 +562,13 @@
 }
 
 /* ---- A: expanding panels ---- */
+/* not pinned: the intro sits above the panels, the panels open on hover / click */
+.home-v2 .p4p__wrap { padding-top: 6.5rem; padding-bottom: 5rem; }
+.home-v2 .p4p__wrap .p4-journey { margin-top: 1.25rem; }
 .home-v2 .p4p__panels {
   display: flex;
-  flex: 1;
-  min-height: 0;
+  height: clamp(28rem, 68svh, 38rem);
+  margin-top: 2rem;
   gap: 0.75rem;
 }
 .home-v2 .p4p__panel {
@@ -813,7 +818,8 @@
   .home-v2 .p4r__ends { display: none; }
 }
 @media (max-width: 767px) {
-  .home-v2 .p4p__panels { flex-direction: column; gap: 0.5rem; }
+  .home-v2 .p4p__wrap { padding-top: 4.5rem; padding-bottom: 3.5rem; }
+  .home-v2 .p4p__panels { flex-direction: column; gap: 0.5rem; height: 38rem; }
   .home-v2 .p4p__panel { flex: 0 0 3.5rem; transition: flex 0.6s cubic-bezier(0.2, 0.75, 0.2, 1); }
   .home-v2 .p4p__panel.is-open { flex: 1 1 auto; }
   .home-v2 .p4p__tab { flex-direction: row; justify-content: flex-start; gap: 1rem; padding: 0 1.5rem; }
@@ -877,18 +883,69 @@
   background: var(--color-fog-1);
 }
 .home-v2 .team-reel__photo img { width: 100%; height: 100%; object-fit: cover; }
+.home-v2 .team-reel__copy h2 { text-wrap: balance; }
+.home-v2 .team-reel__points { display: grid; gap: 0.6rem; margin-bottom: 1.75rem; }
+.home-v2 .team-reel__points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-kmc-secondary);
+}
+.home-v2 .team-reel__points li::before {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-kmc-accent), var(--color-kmc-primary-deep));
+}
+.home-v2 .team-reel__links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.home-v2 .team-reel__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.1rem;
+  padding: 0 1.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-kmc-secondary);
+  background: var(--color-kmc-secondary);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 12px 26px -14px rgb(9 27 58 / 0.7);
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.home-v2 .team-reel__btn svg { transition: transform 0.3s; }
+.home-v2 .team-reel__btn:hover { background: var(--color-kmc-primary-deep); border-color: var(--color-kmc-primary-deep); transform: translateY(-1px); box-shadow: 0 16px 30px -14px rgb(9 27 58 / 0.75); }
+.home-v2 .team-reel__btn:hover svg { transform: translateX(3px); }
+.home-v2 .team-reel__btn--ghost { background: #fff; color: var(--color-kmc-secondary); border-color: rgb(9 27 58 / 0.2); box-shadow: none; }
+.home-v2 .team-reel__btn--ghost:hover { background: var(--color-kmc-secondary); border-color: var(--color-kmc-secondary); color: #fff; }
+.home-v2 .team-reel__btn:focus-visible { outline: 3px solid var(--color-kmc-accent); outline-offset: 3px; }
 
 @media (max-width: 767px) {
   .home-v2 .team-reel { height: calc(100svh + 90svh); }
-  .home-v2 .team-reel__stage { align-items: stretch; padding: 5rem 0 4.5rem; }
+  /* just clears the fixed header and the bottom LINE / call bar */
+  .home-v2 .team-reel__stage { align-items: stretch; padding: 4.4rem 0 3.6rem; }
   .home-v2 .team-reel__layout { grid-template-columns: 1fr; gap: 1.25rem; align-content: center; padding: 0; }
   .home-v2 .team-reel__copy { padding: 0 1.25rem; }
   .home-v2 .team-reel__copy p { font-size: 0.95rem; margin-bottom: 0.5rem; }
+  /* the pinned phone stage has no room for the list; the paragraph already names the team and tools */
+  .home-v2 .team-reel__points { display: none; }
+  .home-v2 .team-reel__copy h2 { margin-bottom: 0.75rem; }
+  .home-v2 .team-reel__copy p { font-size: 0.9rem; line-height: 1.65; }
+  .home-v2 .team-reel__links { flex-wrap: nowrap; gap: 0.5rem; }
+  .home-v2 .team-reel__btn { flex: 1 1 auto; min-height: 2.9rem; padding: 0 0.9rem; font-size: 0.85rem; gap: 0.4rem; white-space: nowrap; }
+  .home-v2 .team-reel__btn svg { width: 16px; height: 16px; }
   /* columns become two rows sliding sideways */
   .home-v2 .team-reel__frame {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    height: min(22rem, 40svh);
+    height: min(22rem, 33svh);
     border-radius: 0;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
@@ -1238,7 +1295,8 @@
 /* ---------- /home-v2: community hospital heading + video growing to full screen ---------- */
 .home-v2 .cv {
   position: relative;
-  height: calc(100svh + 120svh);
+  /* pinned through three stages: K + heading, video in, video full screen */
+  height: calc(100svh + 230svh);
   /* light, so the clip stands out against it */
   background: radial-gradient(60% 50% at 50% 70%, rgb(181 211 229 / 0.45), transparent 70%), var(--color-kmc-bg);
 }
@@ -1248,6 +1306,45 @@
   height: 100svh;
   overflow: hidden;
   container-type: size;
+}
+/* K-mark arcs on the left, behind the heading and the video */
+.home-v2 .cv__arcs {
+  position: absolute;
+  z-index: 0;
+  /* a big K bleeding off the left edge */
+  width: min(62rem, 95vw);
+  aspect-ratio: 1;
+  left: max(-22rem, -32vw);
+  top: 45%;
+  translate: 0 -50%;
+  opacity: 0.3;
+  overflow: visible;
+  pointer-events: none;
+}
+/* everything here is driven by scroll progress set in CommunityVideo:
+   --k the K assembling, --h the heading words, --v the video coming up, --g the video growing */
+/* full strength while it forms, then settles behind the card as the video comes up */
+.home-v2 .cv__arcs { opacity: calc(min(1, var(--k) * 1.5) * (1 - var(--v) * 0.7)); }
+/* the two arcs fly in from opposite corners to form the K (same motion as the hero) */
+.home-v2 .cv__arcwrap { transform-box: fill-box; transform-origin: center; opacity: var(--k); }
+.home-v2 .cv__arcwrap--a { transform: translate(calc((1 - var(--k)) * -28%), calc((1 - var(--k)) * -22%)) rotate(calc((1 - var(--k)) * -35deg)); }
+.home-v2 .cv__arcwrap--b { transform: translate(calc((1 - var(--k)) * 28%), calc((1 - var(--k)) * 22%)) rotate(calc((1 - var(--k)) * 35deg)); }
+/* turning with the growing video stays on the inner shapes */
+.home-v2 .cv__arc { transform-box: fill-box; transform-origin: center; }
+.home-v2 .cv__arc--a { transform: rotate(calc(var(--g) * -14deg)); }
+.home-v2 .cv__arc--b { transform: rotate(calc(var(--g) * 14deg)); }
+/* the heading's words rise in one after another (each word has --s, its index) */
+.home-v2 .cv__head [data-reveal-seg] {
+  transform: translateY(calc((1 - clamp(0, var(--h) * 1.6 - var(--s, 0) * 0.06, 1)) * 120%));
+}
+/* the video card (and its play button) slides up and fades in once the K has formed */
+.home-v2 .cv :is(.cv__video, .cv__play) { opacity: var(--v); translate: 0 calc((1 - var(--v)) * 5rem); }
+.home-v2 .cv__play { pointer-events: auto; }
+@media (max-width: 767px) {
+  .home-v2 .cv__arcs { width: 30rem; left: -12rem; top: 42%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-v2 .cv__arc { transform: none !important; }
 }
 .home-v2 .cv__head {
   position: absolute;
@@ -1260,10 +1357,22 @@
   opacity: calc(1 - var(--g) * 1.6);
   transform: translateY(calc(var(--g) * -2.5rem));
 }
+/* brand name in the KMC blue gradient (AnimatedHeading's `accent` words) */
+.brand-gradient-text {
+  color: transparent;
+  background: linear-gradient(100deg, var(--color-kmc-primary-deep) 0%, #4f8bbd 55%, #7ab0d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+/* fluid size; each line is a whole phrase (phones get their own line breaks in CommunityVideo) */
+.home-v2 .cv__head h2 { font-size: clamp(1.4rem, 0.9rem + 2.4vw, 2.25rem); }
 .home-v2 .cv__video {
-  /* the card under the heading: its top, width and height at the start */
-  --top: 14rem;
-  --w: min(64rem, 100cqw - 3rem, (100cqh - 16rem) * 16 / 9);
+  /* the card under the heading: its top (set from the heading's measured bottom, plus a gap),
+     width and height at the start; --bottom keeps it clear of the screen edge / bottom bar */
+  --gap: 2rem;
+  --bottom: 2.5rem;
+  --y: calc(var(--top, 14rem) + var(--gap));
+  --w: min(64rem, 100cqw - 3rem, (100cqh - var(--y) - var(--bottom)) * 16 / 9);
   --h: calc(var(--w) * 9 / 16);
   --side: calc((100cqw - var(--w)) / 2);
   position: absolute;
@@ -1275,8 +1384,8 @@
   filter: drop-shadow(0 30px 40px rgb(9 27 58 / 0.25));
   /* opening the clip grows the card to the full screen as --g goes 0 → 1 */
   clip-path: inset(
-    calc(var(--top) * (1 - var(--g))) calc(var(--side) * (1 - var(--g)))
-      calc((100cqh - var(--top) - var(--h)) * (1 - var(--g))) calc(var(--side) * (1 - var(--g)))
+    calc(var(--y) * (1 - var(--g))) calc(var(--side) * (1 - var(--g)))
+      calc((100cqh - var(--y) - var(--h)) * (1 - var(--g))) calc(var(--side) * (1 - var(--g)))
       round calc(2rem * (1 - var(--g)))
   );
 }
@@ -1299,9 +1408,9 @@
 }
 .home-v2 .cv__play:hover { background: rgb(9 27 58 / 0.75); }
 @media (max-width: 767px) {
-  .home-v2 .cv { height: calc(100svh + 90svh); }
+  .home-v2 .cv { height: calc(100svh + 180svh); }
   .home-v2 .cv__head { top: 5.5rem; }
-  .home-v2 .cv__video { --top: 12rem; --w: calc(100cqw - 2.5rem); }
+  .home-v2 .cv__video { --gap: 1.5rem; --bottom: 5.5rem; --w: min(100cqw - 2.5rem, (100cqh - var(--y) - var(--bottom)) * 16 / 9); }
   .home-v2 .cv__play { bottom: 4.75rem; }
 }
 
@@ -1585,7 +1694,109 @@
   .home-v2 .apps__points { padding-top: 0.75rem; margin-bottom: 1rem; gap: 0.3rem; }
   .home-v2 .apps__points li { font-size: 0.8rem; }
 }
+/* ---- phones: no pinning; the apps are a stack of file folders that unfold toward the reader ---- */
+@media (max-width: 767px) {
+  .home-v2 .apps { height: auto; overflow: visible; }
+  .home-v2 .apps__pin { position: static; height: auto; display: block; padding: 4.5rem 0 4.5rem; }
+  .home-v2 .apps__inner { display: block; }
+  .home-v2 .apps__head { margin-bottom: 1.75rem; }
+  .home-v2 .apps__folders { display: grid; gap: 0.75rem; perspective: 1400px; }
+  .home-v2 .apps__folder {
+    position: relative;
+    z-index: var(--i);
+    /* solid tones (lighter down the stack) so the folders read as real, stacked folders */
+    --folder: color-mix(in srgb, #091b3a, #3e6e94 calc(18% + var(--i) * 9%));
+    border-radius: 1.25rem 1.25rem 1rem 1rem;
+    background: var(--folder);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    box-shadow: 0 12px 24px -16px rgb(0 0 0 / 0.6);
+    transition: background 0.4s, border-color 0.4s;
+  }
+  .home-v2 .apps__folder.is-open { --folder: color-mix(in srgb, #091b3a, #3e6e94 48%); border-color: rgb(143 188 217 / 0.45); }
+  .home-v2 .apps__folder-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    width: 100%;
+    padding: 1rem 1.1rem;
+    text-align: left;
+    color: #fff;
+  }
+  .home-v2 .apps__folder-tab .apps__icon { flex: none; width: 2.6rem; height: 2.6rem; }
+  .home-v2 .apps__folder.is-open .apps__folder-tab .apps__icon { color: var(--color-kmc-secondary); background: linear-gradient(145deg, #d6e9f5, var(--color-kmc-accent)); }
+  .home-v2 .apps__folder-tab .apps__docktext { display: flex; flex: 1; }
+  .home-v2 .apps__folder-tab .apps__docktext span { display: block; white-space: normal; }
+  .home-v2 .apps__folder.is-open .apps__docktext b { color: #fff; }
+  .home-v2 .apps__folder-chev {
+    flex: none;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-right: 0.25rem;
+    border-right: 2px solid rgb(255 255 255 / 0.6);
+    border-bottom: 2px solid rgb(255 255 255 / 0.6);
+    transform: rotate(45deg) translateY(-0.15rem);
+    transition: transform 0.4s;
+  }
+  .home-v2 .apps__folder.is-open .apps__folder-chev { transform: rotate(225deg) translateY(-0.15rem); }
+  /* the panel opens to its height while the sheet swings down from the top edge, toward the reader */
+  .home-v2 .apps__folder-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.55s cubic-bezier(0.2, 0.75, 0.2, 1);
+  }
+  .home-v2 .apps__folder.is-open .apps__folder-body { grid-template-rows: 1fr; }
+  .home-v2 .apps__folder-sheet {
+    min-height: 0;
+    overflow: hidden;
+    transform-origin: top center;
+    transform: rotateX(-75deg);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.2, 0.75, 0.2, 1), opacity 0.35s;
+  }
+  .home-v2 .apps__folder.is-open .apps__folder-sheet { transform: none; opacity: 1; transition-delay: 0.08s; }
+  .home-v2 .apps__folder-top {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+  /* a peek of the phone: pushed past the folder's left edge and faded out at the bottom */
+  .home-v2 .apps__folder-device {
+    position: relative;
+    height: 12.5rem;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent);
+    mask-image: linear-gradient(180deg, #000 60%, transparent);
+  }
+  .home-v2 .apps__folder-device .apps__phone {
+    --ph: 16rem;
+    position: absolute;
+    top: 0.75rem;
+    right: 0;
+    animation: none;
+  }
+  /* radial glow behind the title and description to lift the text */
+  .home-v2 .apps__folder-head {
+    position: relative;
+    padding: 1rem 1.1rem 1rem 0.25rem;
+  }
+  .home-v2 .apps__folder-head::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -1rem -0.5rem -1rem -1.5rem;
+    background: radial-gradient(closest-side, rgb(143 188 217 / 0.32), rgb(62 110 148 / 0.14) 60%, transparent);
+    pointer-events: none;
+  }
+  .home-v2 .apps__folder-head .apps__kicker { display: none; }
+  .home-v2 .apps__folder-head .apps__title { font-size: 1.15rem; line-height: 1.35; margin-bottom: 0.4rem; }
+  .home-v2 .apps__folder-head .apps__desc { font-size: 0.82rem; line-height: 1.6; margin-bottom: 0; color: rgb(255 255 255 / 0.8); }
+  .home-v2 .apps__folder-head { isolation: isolate; }
+  .home-v2 .apps__folder-sheet .apps__copy { padding: 0 1.1rem 1.5rem; animation: none; }
+}
 @media (prefers-reduced-motion: reduce) {
+  .home-v2 :is(.apps__folder-body, .apps__folder-sheet) { transition: none !important; }
   .home-v2 :is(.apps__phone, .apps__copy, .app-screen__caller) { animation: none !important; }
   .home-v2 .apps :is(.apps__head, .apps__glow, .apps__phone, .apps__col, .apps__dock) { opacity: 1 !important; translate: none !important; transform: none !important; }
   .home-v2 .app-screen__line { stroke-dashoffset: 0; animation: none !important; }
@@ -2560,4 +2771,160 @@
 @media (max-width: 767px) {
   .home-v2 .cta-final { padding: 3.5rem 1.5rem; border-radius: 1.5rem; }
   .home-v2 .cta-final__actions { flex-direction: column; align-items: stretch; }
+}
+
+/* team reel on short phones: a shorter photo strip so the pinned copy, buttons and photos fit one screen */
+@media (max-width: 767px) and (max-height: 760px) {
+  .home-v2 .team-reel__frame { height: 27svh; }
+}
+/* phones: keep both team buttons on one row inside the margins (the arrows make way for the text) */
+@media (max-width: 420px) {
+  .home-v2 .team-reel__btn { padding: 0 0.85rem; font-size: 0.8rem; }
+  .home-v2 .team-reel__btn svg { display: none; }
+}
+
+/* swipeable rows (SwipeRow): no scrollbar; fade out at an edge only while there is more to swipe to,
+   with a round arrow button over that fade to slide the hidden items in */
+.edge-fade {
+  --fade-start: 0px;
+  --fade-end: 0px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--fade-start), #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 var(--fade-start), #000 calc(100% - var(--fade-end)), transparent);
+}
+.edge-fade::-webkit-scrollbar { display: none; }
+.edge-fade[data-fade-start] { --fade-start: 3.5rem; }
+.edge-fade[data-fade-end] { --fade-end: 3.5rem; }
+.swipe-row { position: relative; }
+.swipe-row__btn {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  /* centred on the tab row (the row has a little bottom padding) */
+  margin-top: calc((2.5rem - 2.25rem) / 2);
+  border-radius: 50%;
+  border: 1px solid rgb(9 27 58 / 0.12);
+  background: #fff;
+  color: var(--color-kmc-secondary);
+  box-shadow: 0 6px 16px -6px rgb(9 27 58 / 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: opacity 0.25s, transform 0.25s;
+}
+.swipe-row__btn.is-on { opacity: 1; pointer-events: auto; transform: none; }
+.swipe-row__btn.is-prev { left: -0.5rem; }
+.swipe-row__btn.is-next { right: -0.5rem; }
+.swipe-row__btn:active { transform: scale(0.92); }
+
+/* ---------- /home-v2 on desktop: every section is exactly one screen ----------
+   With the page stepping one section per scroll (registerPage), each stop shows a whole
+   section: every section is at least one screen tall (min-height: 100vh) with content that
+   does not fill it centred on the screen; tall ones are tightened to fit. The pinned sections (hero, team, video, apps) already work in screens. */
+@media (min-width: 1024px) and (min-height: 640px) {
+  .home-v2 > :is(.trusted, .picker, .svc, .gal, .band-tint, .care-flow, .community-hero, .home-final) {
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+  .home-v2 > :is(.trusted, .picker, .svc, .gal, .band-tint, .care-flow, .community-hero, .home-final) > * { width: 100%; }
+
+  /* trusted by: a full-screen logo wall (still tucked under the end of the hero) */
+  .home-v2 .trusted { padding: calc(72px + 1rem) 0 2rem; }
+  .home-v2 .trusted__title { font-size: 1.1rem; margin-bottom: 3rem; }
+  .home-v2 .trusted__rows { gap: 1.5rem; }
+  .home-v2 .trusted__list li { height: 5.5rem; padding: 0 2.75rem; }
+
+  /* P4: one screen; the panels take whatever height the intro leaves */
+  .home-v2 .p4p { height: 100vh; }
+  .home-v2 .p4p__wrap { box-sizing: border-box; height: 100%; display: flex; flex-direction: column; padding-top: calc(72px + 1.5rem); padding-bottom: 2rem; }
+  .home-v2 .p4p__panels { flex: 1; height: auto; min-height: 0; margin-top: 1.75rem; }
+
+  /* integrated care: heading + two photo rows sized to the screen */
+  .home-v2 .care-flow { padding: calc(72px + 1.5rem) 0 2rem; }
+  .home-v2 .care-flow__head { margin-bottom: 2rem; }
+  .home-v2 .care-flow__card { height: min(clamp(15rem, 24vw, 22rem), calc((100vh - 17rem) / 2)); }
+
+  /* visit planner: less padding and shorter step cards */
+  .home-v2 .visit-planner { padding-top: calc(72px + 0.75rem); padding-bottom: 1.25rem; }
+  .home-v2 .visit-planner__head { margin-bottom: 1.25rem; }
+  .home-v2 :is(.visit-planner__steps, .visit-planner__faq) { padding: 1.25rem 1.75rem; }
+  .home-v2 .visit-planner__panel-head { padding-bottom: 0.9rem; }
+  .home-v2 .visit-planner__panel-head h3 { font-size: 1.15rem; }
+  .home-v2 .visit-planner__step { min-height: 0; padding: 1.1rem 1.25rem; }
+
+  /* corporate & community: the split panels fill the rest of the screen */
+  .home-v2 .community-hero { padding-top: calc(72px + 1.5rem); }
+  .home-v2 .community-hero__panel { min-height: calc(100vh - 72px - 1.5rem - 7rem); }
+
+  /* the closing CTA and the footer share the last screen exactly */
+  .home-v2 > .home-final { min-height: calc(100vh - var(--footer-h, 0px)); padding-top: 72px; padding-bottom: 2rem; }
+}
+/* short laptop screens (~700–820px tall): tighter still, so every section stays one screen */
+@media (min-width: 1024px) and (min-height: 640px) and (max-height: 820px) {
+  /* P4: the big P number in the open card makes way for its copy (the tab still shows P1–P4) */
+  .home-v2 .p4p .p4-num { display: none; }
+  .home-v2 .p4p__content { padding: 1.75rem; }
+  /* services picker */
+  .home-v2 .picker > div { padding-top: calc(72px + 0.5rem); padding-bottom: 1rem; }
+  .home-v2 .picker__panel { padding: 2.25rem; }
+  /* visit planner */
+  .home-v2 .visit-planner__head { margin-bottom: 1rem; }
+  .home-v2 .visit-planner__intro { display: none; }
+  .home-v2 .visit-planner__list { gap: 0.6rem; }
+  .home-v2 .visit-planner__step { padding: 0.75rem 1rem; gap: 1rem; grid-template-columns: 3rem minmax(0, 1fr); }
+  .home-v2 .visit-planner__step-marker { width: 3rem; height: 3rem; }
+  .home-v2 .visit-planner__faq-groups { gap: 0.6rem; margin-top: 1rem; }
+  .home-v2 .visit-planner__panel-head { padding-bottom: 0.6rem; }
+  /* corporate & community */
+  .home-v2 .community-hero { padding-top: calc(72px + 0.75rem); }
+  .home-v2 .community-hero__heading { margin-bottom: 1.5rem; }
+  .home-v2 .community-hero__panel { min-height: calc(100vh - 72px - 0.75rem - 8.5rem); }
+}
+/* the closing CTA on any desktop height: clear of the fixed header, centred above the footer
+   (instead of hugging the header with a large gap underneath) */
+@media (min-width: 1024px) {
+  .home-v2 > .home-final {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - var(--footer-h, 0px));
+    padding-top: calc(72px + 1rem);
+    padding-bottom: 1.5rem;
+  }
+  /* a slimmer card, so the CTA, the space below it and the footer fit the last screen */
+  .home-v2 > .home-final .cta-final { padding-top: 3rem; padding-bottom: 3rem; }
+}
+@media (min-width: 1024px) and (min-height: 640px) and (max-height: 820px) {
+  /* visit planner FAQ: slimmer question rows */
+  .home-v2 .visit-planner__question summary { min-height: 2.5rem; padding: 0.4rem 0.85rem; }
+  .home-v2 .visit-planner__faq-group > p { margin-bottom: 0.15rem; }
+  .home-v2 .visit-planner__faq-group ul { gap: 0.35rem; }
+  .home-v2 .visit-planner__all-faq { min-height: 2.25rem; margin-top: 0.5rem; }
+  .home-v2 :is(.visit-planner__steps, .visit-planner__faq) { padding: 1rem 1.5rem; }
+  .home-v2 .visit-planner { padding-bottom: 0.5rem; }
+}
+
+/* content reveal on the stepped homepage (set up in HomePageV2): each block of a section fades
+   up in turn when the section arrives, and resets once the section has left the screen */
+@media (prefers-reduced-motion: no-preference) {
+  .home-v2 [data-reveal] {
+    opacity: 0;
+    translate: 0 2.25rem;
+    transition: opacity 0.7s ease, translate 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .home-v2 [data-shown] [data-reveal] {
+    opacity: 1;
+    translate: none;
+    transition-delay: calc(0.15s + var(--ri, 0) * 0.12s);
+  }
 }

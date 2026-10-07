@@ -3271,14 +3271,19 @@ function AnimatedHeading({
   className: r = ``,
   delayEach: i = 34,
   duration: a = 650,
+  // words to set in the brand gradient (e.g. ["KMC"]), matched whole-word
+  accent: accentWords = [],
+  // manual: skip the built-in one-time reveal; the parent drives it in CSS (each word gets --s, its index)
+  manual: isManual = !1,
   ...o
 }) {
   let s = (0, React.useRef)(null),
-    c = t || [e ?? ``];
+    c = t || [e ?? ``],
+    segIndex = 0;
   return (
     (0, React.useEffect)(() => {
       let e = s.current;
-      if (!e) return;
+      if (!e || isManual) return;
       let t = e.querySelectorAll(`[data-reveal-seg]`);
       if (t.length === 0) return;
       if (window.matchMedia(`(prefers-reduced-motion: reduce)`).matches) {
@@ -3306,7 +3311,7 @@ function AnimatedHeading({
         },
       );
       return (n.observe(e), () => n.disconnect());
-    }, [e, t, i, a]),
+    }, [e, t, i, a, isManual]),
     (
       <_Element2 ref={s} className={r} {...o}>
         {c.map((e, t) => (
@@ -3319,7 +3324,11 @@ function AnimatedHeading({
                   key={t}
                   className={`inline-block overflow-hidden align-bottom py-[0.14em] -my-[0.14em]`}
                 >
-                  <span data-reveal-seg={!0} className={`inline-block will-change-transform`}>
+                  <span
+                    data-reveal-seg={!0}
+                    className={`inline-block will-change-transform${accentWords.includes(e) ? ` brand-gradient-text` : ``}`}
+                    style={isManual ? { "--s": segIndex++ } : undefined}
+                  >
                     {e}
                   </span>
                 </span>

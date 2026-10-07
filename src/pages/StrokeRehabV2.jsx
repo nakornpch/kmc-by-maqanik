@@ -6,6 +6,7 @@ import { t as usePageMeta } from "../routes/usePageMeta.jsx";
 import { t as useFaqSchema } from "../routes/useFaqSchema.jsx";
 import { services, lineUrl, phoneNumber } from "../site.jsx";
 import { strokeRehabPriceTable, strokeRehabGallery, strokeRehabGalleryTabs, strokeRehabCaseClips } from "../components/v2/strokeRehabContent.js";
+import SwipeRow from "../components/v2/SwipeRow.jsx";
 import "../styles/stroke-rehab-v2.css";
 
 function PhotoViewer({ items, index, setIndex, onClose, isTh }) {
@@ -186,7 +187,7 @@ export default function StrokeRehabV2() {
 
     <section id="sr-gallery" className="sr-gallery-section"><div className="sr-wrap sr-section-head"><div><p className="sr-eyebrow">A CLOSER LOOK</p><h2>{copy("เห็นภาพการดูแล", "See the care")}<br />{copy("ก่อนตัดสินใจ", "before you decide")}</h2></div><Link to="/facilities">{copy("ดูสิ่งอำนวยความสะดวก", "Explore our facilities")}<ArrowUpRight size={19} /></Link></div>
       <div className="sr-wrap">
-        <div className="sr-gal__tabs" role="tablist" aria-label={copy("หมวดหมู่ภาพ", "Photo categories")}>{strokeRehabGalleryTabs.map((tab, index) => <button key={tab.key} type="button" role="tab" id={`sr-gal-tab-${tab.key}`} aria-selected={galleryTab === index} aria-controls="sr-gal-panel" className={`sr-gal__tab${galleryTab === index ? " is-active" : ""}`} onClick={() => setGalleryTab(index)}>{th ? tab.th : tab.en}</button>)}</div>
+        <SwipeRow className="sr-gal__tabs" isTh={th} role="tablist" aria-label={copy("หมวดหมู่ภาพ", "Photo categories")}>{strokeRehabGalleryTabs.map((tab, index) => <button key={tab.key} type="button" role="tab" id={`sr-gal-tab-${tab.key}`} aria-selected={galleryTab === index} aria-controls="sr-gal-panel" className={`sr-gal__tab${galleryTab === index ? " is-active" : ""}`} onClick={() => setGalleryTab(index)}>{th ? tab.th : tab.en}</button>)}</SwipeRow>
         {/* keyed so the photos animate in again for every category */}
         <ul key={strokeRehabGalleryTabs[galleryTab].key} id="sr-gal-panel" role="tabpanel" aria-labelledby={`sr-gal-tab-${strokeRehabGalleryTabs[galleryTab].key}`} className="sr-gal__grid">{strokeRehabGalleryTabs[galleryTab].photos.map((image, index, photos) => <li key={image.src} style={{ "--i": index }}>
           <button type="button" className="sr-gal__item" onClick={() => openImages(photos, index)} aria-label={`${th ? image.th : image.en}: ${copy("ดูภาพเต็มจอ", "view full screen")}`}>

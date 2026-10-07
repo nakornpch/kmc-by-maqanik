@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { t as useTranslation } from "../../vendor/i18n-CAiZPsdd.js";
 import { n as Link } from "../../vendor/react-SEPqUFC0.js";
 import { RevealSection, AnimatedHeading, facilityPhotos } from "../../site.jsx";
+import SwipeRow from "./SwipeRow.jsx";
 
 const photo = (name) => `/images/photos/${name}.webp`;
 const facility = (file) => facilityPhotos.find((p) => p.src.endsWith(file));
@@ -123,7 +124,7 @@ export default function FacilitiesGallery() {
           </Link>
         </div>
 
-        <div className={`gal__tabs`} role={`tablist`} aria-label={isTh ? `หมวดหมู่` : `Categories`}>
+        <SwipeRow className={`gal__tabs`} isTh={isTh} role={`tablist`} aria-label={isTh ? `หมวดหมู่` : `Categories`}>
           {cats.map((c, i) => (
             <button
               key={c.key}
@@ -138,7 +139,7 @@ export default function FacilitiesGallery() {
               {isTh ? c.th : c.en}
             </button>
           ))}
-        </div>
+        </SwipeRow>
 
         {/* keyed so the photos re-animate in for every category */}
         <ul

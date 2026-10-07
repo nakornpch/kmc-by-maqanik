@@ -97,8 +97,8 @@
 .sr-hero__tags span { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.25rem; padding: 0 1rem; border-radius: 999px; border: 1px solid rgb(255 255 255 / 0.2); background: rgb(255 255 255 / 0.08); backdrop-filter: blur(8px); font-family: var(--font-display, inherit); font-size: 0.85rem; color: rgb(255 255 255 / 0.9); }
 .sr-hero__tags span::before { content: ""; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--sr-blue); }
 .sr-tag__photo, .sr-tag__line { display: none; }
-@media (min-width: 768px) {
-  /* tags float over the photo side, scattered, each drifting at its own speed on scroll and bobbing gently;
+@media (min-width: 1140px) {
+  /* tags float over the photo side (from laptop width up; narrower screens keep them in a row under the buttons), scattered, each drifting at its own speed on scroll and bobbing gently;
      each tag is joined by a thin line to a small photo of that therapy */
   .sr-hero__tags { position: absolute; inset: 0; z-index: 0; width: auto; margin: 0; padding: 0; pointer-events: none; }
   .sr-hero__tags li { position: absolute; transform: translateY(calc(var(--sr-scroll, 0) * var(--speed) * -1px)); will-change: transform; }
