@@ -1,0 +1,29 @@
+{
+  "threshold": 0.1,
+  "results": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "changedPixels": 466,
+      "totalPixels": 1440000,
+      "matchedPercent": 99.96763888888889
+    },
+    {
+      "name": "full-desktop",
+      "width": 1440,
+      "height": 11134,
+      "changedPixels": 55451,
+      "totalPixels": 16032960,
+      "matchedPercent": 99.65414371394927
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "changedPixels": 9,
+      "totalPixels": 329160,
+      "matchedPercent": 99.99726576740795
+    }
+  ]
+}

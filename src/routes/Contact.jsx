@@ -1,0 +1,193 @@
+import { a as e } from "../vendor/rolldown-runtime-CNC7AqOf.js";
+import { i as t, t as n } from "../vendor/i18n-CAiZPsdd.js";
+import { d as r } from "../vendor/react-SEPqUFC0.js";
+import { a as i } from "../vendor/motion-CB540VaL.js";
+import {
+  C as a,
+  S as o,
+  T as s,
+  b as c,
+  m as _Element2,
+  n as u,
+  p as _Element,
+  w as f,
+} from "../site.jsx";
+var p = e(t(), 1),
+  m = i(),
+  h = {
+    viewBox: `0 0 24 24`,
+    fill: `none`,
+    stroke: `currentColor`,
+    strokeWidth: 1.8,
+    strokeLinecap: `round`,
+    strokeLinejoin: `round`,
+    className: `w-5 h-5`,
+  },
+  g = [
+    {
+      key: `address`,
+      th: `ที่อยู่`,
+      en: `Address`,
+      value: () => o,
+      Icon: () => (
+        <svg {...h}>
+          <path d={`M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z`} />
+          <circle cx={`12`} cy={`10`} r={`3`} />
+        </svg>
+      ),
+    },
+    {
+      key: `phone`,
+      th: `โทรศัพท์`,
+      en: `Phone`,
+      value: () => (
+        <a
+          href={`tel:+6621094210`}
+          className={`inline-block py-1 hover:underline`}
+        >{`02-109-4210`}</a>
+      ),
+      Icon: () => (
+        <svg {...h}>
+          <path
+            d={`M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z`}
+          />
+        </svg>
+      ),
+    },
+    {
+      key: `line`,
+      th: `LINE Official`,
+      en: `LINE Official`,
+      value: () => (
+        <a
+          href={`https://line.me/R/ti/p/@kmchealth`}
+          target={`_blank`}
+          rel={`noopener noreferrer`}
+          className={`inline-block py-1 hover:underline`}
+        >{`@kmchealth`}</a>
+      ),
+      Icon: () => (
+        <svg {...h}>
+          <path
+            d={`M21 11.5a8.5 7.5 0 0 1-8.5 7.5c-.8 0-1.6-.1-2.3-.3L6 20l.7-2.8A8 7.3 0 0 1 4 11.5 8.5 7.5 0 0 1 12.5 4 8.5 7.5 0 0 1 21 11.5z`}
+          />
+        </svg>
+      ),
+    },
+  ];
+function _({ isTh: e, service: t }) {
+  let n = t ? (e ? t.th.name : t.en.name) : null;
+  return (
+    <div
+      data-line-topic={n || void 0}
+      className={`rounded-3xl bg-white border border-kmc-secondary/10 px-6 py-10 sm:px-10 text-center shadow-xl shadow-kmc-primary/10`}
+    >
+      {n && (
+        <p
+          className={`mb-3 inline-block rounded-full bg-fog-1 px-4 py-1.5 text-sm text-kmc-secondary/80`}
+        >
+          {e ? `บริการที่คุณสนใจ: ` : `You are interested in: `}
+          <span className={`font-medium text-kmc-secondary`}>{n}</span>
+        </p>
+      )}
+      <p className={`text-kmc-secondary/80 leading-relaxed max-w-xl mx-auto`}>
+        {e
+          ? `นัดหมายหรือสอบถามได้ทันทีผ่าน LINE หรือโทรศัพท์ ทีมนัดหมายจะช่วยเลือกบริการและวันเวลาที่สะดวกให้`
+          : `Book or ask us anything on LINE or by phone. The appointment team will help you choose the service and a time that suits you.`}
+        {n && (e ? ` แจ้งชื่อบริการนี้กับทีมงานได้เลย` : ` Just mention this service.`)}
+      </p>
+      <div className={`mt-8 flex flex-col sm:flex-row items-center justify-center gap-3`}>
+        <a
+          href={a}
+          target={`_blank`}
+          rel={`noopener noreferrer`}
+          data-cta-placement={`appointment`}
+          className={`inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#06C755] px-8 py-3.5 font-medium text-white shadow-lg shadow-[#06C755]/25 hover:brightness-105 transition`}
+        >
+          {e ? `นัดหมายผ่าน LINE` : `Book on LINE`}
+        </a>
+        <a
+          href={`tel:+66${u.replace(/-/g, ``).replace(/^0/, ``)}`}
+          data-cta-placement={`appointment`}
+          className={`inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-kmc-secondary/25 bg-white px-8 py-3.5 font-medium text-kmc-secondary hover:border-kmc-secondary/60 transition`}
+        >
+          {e ? `โทร ${u}` : `Call ${u}`}
+        </a>
+      </div>
+    </div>
+  );
+}
+function v() {
+  let { i18n: e } = n(),
+    t = e.language === `th`,
+    [i] = r(),
+    a = i.get(`service`),
+    [o, u] = (0, p.useState)({
+      name: ``,
+      phone: ``,
+      service: c[a] ? a : ``,
+      details: ``,
+    }),
+    [h, v] = (0, p.useState)({}),
+    [y, b] = (0, p.useState)(!1);
+  return (
+    (0, p.useRef)(null),
+    (
+      <div>
+        <_Element
+          title={t ? `ติดต่อเรา` : `Contact Us`}
+          subtitle={
+            t ? `จองนัดหมาย หรือสอบถามข้อมูลเพิ่มเติม` : `Book an appointment or ask us anything.`
+          }
+        />
+        <_Element2 id={`appointment`} className={`mx-auto max-w-3xl px-6 py-16 scroll-mt-24`}>
+          <h2 className={`font-display text-2xl font-semibold text-kmc-secondary mb-6`}>
+            {t ? `จองนัดหมาย` : `Book an appointment`}
+          </h2>
+          <_ isTh={t} service={c[a]} />
+        </_Element2>
+        <_Element2 className={`mx-auto max-w-6xl px-6 pb-20 grid md:grid-cols-2 gap-8`}>
+          <div>
+            <div
+              className={`aspect-video rounded-2xl overflow-hidden border border-kmc-secondary/10`}
+            >
+              <iframe
+                title={t ? `แผนที่ตั้งโรงพยาบาล` : `Hospital location map`}
+                src={f}
+                className={`w-full h-full border-0`}
+                loading={`lazy`}
+                referrerPolicy={`no-referrer-when-downgrade`}
+              />
+            </div>
+            <a
+              href={s}
+              target={`_blank`}
+              rel={`noopener noreferrer`}
+              className={`mt-3 inline-flex items-center gap-1.5 rounded-full border border-kmc-secondary/20 bg-fog-1/60 px-4 py-2 text-xs font-medium text-kmc-secondary hover:border-kmc-secondary/50 hover:bg-fog-1 transition`}
+            >
+              {t ? `เปิดใน Google Maps / ดูเส้นทาง` : `Open in Google Maps / directions`}
+              {` `}
+              <span aria-hidden={`true`}>{`↗`}</span>
+            </a>
+          </div>
+          <div className={`space-y-5`}>
+            {g.map((e) => (
+              <div key={e.key} className={`flex items-start gap-4`}>
+                <span
+                  className={`w-10 h-10 shrink-0 rounded-xl bg-fog-1 text-kmc-primary-deep flex items-center justify-center`}
+                >
+                  <e.Icon />
+                </span>
+                <div>
+                  <p className={`text-xs text-kmc-secondary/50`}>{t ? e.th : e.en}</p>
+                  <p className={`text-kmc-secondary/80 mt-0.5`}>{e.value(t)}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </_Element2>
+      </div>
+    )
+  );
+}
+export { v as default };

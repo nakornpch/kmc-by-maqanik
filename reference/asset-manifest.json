@@ -1,0 +1,1165 @@
+{
+  "origin": "https://kmc-hospital.com",
+  "downloadedAt": "2026-10-05T10:17:10.535Z",
+  "files": [
+    {
+      "url": "https://kmc-hospital.com/consent-defaults.js",
+      "file": "consent-defaults.js",
+      "bytes": 903,
+      "sha256": "39c4be692fecaab1c40380eb8aa57615ba9875248fb05fd3825a365014985ecc"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/rolldown-runtime-CNC7AqOf.js",
+      "file": "assets/rolldown-runtime-CNC7AqOf.js",
+      "bytes": 879,
+      "sha256": "d4a36920c7bab6ec97d0bdc5d1233622f28fe010198ca32bcdd80c8cb6b64aae"
+    },
+    {
+      "url": "https://kmc-hospital.com/logo/Klogo.ico",
+      "file": "logo/Klogo.ico",
+      "bytes": 14258,
+      "sha256": "7aa9f3d6fd2529ecfbd106011cb4cbe38d71bf8efe9e7261c315a5bfe1225b23"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/i18n-CAiZPsdd.js",
+      "file": "assets/i18n-CAiZPsdd.js",
+      "bytes": 55245,
+      "sha256": "211116dc09f3aa740b58671d37264c4d29c879ce6fedbd35ac58b4cfa9a5fd25"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/index-B55sXRtz.js",
+      "file": "assets/index-B55sXRtz.js",
+      "bytes": 251168,
+      "sha256": "696f2358296c862cd0d7e76cf5cc9602668421daa679041cdebb3aa51fd2529b"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/react-SEPqUFC0.js",
+      "file": "assets/react-SEPqUFC0.js",
+      "bytes": 224754,
+      "sha256": "3c50cb122caba48b42385bacb4d954b5b445996e12d588ddd536b0837b31a3e0"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/animejs-CC9iyI6Y.js",
+      "file": "assets/animejs-CC9iyI6Y.js",
+      "bytes": 33425,
+      "sha256": "43da7c78fe25353e7c9245a2e53908b1e9371a5214381733573bdd7da7b671c6"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/usePageMeta-Z2vGXioM.js",
+      "file": "assets/usePageMeta-Z2vGXioM.js",
+      "bytes": 5821,
+      "sha256": "e0e56bd8dce174272fb0f577a6a20f36385f18b72ae9177cb152b1f14b660ca4"
+    },
+    {
+      "url": "https://kmc-hospital.com/logo/KMCHospitalLogo.png",
+      "file": "logo/KMCHospitalLogo.png",
+      "bytes": 76651,
+      "sha256": "aab4c9213f094010fba9829edc65530e5fe4232d5d116edc9ecfeea3557c3981"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/gsap-CfuogOgo.js",
+      "file": "assets/gsap-CfuogOgo.js",
+      "bytes": 112815,
+      "sha256": "64107514194ac41415aaee50183690373c490c27ca30ef7916b76a955427e186"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/motion-CB540VaL.js",
+      "file": "assets/motion-CB540VaL.js",
+      "bytes": 125718,
+      "sha256": "8f8b21d4d09ec47c409528dafa451a532a4ce6c1decef5f022115ba5ca3975a4"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/index-BlJ5d6B7.css",
+      "file": "assets/index-BlJ5d6B7.css",
+      "bytes": 99740,
+      "sha256": "aceac68148ad967de63c82e2fd62652855bb59f2f7df5cdb83586e096fba110a"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/monitor-belt-sm.webp",
+      "file": "images/photos/sleep/monitor-belt-sm.webp",
+      "bytes": 21634,
+      "sha256": "2bbe503c8bcb9c9538b6e30f1f856dee5e51a8bc17e158ae07ab13a54031f6b3"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/exam.webp",
+      "file": "images/photos/chinese/exam.webp",
+      "bytes": 39122,
+      "sha256": "0212ffdf40d3e40851ac2807c0ae30e959ec99e5f6bcbb3d238dfdebc3c7ff2a"
+    },
+    {
+      "url": "https://kmc-hospital.com/logo/KMCHospitalLOGO-Cut.png",
+      "file": "logo/KMCHospitalLOGO-Cut.png",
+      "bytes": 62432,
+      "sha256": "bf927f3dea0c80b197af20c63ec158e857f1667b52a65ba0e53c090705223d62"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/exam-sm.webp",
+      "file": "images/photos/chinese/exam-sm.webp",
+      "bytes": 15912,
+      "sha256": "4c9136f31bacf86980ebb4287b0db804c74e8ece9f3912536992b4fff338c4e9"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/monitor-belt.webp",
+      "file": "images/photos/sleep/monitor-belt.webp",
+      "bytes": 52498,
+      "sha256": "f147d31a4c23410e9e4ad49c6b7e091488a49963b5456f594b873610ad8f03bf"
+    },
+    {
+      "url": "https://kmc-hospital.com/media/hero/hero.mp4",
+      "file": "media/hero/hero.mp4",
+      "bytes": 6786546,
+      "sha256": "40e6cfd344855e834690d95c27fad4511955a15683ada3feecda56421dc3f408"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/walking-sm.webp",
+      "file": "images/photos/physio/walking-sm.webp",
+      "bytes": 23354,
+      "sha256": "51f9406638ee5da348daeb4762755ea30854c881471f54b2dbb8d7a576cc7bfc"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/team-care.webp",
+      "file": "images/photos/physio/team-care.webp",
+      "bytes": 38068,
+      "sha256": "77acdf6cee8394b4180ecf53bd06a8a0d0090f668c00e432cb3b6074d545c872"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/family-sm.webp",
+      "file": "images/photos/thai/family-sm.webp",
+      "bytes": 19384,
+      "sha256": "6f86525ab2a99772508f189caa5178269f2480aa909d9530fbfbd12a14f7a24b"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/family.webp",
+      "file": "images/photos/thai/family.webp",
+      "bytes": 49832,
+      "sha256": "e627b875356a30e32a0d356be27d3252af4619582a9fe7c685bb43ab71a459fc"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/team-care-sm.webp",
+      "file": "images/photos/physio/team-care-sm.webp",
+      "bytes": 16362,
+      "sha256": "fe0db3d8026acc923aa21840ea388628c6b61e3af4ff2778dba643275e011e60"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/walking.webp",
+      "file": "images/photos/physio/walking.webp",
+      "bytes": 53948,
+      "sha256": "05e307aac62747e16c925cb950704a32c5aad1a2ed352cdeb133013ba125a2e0"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/neck.webp",
+      "file": "images/photos/thai/neck.webp",
+      "bytes": 46016,
+      "sha256": "7aab860059af1e59b328791bf23cb6d6632025f3dd2247d596ea9f5cb9a50972"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/therapist-guide-sm.webp",
+      "file": "images/photos/hydro/therapist-guide-sm.webp",
+      "bytes": 29316,
+      "sha256": "407c7b286304d78f19ac1f5213abaeb76d82129e12d04a4bf71ce7dbbdf13f0f"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/parallel-bars.webp",
+      "file": "images/photos/physio/parallel-bars.webp",
+      "bytes": 84794,
+      "sha256": "70d9639f1f17a6fe895bb2052630469b022d20b35a1e80b9c966dbf50b27d36f"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/parallel-bars-sm.webp",
+      "file": "images/photos/physio/parallel-bars-sm.webp",
+      "bytes": 33134,
+      "sha256": "92d2a0691b0d1860c5d7276098c9f846a2f3034951bfea706c3048e3c75b757b"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/therapist-guide.webp",
+      "file": "images/photos/hydro/therapist-guide.webp",
+      "bytes": 73374,
+      "sha256": "045b6d05ef0ff7e893da4c4f619601f6ac41f455abd0bbed5099c858789485ce"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/neck-sm.webp",
+      "file": "images/photos/thai/neck-sm.webp",
+      "bytes": 18768,
+      "sha256": "ae7272342140207c2149292560fa91a52b11f33107b64c221f7fb6018933913c"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/cpap-sm.webp",
+      "file": "images/photos/sleep/cpap-sm.webp",
+      "bytes": 16714,
+      "sha256": "83e339f34d5e2f95e4f2f205690d5f372d2865cc800d4efadf28882195ae023e"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/jaw-exam-sm.webp",
+      "file": "images/photos/chinese/jaw-exam-sm.webp",
+      "bytes": 16998,
+      "sha256": "11cee96a881e304bee7d06b3d54c0fca07b1e26672b03ecc9f4f54f301ab5868"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/cpap.webp",
+      "file": "images/photos/sleep/cpap.webp",
+      "bytes": 41118,
+      "sha256": "0b87eb491b2d59e24cdc0e4d43c44862c568e3cd4bc83ef94a0869c8fed3af10"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/nurse-chat.webp",
+      "file": "images/photos/sleep/nurse-chat.webp",
+      "bytes": 53376,
+      "sha256": "d04696ad8fa660a7cdc246b3eb1a37586924002331be33a787dccb3406522f40"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/jaw-exam.webp",
+      "file": "images/photos/chinese/jaw-exam.webp",
+      "bytes": 40588,
+      "sha256": "738c3c9d487846394e3c97e6c733d656994e9b607530a556d50cb47076b0baa0"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/nurse-chat-sm.webp",
+      "file": "images/photos/sleep/nurse-chat-sm.webp",
+      "bytes": 21694,
+      "sha256": "7378509238beef09c7fe9da4575e78a9c1b8c4b056d2ad60ffe23b33dbe132d7"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/walker-sm.webp",
+      "file": "images/photos/physio/walker-sm.webp",
+      "bytes": 27768,
+      "sha256": "196a9bb1178a1c48ea1590d0cffe2541cd2f057bd6e9906e151c33a1e16605e3"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/back-press-sm.webp",
+      "file": "images/photos/thai/back-press-sm.webp",
+      "bytes": 15228,
+      "sha256": "fa753dd855848fd60787ef2c9afbd706a9c9e5d7ec2e07dd4b7e9c9250ab78ba"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/balance.webp",
+      "file": "images/photos/physio/balance.webp",
+      "bytes": 63738,
+      "sha256": "d42f7769e5067172bf6b676063a43b934d521ac8e69060e477eb5ea0476d1cc0"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/balance-sm.webp",
+      "file": "images/photos/physio/balance-sm.webp",
+      "bytes": 25174,
+      "sha256": "9ee31c45f88d67b3fce367d47d2404f0730ddf0fd2b1ada072b416c08c33c181"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/back-press.webp",
+      "file": "images/photos/thai/back-press.webp",
+      "bytes": 38052,
+      "sha256": "b09fabd0468e3b049320e203a08f1b9b2bc69f4246cff03fe2b55663d7f6188f"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/walker.webp",
+      "file": "images/photos/physio/walker.webp",
+      "bytes": 65356,
+      "sha256": "90d4fc8b9689be7ce5e25661c4b251445886c66cd8714cb169feafe3f85f6604"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/health-check.webp",
+      "file": "images/photos/hospital/health-check.webp",
+      "bytes": 50434,
+      "sha256": "9c410301c4262798257add18efbd9ded6e26d0ebefc8e9ec551b8b1c6a909993"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/health-check-sm.webp",
+      "file": "images/photos/hospital/health-check-sm.webp",
+      "bytes": 21952,
+      "sha256": "1a0355e18c13722ce323659408855d8481bf1d4f026b0ccdbc8e981d1609ffb9"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/facilities/patient-room-shared.jpg",
+      "file": "images/facilities/patient-room-shared.jpg",
+      "bytes": 140728,
+      "sha256": "07708fe432a6be7039f24f02a779d20977f1b1376dda3a71ba7d5c9762e4071f"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/facilities/patient-room-private.jpg",
+      "file": "images/facilities/patient-room-private.jpg",
+      "bytes": 236667,
+      "sha256": "3828934dbaca888bd2e19025498349366cd36b24b45fdf431be54fcbd89ecf6f"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/facilities/hydrotherapy-pool.jpg",
+      "file": "images/facilities/hydrotherapy-pool.jpg",
+      "bytes": 194093,
+      "sha256": "46b42a554b6d1cb0a15a3abdd66a227e11f1cba3675a4999914d9ae05be6840f"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/home/hospital-front.jpg",
+      "file": "images/home/hospital-front.jpg",
+      "bytes": 568935,
+      "sha256": "5043eb111ad063ae4e1959ff877e1c2f1fe3135232c4e6ec32093514d8fd28ec"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/facilities/equipment.jpg",
+      "file": "images/facilities/equipment.jpg",
+      "bytes": 91115,
+      "sha256": "c1675ca25483363eaa39c37e96f0ee6c32058bb5d3a338342521d63db784c929"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/arm-exam-sm.webp",
+      "file": "images/photos/chinese/arm-exam-sm.webp",
+      "bytes": 13974,
+      "sha256": "a3bdb12aebae64cd255bf296bd19a5c30bba70c20b2a0042e7ad14e050a41f3d"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/assessment-sm.webp",
+      "file": "images/photos/thai/assessment-sm.webp",
+      "bytes": 19508,
+      "sha256": "98735f607406a1ac5c5865c95ad5ab50a192c365ba21bb50541e53e20e72ef75"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/shoulder-exercise-sm.webp",
+      "file": "images/photos/physio/shoulder-exercise-sm.webp",
+      "bytes": 20992,
+      "sha256": "3d3e0709d0344fe7e88f5b9b0a9fd245157c86f1e5596135d4abd6df55c0763c"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/shoulder-exercise.webp",
+      "file": "images/photos/physio/shoulder-exercise.webp",
+      "bytes": 50126,
+      "sha256": "eae961e6d9ee2f63c80cac3f2b9df9261ea324ee9f5290a292a777c2d69ba139"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/arm-exam.webp",
+      "file": "images/photos/chinese/arm-exam.webp",
+      "bytes": 35960,
+      "sha256": "992cb5e0b33d4f6d907f512f3bcb59a5e310447c3bf9c84d7bae73bed142ab6e"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/exam-room-sm.webp",
+      "file": "images/photos/hospital/exam-room-sm.webp",
+      "bytes": 12968,
+      "sha256": "96842a8ef4165fc0961290fcad4dbb05b25438157b7e906586fac640d3117dae"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/assessment.webp",
+      "file": "images/photos/thai/assessment.webp",
+      "bytes": 48528,
+      "sha256": "822371a4c721d5863f0ce0ee405e7dbf788795734a0099073cf3204d0abfa9e4"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/happy-patient.webp",
+      "file": "images/photos/chinese/happy-patient.webp",
+      "bytes": 50848,
+      "sha256": "b948af359327902c5134ae9c0bd145f15ebe0b0af5aa54b2c3f580e244dc8785"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/seated-stretch-sm.webp",
+      "file": "images/photos/thai/seated-stretch-sm.webp",
+      "bytes": 16710,
+      "sha256": "1c1c4ea3aa9ed72ae819ba87356587336dce15eec650eef874bbf47d04528325"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/exam-room.webp",
+      "file": "images/photos/hospital/exam-room.webp",
+      "bytes": 30236,
+      "sha256": "acfd060be8aea0e4047457000b0964ba3cd9d19ccd02e3e4657aa337b5164b51"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/happy-patient-sm.webp",
+      "file": "images/photos/chinese/happy-patient-sm.webp",
+      "bytes": 20512,
+      "sha256": "b848feb139d2bda20be4bc8757ce3bf3a1877c5d3fa96f1b0304bc9101736921"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ot-toys-sm.webp",
+      "file": "images/photos/physio/ot-toys-sm.webp",
+      "bytes": 18284,
+      "sha256": "14f38331f60cc971442203c3740b20bec875590a5aba2c5ffdc8ddeef08cc760"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/cupping.webp",
+      "file": "images/photos/chinese/cupping.webp",
+      "bytes": 66568,
+      "sha256": "71ce7c882c0cb96b7d2e047c9257f3f4519168cea015b140e381b999d7a0ca06"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ultrasound-sm.webp",
+      "file": "images/photos/physio/ultrasound-sm.webp",
+      "bytes": 16398,
+      "sha256": "54aae042aa10d1a13f98cdc1a6733ddeb5129775bd3cab765cf5c7677ee9c2f3"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/cupping-sm.webp",
+      "file": "images/photos/chinese/cupping-sm.webp",
+      "bytes": 24374,
+      "sha256": "10b4df86be68e3b09d2837ec59eb9ed2995812a14038f61d0cb2b29015db87d4"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ultrasound.webp",
+      "file": "images/photos/physio/ultrasound.webp",
+      "bytes": 37968,
+      "sha256": "a094a3e843198b46c329fd793992ae9ac7565be78c13ccdd0d8daeaa8bd17f53"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/seated-stretch.webp",
+      "file": "images/photos/thai/seated-stretch.webp",
+      "bytes": 40724,
+      "sha256": "3162573de8cfc06290968969f9219296e8560ac9ecfb63ec5a8f6bb50d66644b"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/reception.webp",
+      "file": "images/photos/hospital/reception.webp",
+      "bytes": 32060,
+      "sha256": "bd267eb99788322abf9d0693b06494f01dc29daba40cdce2117765c953d5892b"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/room-sm.webp",
+      "file": "images/photos/sleep/room-sm.webp",
+      "bytes": 28268,
+      "sha256": "bfb3de6d8e933beab141d22f4fa2a899c249685b3fb8efd962a183e91db85bb0"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ot-toys.webp",
+      "file": "images/photos/physio/ot-toys.webp",
+      "bytes": 42700,
+      "sha256": "cb1534370c9fdda851817d9bcfecf832705ca6c0fa93abdff7ecc7e75f738fad"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/reception-sm.webp",
+      "file": "images/photos/hospital/reception-sm.webp",
+      "bytes": 13014,
+      "sha256": "891169b548ba10ea0cb53baf5798bcd91341f003bc01cbff43500996a05d7e93"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/shoulder-assess.webp",
+      "file": "images/photos/physio/shoulder-assess.webp",
+      "bytes": 32356,
+      "sha256": "1944fca4e72183e34507c66aa8ed4309e8f0791e4f8d35efd457f15e02487f1a"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/shoulder-assess-sm.webp",
+      "file": "images/photos/physio/shoulder-assess-sm.webp",
+      "bytes": 12792,
+      "sha256": "dd09003621803f9c614041b99fcb4a7941bfe1636fe4e9580b5478c3879525b5"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/nurse-couple-sm.webp",
+      "file": "images/photos/sleep/nurse-couple-sm.webp",
+      "bytes": 19930,
+      "sha256": "e48a088a3b848992b8c6d1eace1503592805e1da6d2f22948e701366efadd7cb"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/seminar-sm.webp",
+      "file": "images/photos/hospital/seminar-sm.webp",
+      "bytes": 20844,
+      "sha256": "5c72263043ec05e5610d07222c809519cd1a7829385d17cc2b5879ed8b9c0c99"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/nurse-couple.webp",
+      "file": "images/photos/sleep/nurse-couple.webp",
+      "bytes": 51132,
+      "sha256": "f03b010354a7722bbb03cc54269df4bc4b1ccd06393027c0a4e66daf5fa906bb"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/seminar.webp",
+      "file": "images/photos/hospital/seminar.webp",
+      "bytes": 48034,
+      "sha256": "ac68d5f4105604b9b118a3e8987eb8642ccbe635013a26c6245fd9074543dd90"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/room.webp",
+      "file": "images/photos/sleep/room.webp",
+      "bytes": 73200,
+      "sha256": "823cab3f6022d3de45ee8d14e492d5e6dea970465b93648c61f6af8f71c0c7da"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/pulse-diagnosis-sm.webp",
+      "file": "images/photos/hospital/pulse-diagnosis-sm.webp",
+      "bytes": 18824,
+      "sha256": "c6566cd0403561263583fc8e47caab425ffa1c87f3e47fc465c95c9fb919ebeb"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/useFaqSchema-qVCi2zFe.js",
+      "file": "assets/useFaqSchema-qVCi2zFe.js",
+      "bytes": 1519,
+      "sha256": "c0ae9a57bd9b02d7846ff463c50e88d9673189c2d08e56f3867fb1f7935a4956"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/ServicesIndex-BOJsbkdp.js",
+      "file": "assets/ServicesIndex-BOJsbkdp.js",
+      "bytes": 2219,
+      "sha256": "42797a3ee1677c5fa03332010f1c8dac69c22b5a0b5de9d2b743c3ec81d4be98"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/NotFound-B9ISrt_u.js",
+      "file": "assets/NotFound-B9ISrt_u.js",
+      "bytes": 2011,
+      "sha256": "0f91d8a497871462d506152fa124c5141ce0757d6385680ca486eecc286ad92d"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/ServiceDetail-X7lcQfId.js",
+      "file": "assets/ServiceDetail-X7lcQfId.js",
+      "bytes": 15840,
+      "sha256": "327a1ad24764be1a8a481d76be4d18fe019701bbe45809d0a777307156f6634b"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/AboutIndex-DXteOtED.js",
+      "file": "assets/AboutIndex-DXteOtED.js",
+      "bytes": 12330,
+      "sha256": "69dd0bd73a52733b154538a71de9d9a3c8fd77f355327fb2d06bbf421bca8a06"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/pulse-diagnosis.webp",
+      "file": "images/photos/hospital/pulse-diagnosis.webp",
+      "bytes": 46794,
+      "sha256": "48769ea58bab848f6f73034f07cb9cf377d4e6b685d9138c6cdc3058474f872d"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/PackageDetail-CCSalqRB.js",
+      "file": "assets/PackageDetail-CCSalqRB.js",
+      "bytes": 6255,
+      "sha256": "109523fec0bbbaeaac07c27008217ab32fd16a27e82e02d2982258492cded6e7"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/DoctorsIndex-BYocqVoP.js",
+      "file": "assets/DoctorsIndex-BYocqVoP.js",
+      "bytes": 1042,
+      "sha256": "d695b9f89cf7d7ecdf2353017f6507292febe05a90af13343d6479157ec094ac"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/Packages-DGfop6XH.js",
+      "file": "assets/Packages-DGfop6XH.js",
+      "bytes": 3561,
+      "sha256": "9a74e4f532dee67786f16db52e68fc4195a11193f5569e89e656e4e5fff5a783"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/DoctorsList-05l7X5B5.js",
+      "file": "assets/DoctorsList-05l7X5B5.js",
+      "bytes": 4809,
+      "sha256": "e43e8924a06820c9678fb73c357e701c3a37a695d4f598b6cb223c608a0ef04e"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/Corporate-D6yGatuL.js",
+      "file": "assets/Corporate-D6yGatuL.js",
+      "bytes": 38258,
+      "sha256": "9267ba9724b93a3b58f03ed15033e6d26ea80fe071bbc4673c1d4ed414614ce8"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/Facilities-DWwKlTwf.js",
+      "file": "assets/Facilities-DWwKlTwf.js",
+      "bytes": 3612,
+      "sha256": "005da5a8e9800c2156d02287c59e176fc4692055b1ed802d0d1e1b194522830f"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/Faq-4ObxvKV-.js",
+      "file": "assets/Faq-4ObxvKV-.js",
+      "bytes": 1729,
+      "sha256": "975b4d77b153c0b43a3648624b789d7385d336e7a0a9111d9d228c14bacc94a0"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/Contact-BsxYWB_0.js",
+      "file": "assets/Contact-BsxYWB_0.js",
+      "bytes": 5740,
+      "sha256": "c8c25ac880c3618267c624fc63c753469942dc645c88317c75f3a470d68dffc2"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/FaqAccordion-BFnGjLiH.js",
+      "file": "assets/FaqAccordion-BFnGjLiH.js",
+      "bytes": 3527,
+      "sha256": "e658100b26b26bde49ff81a794702521cf9bb047fa2543eb12ee0173d07cc5fa"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/Blog-CXoHFk8a.js",
+      "file": "assets/Blog-CXoHFk8a.js",
+      "bytes": 6204,
+      "sha256": "9283a75182f1abff74d64ebc5677c8de81e2818fdfe4c6be9c3fde5f3da6120d"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/posts-D3CGv9gr.js",
+      "file": "assets/posts-D3CGv9gr.js",
+      "bytes": 225,
+      "sha256": "297995fb970b98777b14a8fc2bc32e75af4dc69f93f4243fdeb4c12578c77b8d"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/PostDetail-CVfk40YC.js",
+      "file": "assets/PostDetail-CVfk40YC.js",
+      "bytes": 2836,
+      "sha256": "eef5059ad2937ba3a0423e52cfc99b04588d01cdff0f54a658b571bdc56ba134"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/StrokeAssessment-xXCHQ7zq.js",
+      "file": "assets/StrokeAssessment-xXCHQ7zq.js",
+      "bytes": 29703,
+      "sha256": "6fb9131cfbe9fd660677b75a51c2a39ccd65bccfcee55ae656063352f1d5b7be"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/AssessmentParts-C_KTDJ2h.js",
+      "file": "assets/AssessmentParts-C_KTDJ2h.js",
+      "bytes": 9059,
+      "sha256": "b549ced3237c625b25bdfb19cf582cfde02cb226f0382fa9f0e188a2472bcf3b"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/MemoryAssessment-zrY5ZruO.js",
+      "file": "assets/MemoryAssessment-zrY5ZruO.js",
+      "bytes": 34538,
+      "sha256": "9aed6ba6511059fe7020b476eb9c86129c1103fe3cf40d32938cbda9992aea35"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/Legal-D4N36Kqk.js",
+      "file": "assets/Legal-D4N36Kqk.js",
+      "bytes": 3088,
+      "sha256": "9670ca2ede793d79475130aad6861b23db0db8306fb8cf7ca359d1567642ef46"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/PersonaLanding-DwQ0vtsn.js",
+      "file": "assets/PersonaLanding-DwQ0vtsn.js",
+      "bytes": 8399,
+      "sha256": "ad39c10b2112328f591e7adcb96c546007fc01c2242643d6d7a7d8795eadb3ae"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/Dashboard-BqbwHyag.js",
+      "file": "assets/Dashboard-BqbwHyag.js",
+      "bytes": 154212,
+      "sha256": "105b26c78742745e2bf812eef833c062b6793dff2670168a0e155ea79a275d4c"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/consult-model.webp",
+      "file": "images/photos/chinese/consult-model.webp",
+      "bytes": 41698,
+      "sha256": "821c217981e0240bfb368504252ece4e32978d274b6fa691c1ea888343dd3cd7"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/room-bed.webp",
+      "file": "images/photos/sleep/room-bed.webp",
+      "bytes": 50290,
+      "sha256": "d8e0a9203b1f6162a4dc20442d906ccad82d1cad46e51612a3b4d40499bd00fe"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/doctor.webp",
+      "file": "images/photos/chinese/doctor.webp",
+      "bytes": 34486,
+      "sha256": "5eb7c5879a1d84d524caa17b70d71af56e8855b7ce079b36f2f03f2f7b7aec00"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/sensor-fit.webp",
+      "file": "images/photos/sleep/sensor-fit.webp",
+      "bytes": 35090,
+      "sha256": "0406b56eb96bf59c0cd07fdd12b04f0cc14f635c95f725dd19ead00014ce64da"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/health-measure.webp",
+      "file": "images/photos/hospital/health-measure.webp",
+      "bytes": 67214,
+      "sha256": "a1a2f2a3c3ddfcbfe586d576aca8a78c59e7fbd82cac09f23a25a5bee064d364"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/pms-close.webp",
+      "file": "images/photos/physio/pms-close.webp",
+      "bytes": 23364,
+      "sha256": "303a87f672e0cdc4f3024cd6735709875d6c2504352740f73a414b51e24c82ff"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/room-wide.webp",
+      "file": "images/photos/sleep/room-wide.webp",
+      "bytes": 70916,
+      "sha256": "2e5f5bc2fbb115e914eedbda05314f75d9204b6f61a23299f0b11b2071185592"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/pms-session.webp",
+      "file": "images/photos/physio/pms-session.webp",
+      "bytes": 51314,
+      "sha256": "85d1d02ca18f32b5c447ce4db9cc21017349aea469dc6740dbb5c1a1d87fad16"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/pms-machine.webp",
+      "file": "images/photos/physio/pms-machine.webp",
+      "bytes": 27952,
+      "sha256": "f95e956f46eb4544b5a503c369a298761a751dba8bb498d2588e935b7193c64e"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/mask-fitting.webp",
+      "file": "images/photos/sleep/mask-fitting.webp",
+      "bytes": 56556,
+      "sha256": "91645c7d8499e11a913c791a84ac42f47d1a3b785677e02c4c1229169c741a9d"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/sensor-belt.webp",
+      "file": "images/photos/sleep/sensor-belt.webp",
+      "bytes": 37328,
+      "sha256": "71e96b602151bc47f5273401be991d4135582488e2ce4cd3838036909d2cf99c"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ultrasound-close.webp",
+      "file": "images/photos/physio/ultrasound-close.webp",
+      "bytes": 26642,
+      "sha256": "e295f71c4d17fc6541dc005b9d1e1bfafb35e2bff7073a7bb9e9b3ef1a43d2ed"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ot-puzzle.webp",
+      "file": "images/photos/physio/ot-puzzle.webp",
+      "bytes": 39162,
+      "sha256": "70662db687b64a9996a3ab78ac47d9a129d881faa14e33f3db5e429769e6fbdc"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/services/stroke-rehab/2.jpg",
+      "file": "images/services/stroke-rehab/2.jpg",
+      "bytes": 71619,
+      "sha256": "da359fdb776523c215ba7ea50b51ef8cea240cdeecaca626f521809d0f50fc0a"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/services/elderly-care/1.jpg",
+      "file": "images/services/elderly-care/1.jpg",
+      "bytes": 192906,
+      "sha256": "ea5cc70ff133d6e23fcb30f21669a09c7e42b563e5c4ef58742d8baa250028f0"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/wheelchairs.webp",
+      "file": "images/photos/physio/wheelchairs.webp",
+      "bytes": 74776,
+      "sha256": "fafde6c1e94ec0faac827cee75e18a1e1fbf4d84428323ddc80ef5365bd8f827"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/services/stroke-rehab/1.jpg",
+      "file": "images/services/stroke-rehab/1.jpg",
+      "bytes": 75074,
+      "sha256": "7568de7542a87a17a33112d5a32a4c0bd5ca348480aef1ca797d64809a59ffed"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/services/nursing-home/1.jpg",
+      "file": "images/services/nursing-home/1.jpg",
+      "bytes": 74320,
+      "sha256": "bdac7dbbe0cbfb3e0897e50eb0644206963bcaa8e7098de285780ac6c35243d8"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/notes.webp",
+      "file": "images/photos/thai/notes.webp",
+      "bytes": 48434,
+      "sha256": "188551d29a9745b3bbda4e045f21d82454f379b5712e26e20671b1c8f171db15"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/bathroom-rail.webp",
+      "file": "images/photos/sleep/bathroom-rail.webp",
+      "bytes": 37222,
+      "sha256": "77b29fe35203f8f306ec74a1b0d6871392f671626b3a1b6aaede832119a2cfa1"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/services/home-care/1.jpg",
+      "file": "images/services/home-care/1.jpg",
+      "bytes": 91039,
+      "sha256": "49312e150251055ec5b912579957572b260e4241c0734e78bb5293c5c9d7463e"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/amenities.webp",
+      "file": "images/photos/sleep/amenities.webp",
+      "bytes": 38242,
+      "sha256": "241f0b20a5c1395da5110fde5c4083117e280e2550b26ca48bc2f1eed8dbd269"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/noodle-pair.webp",
+      "file": "images/photos/hydro/noodle-pair.webp",
+      "bytes": 91554,
+      "sha256": "2c41f5a16fe555de95f93b4a244f584efd5b9b84036a359edbc5297daf8226c0"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/dumbbell-class.webp",
+      "file": "images/photos/hydro/dumbbell-class.webp",
+      "bytes": 120298,
+      "sha256": "9af49a062a66d8ed60300cf0f667162a7cd001715f89dc7bd400b0d70ef6ccc9"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/group-class.webp",
+      "file": "images/photos/hydro/group-class.webp",
+      "bytes": 153180,
+      "sha256": "fbcc756d967f632f976c755bd28e333dbe2d512cf473fc26befd4c118559bc75"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/dumbbells.webp",
+      "file": "images/photos/hydro/dumbbells.webp",
+      "bytes": 42912,
+      "sha256": "27cd6746c1d2bf22703e91c38e755e889280cdaafe9c6053936e899d7e66e1fb"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/acupuncture-machine.webp",
+      "file": "images/photos/chinese/acupuncture-machine.webp",
+      "bytes": 32974,
+      "sha256": "9c90c2be17b6d523d4f911294ac9dac50f31dab5926cb07e72a58209355bac80"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/cupping-fire.webp",
+      "file": "images/photos/chinese/cupping-fire.webp",
+      "bytes": 43954,
+      "sha256": "7eae5b532ea966ef976f8d7a55717c823910da315d5f3e9f9b1e43af269fc5df"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/pool-lift.webp",
+      "file": "images/photos/hydro/pool-lift.webp",
+      "bytes": 108236,
+      "sha256": "636f12c8ba6fc51b17d4e8652275fd3defd5b9514820fd7702e8bdf6b21aa250"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/doctor-patient.webp",
+      "file": "images/photos/chinese/doctor-patient.webp",
+      "bytes": 47878,
+      "sha256": "cb08b7931454eb8297de49064bbecd02236a6e0a7fe0ef321d690f3a1a602b3b"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/cupping-rest.webp",
+      "file": "images/photos/chinese/cupping-rest.webp",
+      "bytes": 42842,
+      "sha256": "be49081bd8e57397bcebe18bb70e8548ba5d82b5afd43b5fac28b346954df87b"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/acupoint-model.webp",
+      "file": "images/photos/chinese/acupoint-model.webp",
+      "bytes": 55108,
+      "sha256": "c6400926d21b85e3ae73036bfe6ddbaed79df5cd1a7ff30cabe44b23400b9fdb"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/leg-stretch.webp",
+      "file": "images/photos/thai/leg-stretch.webp",
+      "bytes": 47208,
+      "sha256": "3dd8083b322e20d2f8b406dc964fa5bfffaf57bd4ba43e6dcc0843402da37502"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/electro-close.webp",
+      "file": "images/photos/chinese/electro-close.webp",
+      "bytes": 33118,
+      "sha256": "ab79afed399ef4fcfc873668f43c0f9f2cf9a8a1ea237fc9bb168789fad7bb69"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/pulse-hands.webp",
+      "file": "images/photos/chinese/pulse-hands.webp",
+      "bytes": 37496,
+      "sha256": "6c3a300e9a9c8f6bed54cbb8cb344513467d5d9bac9aa18b58fe99925df26946"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/back-press-close.webp",
+      "file": "images/photos/thai/back-press-close.webp",
+      "bytes": 38346,
+      "sha256": "096e83947458a3d0fafe39f065a3e26f604510a761dfd76f94ad41de51d5d69d"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/sitting-stretch.webp",
+      "file": "images/photos/thai/sitting-stretch.webp",
+      "bytes": 44154,
+      "sha256": "800e12aac355420ff64d05bb173ccf5e497057fee9cc4b5a657b012ab87c7052"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/back-prep.webp",
+      "file": "images/photos/physio/back-prep.webp",
+      "bytes": 39814,
+      "sha256": "e36f1e0c0daa281567d229367050a1e4a192ca9e7d01cd3f909e20f763d67b35"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/bathroom-rail-sm.webp",
+      "file": "images/photos/sleep/bathroom-rail-sm.webp",
+      "bytes": 14104,
+      "sha256": "8dd7c8d2c12afdc3e1a964bec1d62246dd3abf525136a1e12c26b37d74e1df87"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/leg-stretch-sm.webp",
+      "file": "images/photos/thai/leg-stretch-sm.webp",
+      "bytes": 20010,
+      "sha256": "c8f8a31cd55d6e9d868a076a366698eea9d1cd3692fb927b06f5e352cd435fd4"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/consult-model-sm.webp",
+      "file": "images/photos/chinese/consult-model-sm.webp",
+      "bytes": 16034,
+      "sha256": "833c523d32573e025cb5c6c7e0b9ac1d6903a503c0b5f7c16a94810c7564d09e"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/neck-exam.webp",
+      "file": "images/photos/chinese/neck-exam.webp",
+      "bytes": 46544,
+      "sha256": "402f538225ade23ea655ce2bfbcb514e4e62deb87b05e20045208454f971e1c1"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/pms-machine-sm.webp",
+      "file": "images/photos/physio/pms-machine-sm.webp",
+      "bytes": 10804,
+      "sha256": "378e603d7734906de7f1cedf036673c7e3ee8d43b73ab752869a83b3fc3a62bb"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/consult-female-sm.webp",
+      "file": "images/photos/chinese/consult-female-sm.webp",
+      "bytes": 16164,
+      "sha256": "ab65ba46e5dcad89f1f54c3a39ec7d41aa782a8aa3bab902509679651e9ef225"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/consult-female.webp",
+      "file": "images/photos/chinese/consult-female.webp",
+      "bytes": 38200,
+      "sha256": "5e4db2cf4076e431b9d14011d072f02d8e709385e9be8bf40df768b4ad84d40a"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/sensor-fit-sm.webp",
+      "file": "images/photos/sleep/sensor-fit-sm.webp",
+      "bytes": 14942,
+      "sha256": "44134616f519eb2e7e4316a462479de8c4c34e3641c9aa98fd7a43c6b565a1ed"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/sensor-belt-sm.webp",
+      "file": "images/photos/sleep/sensor-belt-sm.webp",
+      "bytes": 15618,
+      "sha256": "14ca7ace9216952fb955da0259621db5e9a527db2040739f53f9ec5621dec208"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ultrasound-close-sm.webp",
+      "file": "images/photos/physio/ultrasound-close-sm.webp",
+      "bytes": 10906,
+      "sha256": "7636340795140c8ebb5a4fbc782bc5c0fa92725ff3236ff072c4709c87971c7a"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/gym-wide-sm.webp",
+      "file": "images/photos/physio/gym-wide-sm.webp",
+      "bytes": 32446,
+      "sha256": "414ec1be222e402fafee2db838547ac360e7cb34c49f7ee1e0d99ca79988ccbc"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/treatment-room-sm.webp",
+      "file": "images/photos/physio/treatment-room-sm.webp",
+      "bytes": 21820,
+      "sha256": "bc98b5f06565baebd5e9485adcb615ed9f3a97bc0322e8fb0e29433fbbf8c918"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/pool-lift-sm.webp",
+      "file": "images/photos/hydro/pool-lift-sm.webp",
+      "bytes": 36788,
+      "sha256": "b4a1192872b0bb671900eefb84d31d1c2559b608bf5ee508295191a4fe4cb4c2"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/dumbbell-class-sm.webp",
+      "file": "images/photos/hydro/dumbbell-class-sm.webp",
+      "bytes": 36746,
+      "sha256": "ea32f972fa238409f4ee0dd2bceca61ffb4ce1e05a62882b32ef0be114bcb5ed"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/gym-wide.webp",
+      "file": "images/photos/physio/gym-wide.webp",
+      "bytes": 89418,
+      "sha256": "04532ab72ac4178c854225c629eafe3bcb4256c2deb607d33486e54a1628a873"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/treatment-room.webp",
+      "file": "images/photos/physio/treatment-room.webp",
+      "bytes": 51004,
+      "sha256": "007ceb7de286715109361aebf5bd43cf5ae55b45b0ce40f3a9b8da9f10d60f40"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/thai/sitting-stretch-sm.webp",
+      "file": "images/photos/thai/sitting-stretch-sm.webp",
+      "bytes": 17868,
+      "sha256": "14cc9d804fdf75b8730785985793b788f63e700325c31f1539b69463b01156e2"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/cupping-rest-sm.webp",
+      "file": "images/photos/chinese/cupping-rest-sm.webp",
+      "bytes": 17410,
+      "sha256": "2ae9616b2ce682e9b979e95ebd00fa37c9c238b75021e789685aab0d8ff70471"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/electro-acupuncture-sm.webp",
+      "file": "images/photos/chinese/electro-acupuncture-sm.webp",
+      "bytes": 13952,
+      "sha256": "ca38744cf02f5ed67ac9f66e06b965dba60a45bfb31da7ba27e4a6ae64e94437"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/electro-acupuncture.webp",
+      "file": "images/photos/chinese/electro-acupuncture.webp",
+      "bytes": 34884,
+      "sha256": "94a3b316446a982c0b6171fa4f0ced08b09c29820238357bf31d54ddad88eb23"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/room-wide-sm.webp",
+      "file": "images/photos/sleep/room-wide-sm.webp",
+      "bytes": 27500,
+      "sha256": "5431f92813c36c8677ee52f46a60fcf4e4eba7b743225b85999d6f2039310dbd"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/back-prep-sm.webp",
+      "file": "images/photos/physio/back-prep-sm.webp",
+      "bytes": 16430,
+      "sha256": "f2d7712b3b9f374027e05e8fa2499537139542d8011f8625c76ec7430c8385cf"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/float-sm.webp",
+      "file": "images/photos/hydro/float-sm.webp",
+      "bytes": 51090,
+      "sha256": "2aeff549177c039ef2aced07de1f2ec7cdfb9269d4dcc76e2fb9d117c05fa552"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/dumbbells-sm.webp",
+      "file": "images/photos/hydro/dumbbells-sm.webp",
+      "bytes": 18354,
+      "sha256": "70ff96b1612d82eac9dfe795b56f5be0e00eaf4208d3dddde03036ce07f32ffc"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/acupoint-model-sm.webp",
+      "file": "images/photos/chinese/acupoint-model-sm.webp",
+      "bytes": 19592,
+      "sha256": "96cbd4f248bf27a47effc7371d934d508da43c7c98ed3737f3d88e7dfd17577c"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/amenities-sm.webp",
+      "file": "images/photos/sleep/amenities-sm.webp",
+      "bytes": 14688,
+      "sha256": "115717a8c91b2ba97c6eaeda172d96580a22f8e0acde289afa073b6de8699b88"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/float.webp",
+      "file": "images/photos/hydro/float.webp",
+      "bytes": 150864,
+      "sha256": "3a75c1736a2669f8b3825f452dc38cdc4a573be561bc57178a892908c2db2be4"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ot-shelves.webp",
+      "file": "images/photos/physio/ot-shelves.webp",
+      "bytes": 54682,
+      "sha256": "83d2fb8bc958b7ee18000bd036f3c7dd38b56f5f5f1bc423fc3c0f158b5a5891"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/bathroom-sm.webp",
+      "file": "images/photos/sleep/bathroom-sm.webp",
+      "bytes": 13430,
+      "sha256": "342feb593d6503b88710d5f95dc8c4b2ef491e130565fa8280fac8a8a4ec7e79"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/doctor-smile-sm.webp",
+      "file": "images/photos/chinese/doctor-smile-sm.webp",
+      "bytes": 12978,
+      "sha256": "eaf8ebd7e48c85dfea1b04fd0af699a1e80c92f0b6a1f4c754fe82cc4f1786e3"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/doctor-smile.webp",
+      "file": "images/photos/chinese/doctor-smile.webp",
+      "bytes": 33650,
+      "sha256": "b48b089307489e42d19bfc3e479f730d0e846229b4e977993ce4dccc8cf4db16"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/consult.webp",
+      "file": "images/photos/chinese/consult.webp",
+      "bytes": 58000,
+      "sha256": "0ed388f70d06d563c8915431cb60c93d6c89ef8b17727ff48f883511d30ae14f"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/bathroom.webp",
+      "file": "images/photos/sleep/bathroom.webp",
+      "bytes": 36000,
+      "sha256": "07e2c072d11f2c49ecc96e810985dafb4bbc251fbffa7431676308a134393ea0"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ot-shelves-sm.webp",
+      "file": "images/photos/physio/ot-shelves-sm.webp",
+      "bytes": 22516,
+      "sha256": "5e4a70f1fabb63a390dd97b480d43e25792889ec1b8645fc1dbdbf8690cf4aaa"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hospital/health-measure-sm.webp",
+      "file": "images/photos/hospital/health-measure-sm.webp",
+      "bytes": 27614,
+      "sha256": "6fd4330bdb17a229123dc49e28d3976376c69b85ca37b6fa43799e99452abf60"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/pms-close-sm.webp",
+      "file": "images/photos/physio/pms-close-sm.webp",
+      "bytes": 9150,
+      "sha256": "8e2d69879b855b42eda10ad4c8b32e44b4c8ce6b3bff015363de0296b7b951b5"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/consult-sm.webp",
+      "file": "images/photos/chinese/consult-sm.webp",
+      "bytes": 22558,
+      "sha256": "b597a06070b6c9a713bebabc2d88e0b804282e1f3363347882e5e91972ce49d5"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/hydro/group-class-sm.webp",
+      "file": "images/photos/hydro/group-class-sm.webp",
+      "bytes": 48292,
+      "sha256": "9f3aad41916e595b655e6075728e139c3b085a33049f539b90183588d6709b4f"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/herb-jar-sm.webp",
+      "file": "images/photos/chinese/herb-jar-sm.webp",
+      "bytes": 14636,
+      "sha256": "7b40947ec41d8cabb4e16eb8708153ec68d7c9d01e9ddd28abdd3e4cdbbed383"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/herb-jar.webp",
+      "file": "images/photos/chinese/herb-jar.webp",
+      "bytes": 35998,
+      "sha256": "411c903a5844f3aa5b1c65d878dd8cd2a80ac2e6fcf89856e54f17824c6c3351"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/rehab-gym.webp",
+      "file": "images/photos/physio/rehab-gym.webp",
+      "bytes": 88562,
+      "sha256": "5763bcbc0d2fdb075e8ee4d06a2d44f73f5949e86469435b882b8d964a80cc2f"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/sleep/room-bed-sm.webp",
+      "file": "images/photos/sleep/room-bed-sm.webp",
+      "bytes": 19012,
+      "sha256": "96495fb8cf346284967ad1e6dc37b65901f05e35e4447eaa36420bcc7415ea47"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/facilities/therapy-area.jpg",
+      "file": "images/facilities/therapy-area.jpg",
+      "bytes": 140819,
+      "sha256": "eff90235edb9cbfdb2498c675734762479f697937f0812dddbeec57304ee05a5"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ot-room.webp",
+      "file": "images/photos/physio/ot-room.webp",
+      "bytes": 44280,
+      "sha256": "fa2e126bd75a5e981e4bed05116fa15413fe31144f67012b9dc89e6fab0c0729"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/facilities/accessibility.jpg",
+      "file": "images/facilities/accessibility.jpg",
+      "bytes": 171582,
+      "sha256": "ea414d1a1ce880cee6827d7280e5a35d6ced12dbd25b33796813dd015d6aedc3"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/rehab-gym-sm.webp",
+      "file": "images/photos/physio/rehab-gym-sm.webp",
+      "bytes": 32640,
+      "sha256": "317de09c5d9737acee0b83c4622bff0bdbf26c3beaa74381fcaba51fc515419d"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/pulse-hands-sm.webp",
+      "file": "images/photos/chinese/pulse-hands-sm.webp",
+      "bytes": 15718,
+      "sha256": "eb4780c39174b7d46b754a0b2253a56ce52956996248b80ed93c1f49d872ef5d"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/consult-room-sm.webp",
+      "file": "images/photos/chinese/consult-room-sm.webp",
+      "bytes": 19118,
+      "sha256": "b381918ce22905958187e75971a024818a4418a1cc70acf053b67b184603f1b4"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ot-room-sm.webp",
+      "file": "images/photos/physio/ot-room-sm.webp",
+      "bytes": 19650,
+      "sha256": "eb2af276da5e505d5382851edaae88cfe39cf59fa423a9c6763e892b3d953674"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/wheelchairs-sm.webp",
+      "file": "images/photos/physio/wheelchairs-sm.webp",
+      "bytes": 32666,
+      "sha256": "6bd903326bbf37f9ce99a7a3e00e8e088e8a957734fc89674ad75d3c8efa3dcb"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/physio/ot-puzzle-sm.webp",
+      "file": "images/photos/physio/ot-puzzle-sm.webp",
+      "bytes": 17300,
+      "sha256": "494a970f1d7071e32f98467c5539f7b73c6fddb033bcc0e3f9e30f4063cc54c1"
+    },
+    {
+      "url": "https://kmc-hospital.com/images/photos/chinese/consult-room.webp",
+      "file": "images/photos/chinese/consult-room.webp",
+      "bytes": 45420,
+      "sha256": "3374d9a9d456761c6504c39c4dc1a61d4c5726c2f1bfea0c336a2a14a3ce98dd"
+    },
+    {
+      "url": "https://kmc-hospital.com/assets/lottie_light-Cwi94DeK.js",
+      "file": "assets/lottie_light-Cwi94DeK.js",
+      "bytes": 169429,
+      "sha256": "a6d076900c7883e26473c58842371b3d9655fe849200592fba78e3d1d5707bfc"
+    }
+  ],
+  "failures": []
+}
