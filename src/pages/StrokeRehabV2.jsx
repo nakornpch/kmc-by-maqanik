@@ -4,11 +4,13 @@ import { t as useTranslation } from "../vendor/i18n-CAiZPsdd.js";
 import { n as Link } from "../vendor/react-SEPqUFC0.js";
 import { t as usePageMeta } from "../routes/usePageMeta.jsx";
 import { t as useFaqSchema } from "../routes/useFaqSchema.jsx";
-import { services, lineUrl, phoneNumber } from "../site.jsx";
+import { services, lineUrl, phoneNumber, AnimatedHeading } from "../site.jsx";
 import { strokeRehabPriceTable, strokeRehabGallery, strokeRehabGalleryTabs, strokeRehabCaseClips } from "../components/v2/strokeRehabContent.js";
 import SwipeRow from "../components/v2/SwipeRow.jsx";
 import "../styles/stroke-rehab-v2.css";
 
+// full-screen viewer for photos and case-review clips: an item with `video` plays it,
+// an item marked `soon` (clip not ready yet) shows its cover with a "coming soon" note
 function PhotoViewer({ items, index, setIndex, onClose, isTh }) {
   const dialog = useRef(null);
   useEffect(() => {
@@ -32,7 +34,12 @@ function PhotoViewer({ items, index, setIndex, onClose, isTh }) {
       if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
     }}>
     <button type="button" className="sr-viewer__close" onClick={onClose} aria-label={isTh ? "ปิดภาพ" : "Close image"} title={isTh ? "ปิดภาพ" : "Close image"}><X /></button>
-    <figure><img src={item.src} alt={isTh ? item.th : item.en} /><figcaption>{isTh ? item.th : item.en} <span>{index + 1} / {items.length}</span></figcaption></figure>
+    <figure>
+      {item.video
+        ? <video key={item.video} src={item.video} poster={item.src} controls autoPlay playsInline aria-label={isTh ? item.th : item.en} />
+        : <div className="sr-viewer__media"><img src={item.src} alt={isTh ? item.th : item.en} />{item.soon && <span className="sr-viewer__soon"><Play size={18} fill="currentColor" />{isTh ? "คลิปรีวิวเคส · เร็ว ๆ นี้" : "Case review · coming soon"}</span>}</div>}
+      <figcaption>{isTh ? item.th : item.en} <span>{index + 1} / {items.length}</span></figcaption>
+    </figure>
     {items.length > 1 && <div className="sr-viewer__controls">
       <button type="button" onClick={() => move(-1)} aria-label={isTh ? "ภาพก่อนหน้า" : "Previous image"} title={isTh ? "ภาพก่อนหน้า" : "Previous image"}><ChevronLeft /></button>
       <button type="button" onClick={() => move(1)} aria-label={isTh ? "ภาพถัดไป" : "Next image"} title={isTh ? "ภาพถัดไป" : "Next image"}><ChevronRight /></button>
@@ -77,7 +84,18 @@ export default function StrokeRehabV2() {
       }
     }), { threshold: 0.08 });
     elements.forEach((element) => { element.classList.add("sr-reveal"); observer.observe(element); });
-    return () => { observer.disconnect(); elements.forEach((element) => element.classList.remove("sr-reveal", "is-visible")); };
+    // lists whose items fade up one after another (cards, rows, steps, clips, questions)
+    const lists = root.current.querySelectorAll("[data-sr-stagger]");
+    lists.forEach((list) => {
+      [...list.children].forEach((child, index) => child.style.setProperty("--si", index));
+      list.classList.add("sr-stagger");
+      observer.observe(list);
+    });
+    return () => {
+      observer.disconnect();
+      elements.forEach((element) => element.classList.remove("sr-reveal", "is-visible"));
+      lists.forEach((list) => list.classList.remove("sr-stagger", "is-visible"));
+    };
   }, []);
 
   // hero tags drift at different speeds while the hero scrolls out (desktop, motion allowed)
@@ -96,6 +114,8 @@ export default function StrokeRehabV2() {
   }, []);
 
   const openImages = (items, index = 0) => setViewer({ items, index });
+  // case-review clips in the viewer: the video when it is ready, otherwise the cover
+  const clipItems = strokeRehabCaseClips.map((clip) => ({ src: clip.poster, video: clip.src, soon: !clip.src, th: clip.th, en: clip.en }));
   const contact = <div className="sr-actions" data-cta-placement="stroke-v2">
     <Link className="sr-button" to={data.cta.primary.to}>{copy("นัดประเมินแผนฟื้นฟู", "Book a rehab assessment")}<ArrowUpRight size={19} /></Link>
     <a className="sr-button sr-button--outline" href={lineUrl} target="_blank" rel="noopener noreferrer"><LineIcon />{copy("สอบถามแพ็กเกจ", "Ask about packages")}</a>
@@ -125,31 +145,32 @@ export default function StrokeRehabV2() {
     </nav>
 
     <section id="sr-care" className="sr-wrap sr-section" data-sr-reveal>
-      <div className="sr-section-head"><div><p className="sr-eyebrow">PERSONALIZED RECOVERY</p><h2>{copy("ทุกก้าวของการฟื้นฟู", "Every step of recovery")}<br />{copy("มีทีมดูแลไปด้วยกัน", "with a team beside you")}</h2></div><p>{data.intro}</p></div>
-      <div className="sr-highlights">{data.highlights.map((item, index) => {
+      <div className="sr-section-head"><div><p className="sr-eyebrow">PERSONALIZED RECOVERY</p><AnimatedHeading as="h2" lines={[copy("ทุกก้าวของการฟื้นฟู", "Every step of recovery"), copy("มีทีมดูแลไปด้วยกัน", "with a team beside you")]} /></div><p>{data.intro}</p></div>
+      <div className="sr-highlights" data-sr-stagger>{data.highlights.map((item, index) => {
         const Icon = [Stethoscope, HeartHandshake, ClipboardCheck][index];
         return <div key={item.title}><span className="sr-icon"><Icon size={26} strokeWidth={1.6} /></span><h3>{item.title}</h3><p>{index === 2 ? data.steps[2] : item.desc}</p></div>;
       })}</div>
       <div className="sr-journey">
-        <div className="sr-journey__head"><h3>{copy("เส้นทางการฟื้นฟู", "The road to recovery")}</h3><p>{copy("เรื่องจริงจากผู้ป่วยและครอบครัวที่ฟื้นฟูกับเรา", "Real stories from patients and families who recovered with us")}</p></div>
-        <ol className="sr-clips">{strokeRehabCaseClips.map((clip, index) => <li key={index} className="sr-clip">
-          {clip.src
-            ? <video src={clip.src} poster={clip.poster} controls playsInline preload="metadata" aria-label={th ? clip.th : clip.en} />
-            : <div className="sr-clip__placeholder"><img src={clip.poster} alt="" loading="lazy" /><span className="sr-clip__play" aria-hidden="true"><Play size={22} fill="currentColor" /></span><span className="sr-clip__soon">{copy("คลิปรีวิวเคส · เร็ว ๆ นี้", "Case review · coming soon")}</span></div>}
+        <div className="sr-journey__head"><AnimatedHeading as="h3" text={copy("เส้นทางการฟื้นฟู", "The road to recovery")} /><p>{copy("เรื่องจริงจากผู้ป่วยและครอบครัวที่ฟื้นฟูกับเรา", "Real stories from patients and families who recovered with us")}</p></div>
+        <SwipeRow as="ol" variant="clips" className="sr-clips" data-sr-stagger isTh={th} labels={{ prev: copy("คลิปก่อนหน้า", "Previous clip"), next: copy("คลิปถัดไป", "Next clip") }}>{strokeRehabCaseClips.map((clip, index) => <li key={index} className="sr-clip">
+          <button type="button" className="sr-clip__placeholder" onClick={() => openImages(clipItems, index)} aria-label={`${copy("เปิดคลิป", "Open clip")} ${th ? clip.th : clip.en}`}>
+            <img src={clip.poster} alt="" loading="lazy" /><span className="sr-clip__play" aria-hidden="true"><Play size={22} fill="currentColor" /></span>
+            {!clip.src && <span className="sr-clip__soon">{copy("คลิปรีวิวเคส · เร็ว ๆ นี้", "Case review · coming soon")}</span>}
+          </button>
           <div className="sr-clip__caption"><span className="sr-num">0{index + 1}</span><p>{th ? clip.th : clip.en}</p></div>
-        </li>)}</ol>
+        </li>)}</SwipeRow>
       </div>
     </section>
 
     <section className="sr-fit">
-      <div className="sr-wrap" data-sr-reveal><div className="sr-fit__grid"><div><p className="sr-eyebrow">THE RIGHT CARE</p><h2>{copy("กำลังมองหาการฟื้นฟู", "Looking for continuing")}<br />{copy("ให้คนที่คุณรัก?", "care for a loved one?")}</h2><p>{copy("เริ่มจากพูดคุยกับทีม เพื่อเลือกแนวทางที่เหมาะกับผู้ป่วยและครอบครัว", "Start a conversation with our team about the approach that suits your family.")}</p></div>
-        <ul>{data.forWho.map((item) => <li key={item}><Check size={18} /><span>{item}</span></li>)}</ul>
+      <div className="sr-wrap" data-sr-reveal><div className="sr-fit__grid"><div><p className="sr-eyebrow">THE RIGHT CARE</p><AnimatedHeading as="h2" lines={[copy("กำลังมองหาการฟื้นฟู", "Looking for continuing"), copy("ให้คนที่คุณรัก?", "care for a loved one?")]} /><p>{copy("เริ่มจากพูดคุยกับทีม เพื่อเลือกแนวทางที่เหมาะกับผู้ป่วยและครอบครัว", "Start a conversation with our team about the approach that suits your family.")}</p></div>
+        <ul data-sr-stagger>{data.forWho.map((item) => <li key={item}><Check size={18} /><span>{item}</span></li>)}</ul>
       </div></div>
     </section>
 
     <section id="sr-packages" className="sr-wrap sr-section" data-sr-reveal>
-      <div className="sr-section-head"><div><p className="sr-eyebrow">YOUR RECOVERY PLAN</p><h2>{copy("แพ็กเกจฟื้นฟู Stroke", "Stroke rehabilitation packages")}</h2></div><p>{copy("เลือกจุดเริ่มต้นของการดูแล แล้วให้ทีมช่วยประเมินแผนและค่าใช้จ่ายที่เหมาะกับคุณ", "Choose a starting point, then discuss the care plan and costs with our team.")}</p></div>
-      <div className="sr-packages">{data.relatedPackages.map((name, index) => <article className="sr-package" key={name}>
+      <div className="sr-section-head"><div><p className="sr-eyebrow">YOUR RECOVERY PLAN</p><AnimatedHeading as="h2" text={copy("แพ็กเกจฟื้นฟู Stroke", "Stroke rehabilitation packages")} /></div><p>{copy("เลือกจุดเริ่มต้นของการดูแล แล้วให้ทีมช่วยประเมินแผนและค่าใช้จ่ายที่เหมาะกับคุณ", "Choose a starting point, then discuss the care plan and costs with our team.")}</p></div>
+      <div className="sr-packages" data-sr-stagger>{data.relatedPackages.map((name, index) => <article className="sr-package" key={name}>
         <div className="sr-package__media"><img src={strokeRehabGallery[index === 0 ? 0 : 4].src} alt={copy("บรรยากาศการฟื้นฟู", "Rehabilitation care")} loading="lazy" /><span className="sr-num" aria-hidden="true">0{index + 1}</span></div>
         <div className="sr-package__body"><p className="sr-eyebrow">{index === 0 ? "INTENSIVE REHABILITATION" : "CONTINUING CARE"}</p><h3>{name}</h3>
           <p>{copy(index === 0 ? "พูดคุยเรื่องเป้าหมายและแผนฟื้นฟูกับทีมสหวิชาชีพ" : "พูดคุยเรื่องการฟื้นฟูต่อเนื่องและการดูแลระยะยาว", index === 0 ? "Discuss your recovery goals and multidisciplinary plan." : "Discuss continuing rehabilitation and longer-term care.")}</p>
@@ -159,7 +180,7 @@ export default function StrokeRehabV2() {
 
       <div className="sr-pricing">
         <div className="sr-pricing__head">
-          <div><p className="sr-eyebrow">PACKAGE PRICING</p><h3>{copy("ค่าบริการแพ็กเกจฟื้นฟู", "Rehabilitation package fees")}</h3></div>
+          <div><p className="sr-eyebrow">PACKAGE PRICING</p><AnimatedHeading as="h3" text={copy("ค่าบริการแพ็กเกจฟื้นฟู", "Rehabilitation package fees")} /></div>
           <p>{copy("เลือกระดับการดูแลและประเภทห้องพักที่เหมาะกับผู้ป่วย ราคาเป็นบาท", "Choose the care level and room type that suit the patient. Prices in Thai baht.")}</p>
         </div>
         <div className="sr-pricing__scroll">
@@ -178,14 +199,14 @@ export default function StrokeRehabV2() {
       </div>
     </section>
 
-    <section className="sr-why sr-wrap"><img src="/images/photos/physio/team-care.webp" alt={copy("ทีมดูแลการฟื้นฟู", "Rehabilitation care team")} loading="lazy" /><div className="sr-why__body" data-sr-reveal><p className="sr-eyebrow">WHY KMC HOSPITAL</p><h2>{copy("ทีมเดียวกัน", "One team")}<br />{copy("เชื่อมต่อทุกช่วงการดูแล", "Connected care")}</h2><ul>{data.whyKmc.map((item, index) => <li key={item}><span className="sr-num">0{index + 1}</span><p>{item}</p></li>)}</ul></div></section>
+    <section className="sr-why sr-wrap" data-sr-reveal><img src="/images/photos/physio/team-care.webp" alt={copy("ทีมดูแลการฟื้นฟู", "Rehabilitation care team")} loading="lazy" /><div className="sr-why__body" data-sr-reveal><p className="sr-eyebrow">WHY KMC HOSPITAL</p><AnimatedHeading as="h2" lines={[copy("ทีมเดียวกัน", "One team"), copy("เชื่อมต่อทุกช่วงการดูแล", "Connected care")]} /><ul data-sr-stagger>{data.whyKmc.map((item, index) => <li key={item}><span className="sr-num">0{index + 1}</span><p>{item}</p></li>)}</ul></div></section>
 
-    <section className="sr-wrap sr-section" data-sr-reveal><div className="sr-section-head"><div><p className="sr-eyebrow">STEP BY STEP</p><h2>{copy("เริ่มต้นแผนฟื้นฟู", "Start your recovery plan")}</h2></div><p>{copy("ตั้งแต่วันประเมิน ไปจนถึงการวางแผนดูแลต่อที่บ้าน", "From the first assessment to planning care at home")}</p></div>
-      <ol className="sr-steps">{data.steps.map((step, index) => <li key={step}><span className="sr-num sr-num--light">0{index + 1}</span><p>{step}</p></li>)}</ol>
+    <section className="sr-wrap sr-section" data-sr-reveal><div className="sr-section-head"><div><p className="sr-eyebrow">STEP BY STEP</p><AnimatedHeading as="h2" text={copy("เริ่มต้นแผนฟื้นฟู", "Start your recovery plan")} /></div><p>{copy("ตั้งแต่วันประเมิน ไปจนถึงการวางแผนดูแลต่อที่บ้าน", "From the first assessment to planning care at home")}</p></div>
+      <ol className="sr-steps" data-sr-stagger>{data.steps.map((step, index) => <li key={step}><span className="sr-num sr-num--light">0{index + 1}</span><p>{step}</p></li>)}</ol>
       <div className="sr-preparation"><div><h3>{copy("ก่อนพูดคุยกับทีม", "Before contacting the team")}</h3><p>{copy("เตรียมคำถามเรื่องเป้าหมายการฟื้นฟู รูปแบบการดูแล ค่าใช้จ่าย และเอกสารที่ต้องใช้ เพื่อให้ทีมช่วยแนะนำขั้นตอนถัดไป", "Bring your questions about recovery goals, care options, costs and required documents so the team can explain the next steps.")}</p></div>{contact}</div>
     </section>
 
-    <section id="sr-gallery" className="sr-gallery-section"><div className="sr-wrap sr-section-head"><div><p className="sr-eyebrow">A CLOSER LOOK</p><h2>{copy("เห็นภาพการดูแล", "See the care")}<br />{copy("ก่อนตัดสินใจ", "before you decide")}</h2></div><Link to="/facilities">{copy("ดูสิ่งอำนวยความสะดวก", "Explore our facilities")}<ArrowUpRight size={19} /></Link></div>
+    <section id="sr-gallery" className="sr-gallery-section" data-sr-reveal><div className="sr-wrap sr-section-head"><div><p className="sr-eyebrow">A CLOSER LOOK</p><AnimatedHeading as="h2" lines={[copy("เห็นภาพการดูแล", "See the care"), copy("ก่อนตัดสินใจ", "before you decide")]} /></div><Link to="/facilities">{copy("ดูสิ่งอำนวยความสะดวก", "Explore our facilities")}<ArrowUpRight size={19} /></Link></div>
       <div className="sr-wrap">
         <SwipeRow className="sr-gal__tabs" isTh={th} role="tablist" aria-label={copy("หมวดหมู่ภาพ", "Photo categories")}>{strokeRehabGalleryTabs.map((tab, index) => <button key={tab.key} type="button" role="tab" id={`sr-gal-tab-${tab.key}`} aria-selected={galleryTab === index} aria-controls="sr-gal-panel" className={`sr-gal__tab${galleryTab === index ? " is-active" : ""}`} onClick={() => setGalleryTab(index)}>{th ? tab.th : tab.en}</button>)}</SwipeRow>
         {/* keyed so the photos animate in again for every category */}
@@ -197,14 +218,14 @@ export default function StrokeRehabV2() {
       </div>
     </section>
 
-    <section id="sr-faq" className="sr-wrap sr-section sr-faq" data-sr-reveal><div><p className="sr-eyebrow">YOUR QUESTIONS</p><h2>{copy("คำตอบก่อนเริ่มฟื้นฟู", "Before you begin")}</h2><p>{copy("ยังมีเรื่องที่อยากสอบถาม? คุยกับทีมของเราได้โดยตรง", "Have another question? Talk directly with our team.")}</p><a href={`tel:${phoneNumber.replace(/-/g, "")}`} className="sr-phone"><Phone size={19} />{phoneNumber}</a></div>
-      <div>{data.faq.map((item) => <details key={item.q} name="stroke-faq"><summary>{item.q}<Plus size={20} /></summary><p>{item.a}</p></details>)}</div>
+    <section id="sr-faq" className="sr-wrap sr-section sr-faq" data-sr-reveal><div><p className="sr-eyebrow">YOUR QUESTIONS</p><AnimatedHeading as="h2" text={copy("คำตอบก่อนเริ่มฟื้นฟู", "Before you begin")} /><p>{copy("ยังมีเรื่องที่อยากสอบถาม? คุยกับทีมของเราได้โดยตรง", "Have another question? Talk directly with our team.")}</p><a href={`tel:${phoneNumber.replace(/-/g, "")}`} className="sr-phone"><Phone size={19} />{phoneNumber}</a></div>
+      <div data-sr-stagger>{data.faq.map((item) => <details key={item.q} name="stroke-faq"><summary>{item.q}<Plus size={20} /></summary><p>{item.a}</p></details>)}</div>
     </section>
 
-    <aside className="sr-clinical sr-wrap"><ClipboardCheck size={26} /><div><p className="sr-eyebrow">{copy("เครื่องมือสำหรับแพทย์", "FOR CLINICIANS")}</p><h3>{copy("แบบประเมินความรุนแรงโรคหลอดเลือดสมอง (NIHSS)", "Stroke Severity Assessment (NIHSS)")}</h3><p>{copy("15 ข้อ คิดคะแนนอัตโนมัติ พร้อมใบสรุปสำหรับพิมพ์", "15 items, scored automatically, with a printable summary")}</p></div><Link to="/tools/stroke-assessment">{copy("เริ่มประเมิน", "Start assessment")}<ArrowUpRight size={19} /></Link></aside>
+    <aside className="sr-clinical sr-wrap" data-sr-reveal><ClipboardCheck size={26} /><div><p className="sr-eyebrow">{copy("เครื่องมือสำหรับแพทย์", "FOR CLINICIANS")}</p><h3>{copy("แบบประเมินความรุนแรงโรคหลอดเลือดสมอง (NIHSS)", "Stroke Severity Assessment (NIHSS)")}</h3><p>{copy("15 ข้อ คิดคะแนนอัตโนมัติ พร้อมใบสรุปสำหรับพิมพ์", "15 items, scored automatically, with a printable summary")}</p></div><Link to="/tools/stroke-assessment">{copy("เริ่มประเมิน", "Start assessment")}<ArrowUpRight size={19} /></Link></aside>
 
-    <section className="sr-final sr-wrap"><KArcs className="sr-arcs--final" /><div><p className="sr-eyebrow">LET'S PLAN THE NEXT STEP</p><h2>{copy("เริ่มจากแผนที่เหมาะกับคุณ", "Start with a plan that suits you")}</h2><p>{copy("พูดคุยเรื่องการฟื้นฟูและแพ็กเกจกับทีม KMC Hospital", "Discuss rehabilitation and packages with the KMC Hospital team")}</p>{contact}</div></section>
-    <div className="sr-wrap sr-other"><h3>{copy("บริการอื่น ๆ", "Other services")}</h3><div>{Object.entries(services).filter(([key]) => key !== "stroke-rehab").map(([key, service]) => <Link key={key} to={`/services/${key}`}>{service[th ? "th" : "en"].name}<ArrowUpRight size={14} /></Link>)}</div></div>
+    <section className="sr-final sr-wrap" data-sr-reveal><KArcs className="sr-arcs--final" /><div><p className="sr-eyebrow">LET'S PLAN THE NEXT STEP</p><AnimatedHeading as="h2" text={copy("เริ่มจากแผนที่เหมาะกับคุณ", "Start with a plan that suits you")} /><p>{copy("พูดคุยเรื่องการฟื้นฟูและแพ็กเกจกับทีม KMC Hospital", "Discuss rehabilitation and packages with the KMC Hospital team")}</p>{contact}</div></section>
+    <div className="sr-wrap sr-other" data-sr-reveal><h3>{copy("บริการอื่น ๆ", "Other services")}</h3><div data-sr-stagger>{Object.entries(services).filter(([key]) => key !== "stroke-rehab").map(([key, service]) => <Link key={key} to={`/services/${key}`}>{service[th ? "th" : "en"].name}<ArrowUpRight size={14} /></Link>)}</div></div>
     {viewer && <PhotoViewer {...viewer} isTh={th} onClose={() => setViewer(null)} setIndex={(index) => setViewer((current) => ({ ...current, index }))} />}
   </div>;
 }

@@ -2821,6 +2821,10 @@
 .swipe-row__btn.is-prev { left: -0.5rem; }
 .swipe-row__btn.is-next { right: -0.5rem; }
 .swipe-row__btn:active { transform: scale(0.92); }
+/* clip rows: arrows centred on the 9:16 clips, sitting inside the side margins */
+.swipe-row--clips .swipe-row__btn { top: calc(50% - var(--clip-caption, 4.5rem) / 2); margin-top: -1.125rem; }
+.swipe-row--clips .swipe-row__btn.is-prev { left: -0.25rem; }
+.swipe-row--clips .swipe-row__btn.is-next { right: -0.25rem; }
 
 /* ---------- /home-v2 on desktop: every section is exactly one screen ----------
    With the page stepping one section per scroll (registerPage), each stop shows a whole

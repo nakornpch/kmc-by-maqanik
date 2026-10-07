@@ -5,7 +5,17 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function SwipeRow({ className = ``, children, isTh, ...props }) {
+// `as` sets the row element (e.g. `ol` for a list), `variant` adds a modifier class to the
+// wrapper (e.g. "clips" to centre the arrows on taller items), `labels` names the arrows.
+export default function SwipeRow({
+  as: Row = `div`,
+  variant,
+  labels,
+  className = ``,
+  children,
+  isTh,
+  ...props
+}) {
   const ref = useRef(null);
   const [edges, setEdges] = useState({ start: false, end: false });
 
@@ -38,8 +48,8 @@ export default function SwipeRow({ className = ``, children, isTh, ...props }) {
   }
 
   return (
-    <div className={`swipe-row`}>
-      <div
+    <div className={`swipe-row${variant ? ` swipe-row--${variant}` : ``}`}>
+      <Row
         ref={ref}
         className={`${className} edge-fade`}
         data-fade-start={edges.start || undefined}
@@ -47,7 +57,7 @@ export default function SwipeRow({ className = ``, children, isTh, ...props }) {
         {...props}
       >
         {children}
-      </div>
+      </Row>
       {/* the tabs themselves stay reachable by keyboard, so these are pointer-only helpers */}
       <button
         type={`button`}
@@ -55,7 +65,7 @@ export default function SwipeRow({ className = ``, children, isTh, ...props }) {
         onClick={() => slide(-1)}
         tabIndex={-1}
         aria-hidden={`true`}
-        title={isTh ? `ดูหมวดก่อนหน้า` : `Previous categories`}
+        title={labels?.prev ?? (isTh ? `ดูหมวดก่อนหน้า` : `Previous categories`)}
       >
         <ChevronLeft size={18} />
       </button>
@@ -65,7 +75,7 @@ export default function SwipeRow({ className = ``, children, isTh, ...props }) {
         onClick={() => slide(1)}
         tabIndex={-1}
         aria-hidden={`true`}
-        title={isTh ? `ดูหมวดถัดไป` : `More categories`}
+        title={labels?.next ?? (isTh ? `ดูหมวดถัดไป` : `More categories`)}
       >
         <ChevronRight size={18} />
       </button>
