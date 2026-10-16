@@ -1469,7 +1469,7 @@
 /* bottom dock: one tile per app, the active one lit and filling with the scroll */
 .home-v2 .apps__dock {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--steps, 3), minmax(0, 1fr));
   gap: 0.75rem;
   width: 100%;
   margin: 1.75rem 0 0;
@@ -1686,7 +1686,7 @@
   .home-v2 .apps__stage { container-type: normal; display: flex; }
   .home-v2 .apps__col { max-height: none; }
   .home-v2 .apps__glow { width: 14rem; }
-  .home-v2 .apps__dock { grid-template-columns: repeat(3, auto); justify-content: center; margin-top: 1rem; }
+  .home-v2 .apps__dock { grid-template-columns: repeat(var(--steps, 3), auto); justify-content: center; margin-top: 1rem; }
   .home-v2 .apps__dockitem { padding: 0.6rem; }
   .home-v2 .apps__docktext { display: none; }
   .home-v2 .apps__title { font-size: 1.3rem; margin-bottom: 0.5rem; }
@@ -2932,3 +2932,13 @@
     transition-delay: calc(0.15s + var(--ri, 0) * 0.12s);
   }
 }
+
+/* header: "Organizations & Communities" as a highlighted button beside the language switch */
+.kv2-nav-cta { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 2.35rem; padding: 0 1rem; border-radius: 999px; background: #8fbcd9; color: #091b3a; font-size: 0.85rem; font-weight: 600; white-space: nowrap; box-shadow: 0 8px 20px -10px rgb(143 188 217 / 0.8); transition: background 0.25s, transform 0.25s, box-shadow 0.25s; }
+.kv2-nav-cta:hover { background: #b5d3e5; transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgb(143 188 217 / 0.9); }
+.kv2-nav-cta.is-active { background: #fff; }
+.kv2-nav-cta:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+/* gradient fill: very light blue into the brand sea blue, the sheen slides across on hover */
+.kv2-nav-cta { background: linear-gradient(110deg, #e6f3fc 0%, #b5d3e5 35%, #8fbcd9 70%, #b5d3e5 100%); background-size: 200% 100%; background-position: 0% 50%; border: 1px solid rgb(255 255 255 / 0.55); transition: background-position 0.6s ease, transform 0.25s, box-shadow 0.25s; }
+.kv2-nav-cta:hover { background: linear-gradient(110deg, #e6f3fc 0%, #b5d3e5 35%, #8fbcd9 70%, #b5d3e5 100%); background-size: 200% 100%; background-position: 100% 50%; }
+.kv2-nav-cta.is-active { background: linear-gradient(110deg, #fff, #e6f3fc); }

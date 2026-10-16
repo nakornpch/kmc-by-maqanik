@@ -1,21 +1,16 @@
-import { a as e } from "../vendor/rolldown-runtime-CNC7AqOf.js";
-import { i as t, t as n } from "../vendor/i18n-CAiZPsdd.js";
-import { d as r, l as i, n as _Element6, u as o } from "../vendor/react-SEPqUFC0.js";
-import { t as s } from "./usePageMeta.jsx";
-import { a as c } from "../vendor/motion-CB540VaL.js";
-import {
-  C as l,
-  _ as _Element2,
-  d,
-  f as _Element,
-  h as _Element5,
-  l as _Element7,
-  m as _Element4,
-  y as _Element3,
-} from "../site.jsx";
-import { n as _, t as v } from "./useFaqSchema.jsx";
-var y = e(t(), 1),
-  b = [
+// /corporate (organizations) and /corporate/community, in the v2 page style: colour hero with a key photo and a colour-coded
+// two-way switch, solution cards, the app demo beside a phone mockup, community activities,
+// FAQ, related packages and the closing CTA. Copy for both tabs lives in `content` below.
+import { useEffect, useRef } from "react";
+import { ArrowUpRight, Building2, Users } from "lucide-react";
+import { t as useTranslation } from "../vendor/i18n-CAiZPsdd.js";
+import { d as useSearchParams, l as useNavigate, n as Link, u as useParams } from "../vendor/react-SEPqUFC0.js";
+import { t as usePageMeta } from "./usePageMeta.jsx";
+import { lineUrl as l, AnimatedHeading } from "../site.jsx";
+import { t as useFaqSchema } from "./useFaqSchema.jsx";
+import { Actions, FaqBlock, FinalCta, Hero, KArcs, SectionHead, photoSrc, useKv2Effects } from "../components/v2/kit.jsx";
+
+const tabs = [
     {
       key: `corporate`,
       th: `สำหรับองค์กร (HR)`,
@@ -26,8 +21,8 @@ var y = e(t(), 1),
       th: `สำหรับชุมชน/หมู่บ้าน`,
       en: `For communities`,
     },
-  ],
-  x = {
+];
+const content = {
     corporate: {
       th: {
         h1: `โซลูชันดูแลสุขภาพพนักงานสำหรับองค์กร ลดต้นทุน ลดเวลา เพิ่มประสิทธิภาพงาน HR`,
@@ -424,240 +419,89 @@ var y = e(t(), 1),
         },
       },
     },
-  },
-  S = c(),
-  C = `corporate`,
-  w = {
+};
+const defaultTab = `corporate`;
+const solutionPhotos = {
     corporate: [`hospital/health-measure`, `physio/pms-close`, `sleep/sensor-belt`],
     community: [`hospital/health-check`, `hospital/pulse-diagnosis`, `physio/balance`],
-  },
-  T = [`chinese/jaw-exam`, `chinese/herb-jar`, `hydro/group-class`];
-function E() {
-  let { i18n: e } = n(),
-    t = e.language === `th`,
-    { tab: c } = o(),
-    [l] = r(),
-    E = i(),
-    D = d({
-      delayEach: 100,
-    }),
-    O = d({
-      delayEach: 70,
-    }),
-    k = l.get(`tab`),
-    A = x[c] ? c : x[k] ? k : C;
-  (0, y.useEffect)(() => {
-    k &&
-      E(k === C ? `/corporate` : `/corporate/${k}`, {
-        replace: !0,
-      });
-  }, [k, E]);
-  let j = t ? x[A].th : x[A].en;
-  (s({
-    title: t ? `องค์กรและชุมชน` : `Organizations & Communities`,
-    metaTitle: j.meta.title,
-    description: j.meta.description,
-    keywords: j.meta.keywords,
-  }),
-    v(j.faq, `solution-faq-jsonld`));
-  function M(e) {
-    E(e === C ? `/corporate` : `/corporate/${e}`, {
-      replace: !0,
-    });
-  }
-  return (
-    <div>
-      <_Element
-        image={A === `community` ? `chinese/consult-model` : `hospital/seminar`}
-        imageAlt={
-          A === `community`
-            ? t
-              ? `แพทย์ให้คำปรึกษาผู้รับบริการ`
-              : `A doctor advising a patient`
-            : t
-              ? `สัมมนาสุขภาพสำหรับองค์กร`
-              : `A health seminar for an organization`
-        }
-      >
-        <_Element2
-          current={t ? `องค์กรและชุมชน` : `Organizations & Communities`}
-          className={`mb-4`}
-        />
-        <div className={`flex flex-wrap gap-2 mb-8`}>
-          {b.map((e) => (
-            <button
-              key={e.key}
-              type={`button`}
-              onClick={() => M(e.key)}
-              aria-pressed={e.key === A}
-              className={`rounded-full px-6 py-2.5 text-sm font-medium transition ${e.key === A ? `bg-kmc-secondary text-white` : `bg-white/70 text-kmc-secondary/70 border border-kmc-secondary/15 hover:border-kmc-secondary/40`}`}
-            >
-              {t ? e.th : e.en}
-            </button>
-          ))}
-        </div>
-        <_Element3
-          key={`${A}-${e.language}`}
-          as={`h1`}
-          className={`font-display text-3xl sm:text-4xl font-semibold text-kmc-secondary leading-snug max-w-3xl`}
-          text={j.h1}
-        />
-        <p className={`mt-4 text-kmc-secondary/75 max-w-2xl`}>{j.tagline}</p>
-      </_Element>
-      <_Element4 className={`mx-auto max-w-3xl px-6 pt-16 pb-10`}>
-        <p className={`text-kmc-secondary/80 leading-relaxed text-lg`}>{j.intro}</p>
-      </_Element4>
-      <_Element4 className={`bg-white/60 border-y border-kmc-secondary/10`}>
-        <div className={`mx-auto max-w-6xl px-6 py-16`}>
-          <_Element3
-            as={`h2`}
-            className={`font-display text-2xl sm:text-3xl font-semibold text-kmc-secondary mb-4`}
-            text={t ? `Solution ที่ตอบโจทย์การดูแล` : `What the solution answers`}
-          />
-          <p className={`text-kmc-secondary/65 leading-relaxed max-w-3xl mb-10`}>
-            {j.solutionsLead}
-          </p>
-          <div ref={D} className={`grid lg:grid-cols-3 gap-6`}>
-            {j.solutions.map((e, t) => (
-              <div
-                key={e.title}
-                className={`rounded-2xl bg-white border border-kmc-secondary/10 overflow-hidden`}
-              >
-                <div className={`aspect-[16/9] overflow-hidden`}>
-                  <_Element5
-                    name={w[A][t % w[A].length]}
-                    alt={``}
-                    sizes={`(min-width: 1024px) 33vw, 100vw`}
-                    className={`w-full h-full object-cover`}
-                  />
-                </div>
-                <div className={`p-8`}>
-                  <p className={`font-display text-lg font-medium text-kmc-secondary mb-5`}>
-                    {e.title}
-                  </p>
-                  <ul className={`space-y-3`}>
-                    {e.points.map((e) => (
-                      <li
-                        key={e}
-                        className={`flex items-start gap-3 text-sm text-kmc-secondary/70 leading-relaxed`}
-                      >
-                        <span
-                          className={`mt-2 w-1.5 h-1.5 rounded-full bg-kmc-primary-deep shrink-0`}
-                        />
-                        {e}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </_Element4>
-      <_Element4 className={`mx-auto max-w-6xl px-6 py-16 grid md:grid-cols-2 gap-12 items-center`}>
+};
+
+export default function Corporate() {
+  const { i18n } = useTranslation();
+  const th = i18n.language === `th`;
+  const copy = (thai, english) => th ? thai : english;
+  const { tab: tabParam } = useParams();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const root = useRef(null);
+  const hero = useRef(null);
+  const legacyTab = searchParams.get(`tab`);
+  const tab = content[tabParam] ? tabParam : content[legacyTab] ? legacyTab : defaultTab;
+  const go = (key) => navigate(key === defaultTab ? `/corporate` : `/corporate/${key}`, { replace: true });
+  // old ?tab= links move to the path form
+  useEffect(() => { if (legacyTab) go(legacyTab); }, [legacyTab]);
+  const data = content[tab][th ? `th` : `en`];
+  usePageMeta({ title: copy(`องค์กรและชุมชน`, `Organizations & Communities`), metaTitle: data.meta.title, description: data.meta.description, keywords: data.meta.keywords });
+  useFaqSchema(data.faq, `solution-faq-jsonld`);
+  useKv2Effects(root, hero);
+  const community = tab === `community`;
+  const actions = [data.cta.primary, data.cta.secondary];
+
+  return <div ref={root} className="kv2">
+    <Hero heroRef={hero} isTh={th} variant="stage" tone={community ? "community" : "org"}
+      photo={photoSrc(community ? `chinese/consult-model` : `hospital/seminar`)}
+      photoAlt={community ? copy(`แพทย์ให้คำปรึกษาผู้รับบริการ`, `A doctor advising a patient`) : copy(`สัมมนาสุขภาพสำหรับองค์กร`, `A health seminar for an organization`)}
+      crumbs={[{ to: `/`, label: copy(`หน้าแรก`, `Home`) }, { label: copy(`องค์กรและชุมชน`, `Organizations & Communities`) }]}
+      eyebrow={community ? `KMC HOSPITAL / COMMUNITY PROGRAM` : `KMC HOSPITAL / CORPORATE WELLNESS`}
+      title={data.h1} lead={data.tagline}
+      actions={<Actions items={actions} placement={`corporate-${tab}-hero`} />}
+      before={<div className="kv2-switch kv2-switch--tones" role="group" aria-label={copy(`เลือกกลุ่มผู้รับบริการ`, `Choose who it is for`)}>
+        {tabs.map((item) => {
+          const Icon = item.key === `community` ? Users : Building2;
+          return <button key={item.key} type="button" data-tone={item.key === `community` ? `community` : `org`} aria-pressed={item.key === tab} onClick={() => go(item.key)}><Icon size={17} />{th ? item.th : item.en}</button>;
+        })}
+      </div>} />
+
+
+    <section id="corp-solutions" className="sr-wrap sr-section" data-sr-reveal>
+      <SectionHead eyebrow={community ? `FOR COMMUNITIES` : `FOR HR TEAMS`} title={copy(`Solution ที่ตอบโจทย์การดูแล`, `What the solution answers`)} lead={data.intro} />
+      <p className="kv2-lead-strip">{data.solutionsLead}</p>
+      <div key={tab} className="kv2-solutions">{data.solutions.map((item, index) => <article className="sr-package kv2-rise" style={{ "--i": index }} key={item.title}>
+        <div className="sr-package__media"><img src={photoSrc(solutionPhotos[tab][index % solutionPhotos[tab].length])} alt="" loading="lazy" /><span className="sr-num" aria-hidden="true">0{index + 1}</span></div>
+        <div className="sr-package__body"><h3>{item.title}</h3><ul className="kv2-points">{item.points.map((point) => <li key={point}>{point}</li>)}</ul></div>
+      </article>)}</div>
+    </section>
+
+    <section id="corp-demo" className="sr-fit kv2-demo">
+      <div className="sr-wrap" data-sr-reveal><div className="sr-fit__grid">
         <div>
-          <p
-            className={`font-display uppercase tracking-[0.3em] text-sm text-kmc-primary-deep mb-3`}
-          >{`Product demo`}</p>
-          <_Element3
-            as={`h2`}
-            className={`font-display text-2xl sm:text-3xl font-semibold text-kmc-secondary mb-5`}
-            text={j.demo.title}
-          />
-          <p className={`text-kmc-secondary/70 leading-relaxed mb-7`}>{j.demo.lead}</p>
-          <ul ref={O} className={`space-y-3 mb-7`}>
-            {j.demo.features.map((e) => (
-              <li key={e} className={`flex items-start gap-3 text-kmc-secondary/80 text-sm`}>
-                <svg
-                  viewBox={`0 0 24 24`}
-                  className={`w-5 h-5 mt-0.5 shrink-0 text-kmc-primary-deep`}
-                  fill={`none`}
-                  stroke={`currentColor`}
-                  strokeWidth={`2`}
-                  strokeLinecap={`round`}
-                  strokeLinejoin={`round`}
-                >
-                  <path d={`M20 7 9 18l-5-5`} />
-                </svg>
-                {e}
-              </li>
-            ))}
-          </ul>
-          <p className={`text-sm font-medium text-kmc-secondary`}>{j.demo.note}</p>
+          <p className="sr-eyebrow">PRODUCT DEMO</p><AnimatedHeading key={tab} as="h2" text={data.demo.title} /><p>{data.demo.lead}</p>
+          <ul className="kv2-checks kv2-demo__features">{data.demo.features.map((feature, index) => <li key={feature}><span className="kv2-demo__num">0{index + 1}</span><span>{feature}</span></li>)}</ul>
         </div>
-        <div
-          className={`relative aspect-[4/5] rounded-3xl bg-gradient-to-br from-fog-1 via-fog-2 to-fog-3 flex items-center justify-center`}
-        >
-          <span
-            className={`text-[0.65rem] tracking-wide bg-white/70 text-kmc-secondary/60 px-2.5 py-1 rounded-md border border-kmc-secondary/10`}
-          >
-            {t ? `รอภาพ Mockup แอปพลิเคชัน` : `App mockup coming soon`}
-          </span>
+        <div className="kv2-phone" aria-hidden="true">
+          <KArcs />
+          <div className="kv2-phone__head"><i style={{ width: `45%` }} /><i style={{ width: `70%` }} /><b>KMC Health</b></div>
+          {[60, 75, 50].map((width) => <div key={width} className="kv2-phone__card"><span /><div><i style={{ width: `${width}%` }} /><i style={{ width: `${width - 20}%` }} /></div></div>)}
+          <div className="kv2-phone__bars">{[40, 65, 50, 80, 60, 90, 70].map((height, index) => <i key={index} style={{ height: `${height}%` }} />)}</div>
+          <span className="kv2-phone__soon">{copy(`รอภาพ Mockup แอปพลิเคชัน`, `App mockup coming soon`)}</span>
         </div>
-      </_Element4>
-      {j.activities?.length > 0 && (
-        <_Element4 className={`bg-kmc-secondary text-white`}>
-          <div className={`mx-auto max-w-6xl px-6 py-16`}>
-            <_Element3
-              as={`h2`}
-              className={`font-display text-2xl sm:text-3xl font-semibold mb-10`}
-              text={t ? `กิจกรรมภายใต้โครงการ` : `What the program runs`}
-            />
-            <div className={`grid md:grid-cols-3 gap-6`}>
-              {j.activities.map((e, t) => (
-                <div key={e.title} className={`rounded-2xl bg-white/10 overflow-hidden`}>
-                  <div className={`aspect-[16/10] overflow-hidden`}>
-                    <_Element5
-                      name={T[t % T.length]}
-                      alt={``}
-                      sizes={`(min-width: 768px) 33vw, 100vw`}
-                      className={`w-full h-full object-cover`}
-                    />
-                  </div>
-                  <div className={`p-7`}>
-                    <span className={`font-display text-sm text-white/40`}>
-                      {`0`}
-                      {t + 1}
-                    </span>
-                    <p className={`font-display text-lg font-medium mt-2 mb-3`}>{e.title}</p>
-                    <p className={`text-sm text-white/80 leading-relaxed`}>{e.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </_Element4>
-      )}
-      <_Element4 className={`mx-auto max-w-3xl px-6 py-16`}>
-        <_Element3
-          as={`h2`}
-          className={`font-display text-2xl sm:text-3xl font-semibold text-kmc-secondary mb-8`}
-          text={t ? `คำถามที่พบบ่อย` : `Frequently asked questions`}
-        />
-        <_ items={j.faq} />
-      </_Element4>
-      <_Element4 className={`mx-auto max-w-4xl px-6 pb-24`}>
-        <div
-          className={`rounded-3xl bg-gradient-to-br from-fog-1 via-fog-2 to-fog-3 px-8 py-12 text-center`}
-        >
-          <h2 className={`font-display text-xl font-semibold text-kmc-secondary mb-5`}>
-            {t ? `แพ็กเกจที่เกี่ยวข้อง` : `Related packages`}
-          </h2>
-          <div className={`flex flex-wrap justify-center gap-2.5 mb-8`}>
-            {j.relatedPackages.map((e) => (
-              <_Element6
-                key={e}
-                to={`/packages`}
-                className={`rounded-full border border-kmc-secondary/20 bg-white px-5 py-2.5 text-sm font-medium text-kmc-secondary/80 hover:border-kmc-secondary/50 hover:text-kmc-secondary transition`}
-              >
-                {e}
-              </_Element6>
-            ))}
-          </div>
-          <_Element7 primary={j.cta.primary} secondary={j.cta.secondary} />
-        </div>
-      </_Element4>
-    </div>
-  );
+      </div>
+        {/* sits under the panel, on the page itself */}
+        <p className="kv2-demo__note">{data.demo.note}</p>
+      </div>
+    </section>
+
+    {data.activities?.length > 0 && <section id="corp-activities" className="sr-why sr-wrap" data-sr-reveal>
+      <img src={photoSrc(`hydro/group-class`)} alt="" loading="lazy" />
+      <div className="sr-why__body"><p className="sr-eyebrow">WHAT THE PROGRAM RUNS</p><AnimatedHeading as="h2" text={copy(`กิจกรรมภายใต้โครงการ`, `What the program runs`)} />
+        <ul className="kv2-why-list">{data.activities.map((item, index) => <li key={item.title}><span className="sr-num">0{index + 1}</span><div><h3>{item.title}</h3><p>{item.desc}</p></div></li>)}</ul>
+      </div>
+    </section>}
+
+    <FaqBlock key={`${tab}-faq`} id="corp-faq" isTh={th} items={data.faq} name={`${tab}-faq`} />
+
+    {data.relatedPackages?.length > 0 && <div className="sr-wrap sr-other" data-sr-reveal><h3>{copy(`แพ็กเกจที่เกี่ยวข้อง`, `Related packages`)}</h3><div>{data.relatedPackages.map((name) => <Link key={name} to="/packages">{name}<ArrowUpRight size={14} /></Link>)}</div></div>}
+
+    <FinalCta eyebrow={community ? `LET'S WORK TOGETHER` : `LET'S TALK WELLNESS`} title={community ? copy(`ร่วมดูแลสุขภาพชุมชนไปด้วยกัน`, `Let's care for your community together`) : copy(`วางแผนสวัสดิการสุขภาพพนักงานกับเรา`, `Plan your employee health benefits with us`)} lead={data.tagline} actions={actions} placement={`corporate-${tab}-final`} />
+  </div>;
 }
-export { E as default };

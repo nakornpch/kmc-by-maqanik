@@ -245,7 +245,7 @@ ${x ? `h-24` : `h-16`}
 
         `}
           >
-            {navigationItems.map((t) => (
+            {navigationItems.filter((t) => !t.cta).map((t) => (
               <div
                 key={t.key}
                 className={`${t.groups ? `` : `relative`} group`}
@@ -275,7 +275,9 @@ ${x ? `h-24` : `h-16`}
               >
                 <_Element
                   to={t.to}
+                  end={t.end}
                   aria-expanded={t.children || t.groups ? d === t.key : void 0}
+                  title={t.key === `home` ? e(`nav.home`) : void 0}
                   className={({ isActive: e }) => `
 
                 relative
@@ -303,25 +305,29 @@ ${x ? `h-24` : `h-16`}
 
                 `}
                 >
-                  {e(`nav.${t.key}`)}
+                  {t.key === `home` ? (
+                    // home is an icon on desktop so the menu leads with "Services"
+                    <>
+                      <HomeIcon className={`w-[18px] h-[18px]`} />
+                      <span className={`sr-only`}>{e(`nav.home`)}</span>
+                    </>
+                  ) : (
+                    e(`nav.${t.key}`)
+                  )}
                   {(t.children || t.groups) && (
-                    <span
-                      className={`
-
-                      ml-1
-
-                      text-[10px]
-
-                      opacity-70
-
-                      transition-transform
-
-                      duration-300
-
-                      group-hover:rotate-180
-
-                      `}
-                    >{`▼`}</span>
+                    // chevron that turns over while the menu is open
+                    <svg
+                      viewBox={`0 0 24 24`}
+                      aria-hidden={`true`}
+                      className={`ml-1 w-3.5 h-3.5 opacity-70 transition-transform duration-300 group-hover:rotate-180`}
+                      fill={`none`}
+                      stroke={`currentColor`}
+                      strokeWidth={`2.4`}
+                      strokeLinecap={`round`}
+                      strokeLinejoin={`round`}
+                    >
+                      <path d={`m6 9 6 6 6-6`} />
+                    </svg>
                   )}
                 </_Element>
                 {(t.children || t.groups) &&
@@ -456,6 +462,20 @@ ${x ? `h-24` : `h-16`}
 
         `}
           >
+            {navigationItems.filter((t) => t.cta).map((t) => (
+              // highlighted call-to-action item (organisations & communities)
+              <_Element
+                key={t.key}
+                to={t.to}
+                className={({ isActive: a }) => `kv2-nav-cta${a ? ` is-active` : ``}`}
+              >
+                <svg viewBox={`0 0 24 24`} aria-hidden={`true`} className={`w-4 h-4`} fill={`none`} stroke={`currentColor`} strokeWidth={`2`} strokeLinecap={`round`} strokeLinejoin={`round`}>
+                  <path d={`M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z`} />
+                  <path d={`M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4`} />
+                </svg>
+                {n ? `สำหรับองค์กรและชุมชน` : `For Organizations & Communities`}
+              </_Element>
+            ))}
             <LanguageMenu />
           </div>
           <button
@@ -531,7 +551,8 @@ ${x ? `h-24` : `h-16`}
                 {navigationItems.map((t) => (
                   <div key={t.key}>
                     <div className={`flex items-center justify-between gap-2`}>
-                      <_Element to={t.to} className={`flex-1 text-white/90 font-medium py-2`}>
+                      <_Element to={t.to} end={t.end} className={`flex-1 flex items-center gap-2 text-white/90 font-medium py-2`}>
+                        {t.key === `home` && <HomeIcon className={`w-[18px] h-[18px]`} />}
                         {e(`nav.${t.key}`)}
                       </_Element>
                       {(t.children || t.groups) && (
@@ -631,5 +652,15 @@ ${x ? `h-24` : `h-16`}
         </AnimatePresence>
       </header>
     )
+  );
+}
+
+// outline house, matching the header's other line icons
+function HomeIcon({ className = `` }) {
+  return (
+    <svg viewBox={`0 0 24 24`} aria-hidden={`true`} className={className} fill={`none`} stroke={`currentColor`} strokeWidth={`2`} strokeLinecap={`round`} strokeLinejoin={`round`}>
+      <path d={`M3 10.5 12 3l9 7.5`} />
+      <path d={`M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5`} />
+    </svg>
   );
 }

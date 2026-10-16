@@ -1,6 +1,7 @@
-/* /services/stroke-rehab-v2, styled after /home-v2: navy / white / brand light blue,
-   rounded fog panels, pill chips, soft shadows and oversized outlined numbers */
-.stroke-v2 {
+/* Shared design system for the v2 inner pages (stroke rehab, services, packages, about, ...),
+   styled after the homepage: navy / white / brand light blue, rounded fog panels, pill chips,
+   soft shadows and oversized outlined numbers. Every page root carries the .kv2 class. */
+.kv2 {
   --color-kmc-accent: #8fbcd9;
   --sr-ink: var(--color-kmc-secondary);
   --sr-blue: var(--color-kmc-accent);
@@ -14,17 +15,17 @@
   color: var(--sr-ink);
   overflow-x: clip;
 }
-.stroke-v2 * { letter-spacing: 0; }
+.kv2 * { letter-spacing: 0; }
 .sr-wrap { width: min(100% - 3rem, 72rem); margin-inline: auto; }
 .sr-section { padding-block: 5.5rem; }
-.stroke-v2 h1, .stroke-v2 h2, .stroke-v2 h3 { font-family: var(--font-display, inherit); text-wrap: balance; }
-.stroke-v2 h2 { font-size: 2.4rem; font-weight: 600; line-height: 1.35; }
-.stroke-v2 h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.5; }
-.stroke-v2 p { line-height: 1.8; }
-.stroke-v2 svg { flex-shrink: 0; }
-.stroke-v2 a, .stroke-v2 button, .stroke-v2 summary { -webkit-tap-highlight-color: transparent; }
-.stroke-v2 :is(a, button, summary):focus-visible { outline: 3px solid var(--sr-blue); outline-offset: 4px; }
-.stroke-v2 :is(section, aside)[id] { scroll-margin-top: 7rem; }
+.kv2 h1, .kv2 h2, .kv2 h3 { font-family: var(--font-display, inherit); text-wrap: balance; }
+.kv2 h2 { font-size: 2.4rem; font-weight: 600; line-height: 1.35; }
+.kv2 h3 { font-size: 1.2rem; font-weight: 600; line-height: 1.5; }
+.kv2 p { line-height: 1.8; }
+.kv2 svg { flex-shrink: 0; }
+.kv2 a, .kv2 button, .kv2 summary { -webkit-tap-highlight-color: transparent; }
+.kv2 :is(a, button, summary):focus-visible { outline: 3px solid var(--sr-blue); outline-offset: 4px; }
+.kv2 :is(section, aside)[id] { scroll-margin-top: 7rem; }
 
 /* kicker with a short brand-blue rule, as on the home-v2 section heads */
 .sr-eyebrow {
@@ -81,8 +82,8 @@
 .sr-arcs--hero { z-index: -1; width: min(44rem, 62vw); right: -12rem; bottom: -14rem; }
 .sr-hero__body { padding-block: 7rem 3rem; }
 .sr-hero .sr-eyebrow { color: rgb(255 255 255 / 0.8); }
-.stroke-v2 h1 { max-width: 44rem; font-size: 3.6rem; font-weight: 600; line-height: 1.3; }
-.stroke-v2 h1 > span { display: block; }
+.kv2 h1 { max-width: 44rem; font-size: 3.6rem; font-weight: 600; line-height: 1.3; }
+.kv2 h1 > span { display: block; }
 .sr-accent {
   position: relative;
   color: transparent;
@@ -326,11 +327,11 @@
 .sr-viewer__controls { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
 
 /* ---------- reveal ---------- */
-.stroke-v2 .sr-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.85s ease, transform 0.85s var(--sr-ease); }
-.stroke-v2 .sr-reveal.is-visible, .stroke-v2 .sr-reveal:focus-within { opacity: 1; transform: none; }
+.kv2 .sr-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.85s ease, transform 0.85s var(--sr-ease); }
+.kv2 .sr-reveal.is-visible, .kv2 .sr-reveal:focus-within { opacity: 1; transform: none; }
 /* staggered lists: each item fades up after the one before it */
-.stroke-v2 .sr-stagger > * { opacity: 0; translate: 0 1.5rem; transition: opacity 0.6s ease, translate 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-.stroke-v2 .sr-stagger.is-visible > *, .stroke-v2 .sr-stagger:focus-within > * { opacity: 1; translate: none; transition-delay: calc(0.15s + var(--si, 0) * 0.09s); }
+.kv2 .sr-stagger > * { opacity: 0; translate: 0 1.5rem; transition: opacity 0.6s ease, translate 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.kv2 .sr-stagger.is-visible > *, .kv2 .sr-stagger:focus-within > * { opacity: 1; translate: none; transition-delay: calc(0.15s + var(--si, 0) * 0.09s); }
 /* hero: eyebrow, headline, lead, buttons and tags rise in on load */
 @media (prefers-reduced-motion: no-preference) {
   .sr-hero__body > * { animation: sr-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
@@ -346,8 +347,8 @@
 @keyframes sr-rise { from { opacity: 0; translate: 0 1.75rem; } }
 
 @media (max-width: 1023px) {
-  .stroke-v2 h1 { font-size: 2.8rem; max-width: 34rem; }
-  .stroke-v2 h2 { font-size: 2rem; }
+  .kv2 h1 { font-size: 2.8rem; max-width: 34rem; }
+  .kv2 h2 { font-size: 2rem; }
   .sr-section-head, .sr-fit__grid, .sr-faq { gap: 2rem; }
   .sr-fit__grid { padding: 2.5rem; }
   .sr-steps { grid-template-columns: 1fr 1fr; }
@@ -356,8 +357,8 @@
 }
 @media (max-width: 767px) {
   .sr-section { padding-block: 3.5rem; }
-  .stroke-v2 h1 { font-size: 2.3rem; }
-  .stroke-v2 h2 { font-size: 1.75rem; }
+  .kv2 h1 { font-size: 2.3rem; }
+  .kv2 h2 { font-size: 1.75rem; }
   .sr-hero { min-height: 44rem; justify-content: flex-end; }
   .sr-hero__photo { object-position: 44% center; }
   .sr-hero::after { background: linear-gradient(0deg, var(--sr-ink) 8%, rgb(9 27 58 / 0.78) 50%, rgb(9 27 58 / 0.1)); }
@@ -413,8 +414,8 @@
   .sr-viewer { padding-inline: 0.75rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .stroke-v2 .sr-reveal { opacity: 1; transform: none; transition: none; }
+  .kv2 .sr-reveal { opacity: 1; transform: none; transition: none; }
   .sr-tag { animation: none; }
   .sr-gal__grid li { animation: none; }
-  .stroke-v2 img, .stroke-v2 .sr-accent::after { transition: none; animation: none; }
+  .kv2 img, .kv2 .sr-accent::after { transition: none; animation: none; }
 }

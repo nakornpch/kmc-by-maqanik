@@ -1,222 +1,97 @@
-import { t as e } from "../vendor/i18n-CAiZPsdd.js";
-import { n as _Element9, u as n } from "../vendor/react-SEPqUFC0.js";
-import { t as r } from "./usePageMeta.jsx";
-import { a as i } from "../vendor/motion-CB540VaL.js";
-import {
-  C as a,
-  _ as _Element3,
-  a as s,
-  c,
-  f as _Element2,
-  h as _Element6,
-  l as _Element8,
-  m as _Element5,
-  n as p,
-  s as m,
-  y as _Element4,
-} from "../site.jsx";
-import _Element from "./NotFound.jsx";
-var _ = i();
-function _Element7({ children: e }) {
-  return (
-    <p
-      className={`rounded-xl border border-dashed border-kmc-secondary/25 bg-white px-5 py-4 text-sm text-kmc-secondary/75`}
-    >
-      {e}
-    </p>
-  );
-}
-function y() {
-  let { slug: i } = n(),
-    { i18n: y } = e(),
-    b = y.language === `th`,
-    x = s(i, b);
-  if (
-    (r({
-      title: x ? x.name : b ? `ไม่พบแพ็กเกจ` : `Package not found`,
-      description: x?.desc,
-      noindex: !x || !m(x),
-    }),
-    !x)
-  )
-    return <_Element />;
-  let S = c(b)
-      .filter((e) => e.key !== x.key && e.category === x.category)
-      .slice(0, 3),
-    C = {
-      primary: {
-        label: b ? `สอบถามผ่าน LINE` : `Ask us on LINE`,
-        href: a,
-      },
-      secondary: {
-        label: b ? `โทร ${p}` : `Call ${p}`,
-        href: `tel:${p.replace(/-/g, ``)}`,
-      },
-    };
-  return (
-    <div>
-      <_Element2>
-        <_Element3 current={x.name} className={`mb-4`} />
-        {x.category && (
-          <p
-            className={`font-display uppercase tracking-[0.25em] text-xs font-medium text-kmc-secondary mb-3`}
-          >
-            {x.category}
-          </p>
-        )}
-        <_Element4
-          as={`h1`}
-          className={`font-display text-3xl sm:text-4xl font-semibold text-kmc-secondary leading-snug max-w-3xl`}
-          text={x.name}
-        />
-        <p className={`mt-4 text-kmc-secondary/80 leading-relaxed max-w-2xl`}>{x.desc}</p>
-      </_Element2>
-      <_Element5
-        className={`mx-auto max-w-6xl px-6 py-14 grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start`}
-      >
-        <div className={`min-w-0`}>
-          <div
-            className={`relative aspect-[16/9] rounded-3xl overflow-hidden bg-gradient-to-br from-fog-1 via-fog-2 to-fog-3`}
-          >
-            {x.image ? (
-              <img
-                src={x.image}
-                alt={x.imageAlt}
-                loading={`lazy`}
-                decoding={`async`}
-                className={`absolute inset-0 w-full h-full object-cover`}
-              />
-            ) : x.photo ? (
-              <_Element6
-                name={x.photo}
-                alt={x.name}
-                sizes={`(min-width: 1024px) 60vw, 100vw`}
-                className={`absolute inset-0 w-full h-full object-cover`}
-              />
-            ) : (
-              <div className={`absolute inset-0 flex items-center justify-center`}>
-                <span
-                  className={`text-sm bg-white/80 text-kmc-secondary/80 px-3 py-1.5 rounded-md border border-kmc-secondary/10`}
-                >
-                  {b ? `รอภาพแพ็กเกจ` : `Package image coming soon`}
-                </span>
-              </div>
-            )}
+// /packages/:slug, one template for every package in the v2 page style: short hero with a square photo, what the
+// package includes and how booking works beside a sticky navy price card, then related
+// packages, questions about coverage and the closing CTA.
+import { useRef } from "react";
+import { ArrowLeft, ArrowUpRight, Check, ClipboardList } from "lucide-react";
+import { t as useTranslation } from "../vendor/i18n-CAiZPsdd.js";
+import { n as Link, u as useParams } from "../vendor/react-SEPqUFC0.js";
+import { t as usePageMeta } from "./usePageMeta.jsx";
+import { a as findPackage, c as getPackages, s as hasDetails, i as faqGroups, AnimatedHeading } from "../site.jsx";
+import NotFound from "./NotFound.jsx";
+import { Actions, ArrowLink, FaqBlock, FinalCta, Hero, KArcs, SectionHead, callAction, lineAction, photoSrc, useKv2Effects } from "../components/v2/kit.jsx";
+
+function PackagePage({ item, th }) {
+  const copy = (thai, english) => th ? thai : english;
+  const root = useRef(null);
+  const hero = useRef(null);
+  useKv2Effects(root, hero);
+  const all = getPackages(th);
+  const sameCategory = all.filter((other) => other.key !== item.key && other.category === item.category);
+  const related = (sameCategory.length ? sameCategory : all.filter((other) => other.key !== item.key)).slice(0, 3);
+  const photo = item.image || (item.photo ? photoSrc(item.photo) : "/images/photos/hospital/reception.webp");
+  const contact = [lineAction(th), callAction(th)];
+  const hospitalQuestions = faqGroups.find((group) => group.key === "hospital")?.items ?? [];
+  const questions = ["hp-insurance", "hp-social-security", "hp-services"]
+    .map((key) => hospitalQuestions.find((question) => question.key === key)).filter(Boolean)
+    .map((question) => question[th ? "th" : "en"]);
+  const steps = [
+    copy("สอบถามรายละเอียดและเลือกแพ็กเกจกับทีมงานทาง LINE หรือโทรศัพท์", "Ask about the package and choose with our team on LINE or by phone"),
+    copy("นัดหมายวันและเวลาที่สะดวก พร้อมรับคำแนะนำการเตรียมตัว", "Book a convenient date and get advice on how to prepare"),
+    copy("เข้ารับบริการตามแผน โดยทีมสหวิชาชีพของโรงพยาบาล", "Receive the care in your plan from our multidisciplinary team"),
+    copy("รับสรุปผลและคำแนะนำ พร้อมการติดตามผลต่อเนื่อง", "Get your results and advice, with follow-up afterwards"),
+  ];
+
+  return <div ref={root} className="kv2">
+    <Hero heroRef={hero} isTh={th} variant="summary" photo={photo} photoAlt={item.imageAlt || item.name}
+      crumbs={[{ to: "/", label: copy("หน้าแรก", "Home") }, { to: "/packages", label: copy("แพ็กเกจ", "Packages") }, { label: item.name }]}
+      eyebrow={item.category ? `KMC HOSPITAL / ${item.category}` : "KMC HOSPITAL / PACKAGE"} title={item.name} lead={item.desc}
+      actions={<Actions items={contact} placement="package-hero" />} />
+
+    <section className="sr-wrap sr-section" data-sr-reveal>
+      <div className="kv2-detail">
+        <div>
+          <div className="kv2-detail__block">
+            <p className="sr-eyebrow">WHAT'S INCLUDED</p>
+            <AnimatedHeading as="h2" text={copy("รายละเอียดแพ็กเกจ", "What the package includes")} />
+            {item.content
+              ? <div className="kv2-prose kv2-prose-content" dangerouslySetInnerHTML={{ __html: item.content }} />
+              : item.includes.length > 0
+                ? <ul className="kv2-checks" data-sr-stagger>{item.includes.map((line) => <li key={line}><Check size={18} /><span>{line}</span></li>)}</ul>
+                : <p className="kv2-note"><ClipboardList />{copy("รายการตรวจและบริการในแพ็กเกจนี้กำลังจัดเตรียม สอบถามรายละเอียดได้ทาง LINE หรือโทรหาเรา ทีมงานยินดีแนะนำรายการที่เหมาะกับคุณ", "The full list of what this package covers is on its way. Ask us on LINE or call, and our team will walk you through what suits you.")}</p>}
           </div>
-          <h2 className={`font-display text-2xl font-semibold text-kmc-secondary mt-12 mb-5`}>
-            {b ? `รายละเอียดแพ็กเกจ` : `What the package includes`}
-          </h2>
-          {x.content ? (
-            <div
-              className={`article-body text-kmc-secondary/80 leading-relaxed`}
-              dangerouslySetInnerHTML={{
-                __html: x.content,
-              }}
-            />
-          ) : x.includes.length > 0 ? (
-            <ul className={`grid gap-3 sm:grid-cols-2`}>
-              {x.includes.map((e) => (
-                <li
-                  key={e}
-                  className={`flex items-start gap-3 rounded-2xl border border-kmc-secondary/10 bg-white px-5 py-4 text-kmc-secondary/85`}
-                >
-                  <svg
-                    viewBox={`0 0 24 24`}
-                    className={`w-5 h-5 mt-0.5 shrink-0 text-kmc-primary-deep`}
-                    aria-hidden={`true`}
-                    fill={`none`}
-                    stroke={`currentColor`}
-                    strokeWidth={`2`}
-                    strokeLinecap={`round`}
-                    strokeLinejoin={`round`}
-                  >
-                    <path d={`M20 7 9 18l-5-5`} />
-                  </svg>
-                  {e}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <_Element7>
-              {b
-                ? `รายการตรวจและบริการในแพ็กเกจนี้กำลังจัดเตรียม สอบถามรายละเอียดได้ทาง LINE หรือโทรหาเรา`
-                : `The full list of what this package covers is on its way. Ask us on LINE or call for details.`}
-            </_Element7>
-          )}
+          <div className="kv2-detail__block">
+            <p className="sr-eyebrow">HOW IT WORKS</p>
+            <AnimatedHeading as="h2" text={copy("ขั้นตอนการใช้บริการ", "How booking works")} />
+            <ol className="sr-steps" data-sr-stagger>{steps.map((step, index) => <li key={step}><span className="sr-num sr-num--light">0{index + 1}</span><p>{step}</p></li>)}</ol>
+          </div>
         </div>
-        <aside
-          aria-label={b ? `ราคาและการจอง` : `Price and booking`}
-          className={`rounded-3xl border border-kmc-secondary/10 bg-white p-7 lg:sticky lg:top-24`}
-        >
-          <p className={`text-sm text-kmc-secondary/75 mb-1`}>{b ? `ราคา` : `Price`}</p>
-          {x.price ? (
-            <p className={`font-display text-3xl font-semibold text-kmc-secondary`}>{x.price}</p>
-          ) : (
-            <p className={`font-display text-lg font-medium text-kmc-secondary`}>
-              {b ? `สอบถามราคา` : `Price on request`}
-            </p>
-          )}
-          <p className={`mt-3 text-sm text-kmc-secondary/75 leading-relaxed`}>
-            {b
-              ? `ทีมงานช่วยแนะนำแพ็กเกจที่เหมาะกับคุณ และนัดหมายวันเข้ารับบริการ`
-              : `Our team can help you choose the right package and book a date.`}
-          </p>
-          <_Element8 className={`mt-6 flex-col [&>*]:text-center`} {...C} />
+        <aside className="kv2-price-card" aria-label={copy("ราคาและการจอง", "Price and booking")}>
+          <KArcs />
+          <p className="sr-eyebrow">{copy("ราคาแพ็กเกจ", "PACKAGE PRICE")}</p>
+          <p className="kv2-price-card__value">{item.price || copy("สอบถามราคา", "Price on request")}{!item.price && <small>{copy("ราคาขึ้นกับรายการที่เลือกและโปรโมชันปัจจุบัน", "Depends on the items chosen and current offers")}</small>}</p>
+          <p>{copy("ทีมงานช่วยแนะนำแพ็กเกจที่เหมาะกับคุณ และนัดหมายวันเข้ารับบริการ", "Our team can help you choose the right package and book a date.")}</p>
+          <Actions items={contact} placement="package-card" />
+          <ul>{[copy("ปรึกษาก่อนตัดสินใจ ไม่มีข้อผูกมัด", "Talk it through first, no commitment"), copy("ปรับรายการให้เหมาะกับแต่ละคนได้", "Items can be tailored to each person"), copy("สอบถามเรื่องประกันได้ก่อนเข้ารับบริการ", "Check your insurance with us beforehand")].map((line) => <li key={line}><Check size={15} />{line}</li>)}</ul>
         </aside>
-      </_Element5>
-      {S.length > 0 && (
-        <_Element5 className={`bg-white/60 border-y border-kmc-secondary/10`}>
-          <div className={`mx-auto max-w-6xl px-6 py-16`}>
-            <h2 className={`font-display text-2xl font-semibold text-kmc-secondary mb-8`}>
-              {b ? `แพ็กเกจในหมวดเดียวกัน` : `More in this category`}
-            </h2>
-            <div className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
-              {S.map((e) => (
-                <_Element9
-                  key={e.key}
-                  to={`/packages/${e.key}`}
-                  className={`card-lift group flex flex-col rounded-2xl border border-kmc-secondary/10 bg-white overflow-hidden hover:border-kmc-primary-deep/40`}
-                >
-                  {e.photo && (
-                    <div className={`aspect-[16/10] overflow-hidden`}>
-                      <_Element6
-                        name={e.photo}
-                        alt={``}
-                        sizes={`(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw`}
-                        className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105`}
-                      />
-                    </div>
-                  )}
-                  <div className={`flex flex-1 flex-col p-7`}>
-                    <h3 className={`font-display text-lg font-medium text-kmc-secondary mb-2`}>
-                      {e.name}
-                    </h3>
-                    <p className={`text-sm text-kmc-secondary/75 leading-relaxed flex-1`}>
-                      {e.desc}
-                    </p>
-                    <span
-                      className={`mt-5 inline-flex items-center gap-1 text-sm font-medium text-kmc-primary-deep`}
-                    >
-                      {b ? `ดูรายละเอียด` : `View details`}
-                      <span aria-hidden={`true`}>{`→`}</span>
-                    </span>
-                  </div>
-                </_Element9>
-              ))}
-            </div>
-          </div>
-        </_Element5>
-      )}
-      <_Element5 className={`mx-auto max-w-6xl px-6 py-14 text-center`}>
-        <_Element9
-          to={`/packages`}
-          className={`inline-flex min-h-11 items-center text-kmc-secondary font-medium hover:underline`}
-        >
-          {`← `}
-          {b ? `ดูแพ็กเกจทั้งหมด` : `All packages`}
-        </_Element9>
-      </_Element5>
-    </div>
-  );
+      </div>
+    </section>
+
+    {related.length > 0 && <section className="sr-gallery-section" data-sr-reveal>
+      <div className="sr-wrap"><SectionHead eyebrow="YOU MAY ALSO LIKE" title={sameCategory.length ? copy("แพ็กเกจในหมวดเดียวกัน", "More in this category") : copy("แพ็กเกจอื่น ๆ", "Other packages")}><Link to="/packages">{copy("ดูแพ็กเกจทั้งหมด", "All packages")}<ArrowUpRight size={19} /></Link></SectionHead>
+        <div className="kv2-pkg-grid" data-sr-stagger>{related.map((other, index) => <article className="sr-package" key={other.key}>
+          <div className="sr-package__media">{other.photo && <img src={photoSrc(other.photo)} alt="" loading="lazy" />}{other.category && <span className="kv2-badge">{other.category}</span>}</div>
+          <div className="sr-package__body"><h3>{other.name}</h3><p>{other.desc}</p><ArrowLink to={`/packages/${other.key}`}>{copy("ดูรายละเอียด", "View details")}</ArrowLink></div>
+        </article>)}</div>
+      </div>
+    </section>}
+
+    <FaqBlock isTh={th} items={questions} name="package-faq" eyebrow="BEFORE YOU BOOK" title={copy("คำถามก่อนจองแพ็กเกจ", "Questions before you book")} />
+
+    <FinalCta title={copy("พร้อมเริ่มต้นแล้วหรือยัง?", "Ready to get started?")} lead={copy(`สอบถาม${item.name}กับทีม KMC Hospital`, `Ask the KMC Hospital team about the ${item.name}`)} actions={contact} placement="package-final" />
+    <div className="sr-wrap kv2-back-row"><Link to="/packages" className="kv2-back"><ArrowLeft size={18} />{copy("กลับไปหน้าแพ็กเกจทั้งหมด", "Back to all packages")}</Link></div>
+  </div>;
 }
-export { y as default };
+
+export default function PackageDetail() {
+  const { slug } = useParams();
+  const { i18n } = useTranslation();
+  const th = i18n.language === "th";
+  const item = findPackage(slug, th);
+  usePageMeta({
+    title: item ? item.name : th ? "ไม่พบแพ็กเกจ" : "Package not found",
+    description: item?.desc,
+    noindex: !item || !hasDetails(item),
+  });
+  if (!item) return <NotFound />;
+  return <PackagePage key={slug} item={item} th={th} />;
+}

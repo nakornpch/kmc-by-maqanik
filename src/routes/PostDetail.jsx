@@ -1,108 +1,88 @@
-import { t as e } from "../vendor/i18n-CAiZPsdd.js";
-import { n as _Element5, u as n } from "../vendor/react-SEPqUFC0.js";
-import { t as r } from "./usePageMeta.jsx";
-import { a as i } from "../vendor/motion-CB540VaL.js";
-import { _ as _Element2, m as _Element4, y as _Element3 } from "../site.jsx";
-import _Element from "./NotFound.jsx";
-import { n as l, t as u } from "./posts.jsx";
-var d = i();
-function f(e, t) {
-  try {
-    return new Date(e).toLocaleDateString(t ? `th-TH` : `en-GB`, {
-      year: `numeric`,
-      month: `long`,
-      day: `numeric`,
-    });
-  } catch {
-    return ``;
-  }
+// /blog/:slug in the v2 page style: plain navy hero with the title, date and reading time; the
+// cover photo overlapping the hero edge; the article beside a sticky contact / share column;
+// more articles and a way back to the Knowledge Center.
+import { useRef, useState } from "react";
+import { ArrowLeft, ArrowUpRight, CalendarDays, Check, Clock, Link2 } from "lucide-react";
+import { t as useTranslation } from "../vendor/i18n-CAiZPsdd.js";
+import { n as Link, u as useParams } from "../vendor/react-SEPqUFC0.js";
+import { t as usePageMeta } from "./usePageMeta.jsx";
+import NotFound from "./NotFound.jsx";
+import { n as findPost, t as allPosts } from "./posts.jsx";
+import { Actions, Hero, SectionHead, callAction, lineAction, useKv2Effects } from "../components/v2/kit.jsx";
+import { PostCard, formatDate, readingMinutes } from "../components/v2/blogParts.jsx";
+
+function ShareLink({ th }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch { /* clipboard blocked: nothing to do */ }
+  };
+  return <button type="button" onClick={copy}>{copied ? <Check size={16} /> : <Link2 size={16} />}{copied ? (th ? "คัดลอกแล้ว" : "Copied") : (th ? "คัดลอกลิงก์" : "Copy link")}</button>;
 }
-function p() {
-  let { slug: i } = n(),
-    { i18n: p } = e(),
-    m = p.language === `th`,
-    h = l(i);
-  if (
-    (r({
-      title: h ? h.title : m ? `ไม่พบบทความ` : `Article not found`,
-      description: h?.excerpt,
-      contentLocale: h?.lang,
-    }),
-    !h)
-  )
-    return <_Element />;
-  let g = u.filter((e) => e.slug !== i).slice(0, 3);
-  return (
-    <div>
-      <div
-        className={`relative overflow-hidden bg-gradient-to-br from-fog-1 via-fog-2 to-fog-3 py-20`}
-      >
-        <div className={`mx-auto max-w-3xl px-6`}>
-          <_Element2 current={h.title} className={`mb-4`} />
-          {h.categories.length > 0 && (
-            <p
-              className={`font-display uppercase tracking-[0.25em] text-xs text-kmc-primary-deep mb-3`}
-            >
-              {h.categories.join(` · `)}
-            </p>
-          )}
-          <_Element3
-            as={`h1`}
-            className={`font-display text-3xl sm:text-4xl font-semibold text-kmc-secondary leading-snug`}
-            text={h.title}
-          />
-          <p className={`mt-4 text-sm text-kmc-secondary/55`}>{f(h.date, m)}</p>
-        </div>
+
+function Article({ post, th }) {
+  const copy = (thai, english) => th ? thai : english;
+  const root = useRef(null);
+  const hero = useRef(null);
+  useKv2Effects(root, hero);
+  const more = allPosts.filter((other) => other.slug !== post.slug && other.lang === post.lang).slice(0, 3);
+  const shareUrl = typeof window === "undefined" ? "" : encodeURIComponent(window.location.href);
+
+  return <div ref={root} className="kv2">
+    <Hero heroRef={hero} isTh={th} size="plain"
+      crumbs={[{ to: "/", label: copy("หน้าแรก", "Home") }, { to: "/blog", label: copy("ศูนย์ความรู้", "Knowledge Center") }, { label: post.title }]}
+      eyebrow={post.categories.length ? post.categories.join(" · ") : "ARTICLE"} title={post.title}>
+      <div className="kv2-hero__meta">
+        <span><CalendarDays size={15} />{formatDate(post.date, th, "long")}</span>
+        <span><Clock size={15} />{th ? `อ่าน ${readingMinutes(post.content, th)} นาที` : `${readingMinutes(post.content, th)} min read`}</span>
       </div>
-      {h.image && (
-        <_Element4 className={`mx-auto max-w-4xl px-6 pt-12`}>
-          <div className={`aspect-[16/9] rounded-3xl overflow-hidden`}>
-            <img
-              src={h.image}
-              alt={h.imageAlt}
-              loading={`lazy`}
-              decoding={`async`}
-              className={`w-full h-full object-cover`}
-            />
+    </Hero>
+
+    <div className="sr-wrap kv2-article-wrap">
+      {post.image && <figure className="kv2-article__cover"><img src={post.image} alt={post.imageAlt || ""} /></figure>}
+      <div className="kv2-article">
+        <article className="kv2-prose" dangerouslySetInnerHTML={{ __html: post.content }} />
+        <aside className="kv2-aside">
+          <div className="kv2-aside-card">
+            <p className="sr-eyebrow">TALK TO OUR TEAM</p>
+            <h3>{copy("มีคำถามเรื่องนี้?", "Questions about this?")}</h3>
+            <p>{copy("ทีมงานพร้อมให้คำแนะนำ และช่วยนัดหมายบริการที่เหมาะกับคุณ", "Our team can advise you and book the care that suits you.")}</p>
+            <Actions items={[lineAction(th), callAction(th)]} placement="article-aside" />
           </div>
-        </_Element4>
-      )}
-      <_Element4 className={`mx-auto max-w-3xl px-6 py-14`}>
-        <div
-          className={`article-body text-kmc-secondary/80 leading-relaxed`}
-          dangerouslySetInnerHTML={{
-            __html: h.content,
-          }}
-        />
-      </_Element4>
-      {g.length > 0 && (
-        <_Element4 className={`mx-auto max-w-6xl px-6 pb-20`}>
-          <h2 className={`font-display text-xl font-semibold text-kmc-secondary mb-6`}>
-            {m ? `บทความอื่น ๆ` : `More articles`}
-          </h2>
-          <div className={`grid sm:grid-cols-3 gap-5`}>
-            {g.map((e) => (
-              <_Element5
-                key={e.slug}
-                to={`/blog/${e.slug}`}
-                className={`rounded-2xl border border-kmc-secondary/10 bg-white p-6 hover:shadow-xl hover:shadow-kmc-primary/15 hover:-translate-y-1 transition-all`}
-              >
-                <p className={`font-display font-medium text-kmc-secondary mb-2`}>{e.title}</p>
-                <p className={`text-sm text-kmc-secondary/60 leading-relaxed line-clamp-3`}>
-                  {e.excerpt}
-                </p>
-              </_Element5>
-            ))}
+          <div className="kv2-aside-card kv2-aside-card--fog">
+            <h3>{copy("แชร์บทความ", "Share this article")}</h3>
+            <div className="kv2-share">
+              <a href={`https://social-plugins.line.me/lineit/share?url=${shareUrl}`} target="_blank" rel="noopener noreferrer">LINE<ArrowUpRight size={14} /></a>
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer">Facebook<ArrowUpRight size={14} /></a>
+              <ShareLink th={th} />
+            </div>
           </div>
-        </_Element4>
-      )}
-      <_Element4 className={`mx-auto max-w-3xl px-6 pb-24 text-center`}>
-        <_Element5 to={`/blog`} className={`text-kmc-secondary font-medium hover:underline`}>
-          {`← `}
-          {m ? `กลับไปศูนย์ความรู้` : `Back to the Knowledge Center`}
-        </_Element5>
-      </_Element4>
+        </aside>
+      </div>
     </div>
-  );
+
+    {more.length > 0 && <section className="sr-gallery-section kv2-more" data-sr-reveal>
+      <div className="sr-wrap"><SectionHead eyebrow="KEEP READING" title={copy("บทความอื่น ๆ", "More articles")}><Link to="/blog">{copy("ดูบทความทั้งหมด", "All articles")}<ArrowUpRight size={19} /></Link></SectionHead>
+        <div className="kv2-post-grid">{more.map((other, index) => <PostCard key={other.slug} post={other} index={index} th={th} />)}</div>
+      </div>
+    </section>}
+    <div className="sr-wrap kv2-back-row"><Link to="/blog" className="kv2-back"><ArrowLeft size={18} />{copy("กลับไปศูนย์ความรู้", "Back to the Knowledge Center")}</Link></div>
+  </div>;
 }
-export { p as default };
+
+export default function PostDetail() {
+  const { slug } = useParams();
+  const { i18n } = useTranslation();
+  const th = i18n.language === "th";
+  const post = findPost(slug);
+  usePageMeta({
+    title: post ? post.title : th ? "ไม่พบบทความ" : "Article not found",
+    description: post?.excerpt,
+    contentLocale: post?.lang,
+  });
+  if (!post) return <NotFound />;
+  return <Article key={slug} post={post} th={th} />;
+}

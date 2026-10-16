@@ -1,19 +1,18 @@
-// Digital services showroom for /home-v2 (replaces the single "Health
-// Monitoring Program" block). Three apps/tools the hospital already offers:
-// the Lab + App monitoring program, Telemedicine, and the online self-checks.
-// The section pins and scrolling steps through the three apps (the tabs scroll
-// to their app); the phone in the middle switches screen, with the copy either
-// side. It plays an intro the first time it comes into view.
-// On phones there is no pinning: the three apps are a stack of file folders, and
+// Digital health showroom for /home-v2: ONE app (Popmed Health Book) and its
+// four feature groups — health log, mind care, online services (telemedicine +
+// Medport health book) and missions/rewards. Copy and screenshots come from the
+// "01_Popmed Health Book" deck (Oct 2026); store links are decoded from its QR codes.
+// The section pins and scrolling steps through the features (the tabs scroll
+// to their feature); the phone in the middle switches screen, with the copy
+// beside it. It plays an intro the first time it comes into view.
+// On phones there is no pinning: the features are a stack of file folders, and
 // tapping a folder's tab unfolds its panel toward the reader (one open at a time);
 // tapping an open folder's tab folds it closed again.
-// All copy comes from existing content, except the section heading and the
-// self-checks tab name. Phone screens are mock-ups until an app gets a
-// `screenshot` (e.g. `/images/apps/monitoring.png`, portrait 9:19.5).
+// A feature without a `screenshot` falls back to a drawn mock-up screen.
 import { useEffect, useState } from "react";
 import { t as useTranslation } from "../../vendor/i18n-CAiZPsdd.js";
 import { n as Link } from "../../vendor/react-SEPqUFC0.js";
-import { AnimatedHeading, services, gt as monitoringSteps } from "../../site.jsx";
+import { AnimatedHeading } from "../../site.jsx";
 import { useScrollSteps } from "./p4Shared.jsx";
 
 function AppIcon({ kind }) {
@@ -25,14 +24,21 @@ function AppIcon({ kind }) {
     strokeLinecap: `round`,
     strokeLinejoin: `round`,
   };
-  if (kind === `monitoring`)
+  if (kind === `log`)
     return (
       <svg {...common}>
-        <path d={`M3 17l5-5 4 3 8-8`} />
-        <path d={`M15 7h5v5`} />
+        <path d={`M3 12h4l2-5 4 10 2-5h6`} />
       </svg>
     );
-  if (kind === `telemedicine`)
+  if (kind === `mind`)
+    return (
+      <svg {...common}>
+        <path d={`M3 9h11a3 3 0 1 0-3-3`} />
+        <path d={`M3 13h15a3 3 0 1 1-3 3`} />
+        <path d={`M3 17h6`} />
+      </svg>
+    );
+  if (kind === `services`)
     return (
       <svg {...common}>
         <rect x={`3`} y={`6`} width={`12`} height={`12`} rx={`2.5`} />
@@ -41,14 +47,14 @@ function AppIcon({ kind }) {
     );
   return (
     <svg {...common}>
-      <rect x={`5`} y={`4`} width={`14`} height={`17`} rx={`2.5`} />
-      <path d={`M9 4.5h6M9 12.5l2 2 4-4`} />
+      <path d={`M8 4h8v5a4 4 0 0 1-8 0z`} />
+      <path d={`M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7`} />
     </svg>
   );
 }
 
 function Screen({ kind }) {
-  if (kind === `monitoring`) {
+  if (kind === `log`) {
     return (
       <div className={`app-screen app-screen--monitor`}>
         <div className={`app-screen__bar`} />
@@ -68,7 +74,7 @@ function Screen({ kind }) {
       </div>
     );
   }
-  if (kind === `telemedicine`) {
+  if (kind === `services`) {
     return (
       <div className={`app-screen app-screen--call`}>
         <div className={`app-screen__caller`} />
@@ -101,7 +107,7 @@ function Screen({ kind }) {
 export default function HealthMonitoring() {
   const { i18n } = useTranslation();
   const isTh = i18n.language === `th`;
-  const steps = 3;
+  const steps = 4;
   // phones: folders instead of the pinned showroom, and no scroll stops for this section
   const [narrow, setNarrow] = useState(() => window.matchMedia(`(max-width: 767px)`).matches);
   useEffect(() => {
@@ -129,66 +135,113 @@ export default function HealthMonitoring() {
     io.observe(el);
     return () => io.disconnect();
   }, [ref]);
-  const tele = isTh ? services.telemedicine.th : services.telemedicine.en;
+  const stores = [
+    { href: `https://apps.apple.com/th/app/popmed-health-book/id6780253726`, label: `App Store` },
+    { href: `https://play.google.com/store/apps/details?id=co.popmed.healthbook`, label: `Google Play`, quiet: true },
+  ];
 
   const apps = [
     {
-      key: `monitoring`,
-      name: `Health Monitoring`,
-      short: isTh ? `เห็นแนวโน้มผลแล็บต่อเนื่อง` : `Your lab results as a trend`,
-      screenshot: null, // e.g. `/images/apps/monitoring.png`
-      kicker: `Predictive`,
-      tab: isTh ? `ติดตามสุขภาพ (Lab + App)` : `Health monitoring (Lab + App)`,
-      title: isTh ? `โปรแกรมติดตามสุขภาพ (Lab + App)` : `Health Monitoring Program (Lab + App)`,
+      key: `log`,
+      name: isTh ? `บันทึกสุขภาพ` : `Health log`,
+      short: isTh ? `ค่าสุขภาพ อาหาร ก้าวเดิน` : `Vitals, meals, steps`,
+      screenshot: `/images/apps/healthbook-log.webp`,
+      kicker: `Daily care`,
+      title: isTh ? `ติดตามค่าสุขภาพได้ที่บ้าน` : `Track your health at home`,
       desc: isTh
-        ? `เชื่อมผลตรวจแล็บเข้ากับแอปพลิเคชัน ให้คุณเห็นแนวโน้มค่าสุขภาพของตัวเองอย่างต่อเนื่อง ไม่ใช่แค่ตัวเลขครั้งเดียวตอนตรวจ และให้ทีมแพทย์แจ้งเตือนความเสี่ยงได้ตั้งแต่เนิ่น ๆ`
-        : `Your lab results, linked to an app, so you follow your own health as a trend instead of a single set of numbers, and our doctors can flag risk early.`,
-      points: monitoringSteps.map((s) => (isTh ? s.th : s.en)),
+        ? `จดค่าที่วัดเองที่บ้านเก็บไว้ดูย้อนหลัง ให้เห็นแนวโน้มระหว่างนัดพบแพทย์ โรคเรื้อรังอย่างความดันสูงและเบาหวานจึงไม่ถูกมองข้ามอีกต่อไป`
+        : `Log the readings you take at home and look back over them, so the trend between doctor visits is visible and conditions like high blood pressure and diabetes are not missed.`,
+      points: isTh
+        ? [
+            `สัญญาณชีพ 9 รายการ: ความดัน ชีพจร อุณหภูมิ น้ำตาลในเลือด SpO₂ น้ำหนัก รอบเอว ส่วนสูง อัตราการหายใจ`,
+            `ถ่ายรูปอาหาร ให้ AI บอกชื่อเมนู แคลอรี่ สารอาหาร พร้อมคำแนะนำสั้น ๆ และสรุปโภชนาการประจำวัน`,
+            `บันทึกการออกกำลังกาย ระบุเวลาเป็นนาที แอปประเมินแคลอรี่ที่เผาผลาญให้`,
+            `นับก้าวอัตโนมัติจากแอปสุขภาพในมือถือหรือ Smart Watch`,
+            `ทุกบันทึกรวมอยู่ในไดอารี่ เป็นไทม์ไลน์ประจำวัน`,
+          ]
+        : [
+            `Nine vital signs: blood pressure, pulse, temperature, blood sugar, SpO₂, weight, waist, height and breathing rate`,
+            `Snap a meal and AI names the dish, counts calories and nutrients, adds a short tip and a daily nutrition summary`,
+            `Log exercise in minutes and the app estimates the calories burned`,
+            `Steps sync automatically from your phone's health app or a smartwatch`,
+            `Every entry lands in a daily diary timeline`,
+          ],
       numbered: true,
-      links: [{ to: `/services/health-monitoring`, label: isTh ? `ดูรายละเอียดโปรแกรม` : `See how it works` }],
     },
     {
-      key: `telemedicine`,
-      name: `Telemedicine`,
-      short: isTh ? `ปรึกษาแพทย์ทางไกล` : `See a doctor remotely`,
-      screenshot: null,
-      kicker: `Participation`,
-      tab: tele.name,
-      title: tele.name,
-      desc: tele.tagline,
-      points: (tele.highlights ?? []).map((h) => `${h.title}: ${h.desc}`),
-      links: [
-        tele.cta?.primary?.to && { to: tele.cta.primary.to, label: tele.cta.primary.label },
-        { to: `/services/telemedicine`, label: isTh ? `ดูรายละเอียด` : `Details`, quiet: true },
-      ].filter(Boolean),
-    },
-    {
-      key: `checks`,
-      name: `Online Self-Checks`,
-      short: isTh ? `ประเมินเบื้องต้นด้วยตัวเอง` : `Quick checks you can do yourself`,
-      screenshot: null,
-      kicker: `Self-check`,
-      tab: isTh ? `แบบประเมินออนไลน์` : `Online self-checks`,
-      title: isTh ? `แบบประเมินสุขภาพออนไลน์` : `Online health self-checks`,
+      key: `mind`,
+      name: `Mind care`,
+      short: isTh ? `ดูแลใจ อารมณ์ การหายใจ` : `Mood, breathing, self-check`,
+      screenshot: `/images/apps/healthbook-mind.webp`,
+      kicker: `Mind care`,
+      title: isTh ? `ดูแลใจไปพร้อมกับร่างกาย` : `Look after your mind, too`,
       desc: isTh
-        ? `ประมวลผลในเบราว์เซอร์ ไม่เก็บข้อมูล ใช้ประกอบการตัดสินใจว่าควรพบแพทย์หรือยัง`
-        : `They run in your browser and store nothing; use them to help decide whether it is time to see a doctor.`,
-      tools: [
-        {
-          to: `/tools/memory-assessment`,
-          title: isTh
-            ? `แบบสังเกตความจำและการรู้คิด สำหรับครอบครัวผู้สูงวัย`
-            : `Memory & Thinking Check for Families of Older Adults`,
-          desc: isTh ? `ตอบ 8 ข้อใน 3 นาที สำหรับลูกหลาน` : `Eight questions in three minutes, for families`,
-        },
-        {
-          to: `/tools/stroke-assessment`,
-          title: isTh ? `แบบประเมินความรุนแรงโรคหลอดเลือดสมอง (NIHSS)` : `Stroke Severity Assessment (NIHSS)`,
-          desc: isTh
-            ? `15 ข้อตาม NIH Stroke Scale พิมพ์ใบสรุปได้`
-            : `15 items on the NIH Stroke Scale, printable summary`,
-        },
+        ? `บันทึกอารมณ์ในแต่ละช่วงของวัน และมีเครื่องมือดูแลใจด้วยตัวเองอยู่ในแท็บสุขภาพ`
+        : `Note how you feel through the day, with self-care tools for the mind in the Health tab.`,
+      points: isTh
+        ? [
+            `สำรวจใจตัวเองด้วย DASS-21 แบบประเมินภาวะซึมเศร้า วิตกกังวล และความเครียด`,
+            `ฝึกหายใจ 1 นาที: 4-4-4-4 ช่วยให้มีสมาธิ, 4-4-6 ช่วยผ่อนคลาย, 4-7-8 ช่วยให้นอนหลับ`,
+            `บันทึกอารมณ์และระดับความรู้สึกลงไดอารี่ประจำวัน`,
+            `บทความสุขภาพสั้น ๆ อ่านได้ในแอป`,
+          ]
+        : [
+            `Check in with yourself using DASS-21, a screen for depression, anxiety and stress`,
+            `One-minute breathing: 4-4-4-4 to focus, 4-4-6 to relax, 4-7-8 to fall asleep`,
+            `Record your mood and how strongly you feel it in the daily diary`,
+            `Short health articles to read in the app`,
+          ],
+    },
+    {
+      key: `services`,
+      name: isTh ? `บริการออนไลน์` : `Online services`,
+      short: isTh ? `ปรึกษาแพทย์ สมุดสุขภาพ` : `Doctor visits, health record`,
+      screenshot: `/images/apps/healthbook-services.webp`,
+      kicker: `Services`,
+      title: isTh ? `พบแพทย์และดูประวัติสุขภาพได้จากที่บ้าน` : `See a doctor and your records from home`,
+      desc: isTh
+        ? `เมนูบริการรวมการปรึกษาแพทย์ออนไลน์และสมุดสุขภาพไว้ด้วยกัน ไม่ต้องเดินทาง ไม่ต้องรอคิว และประวัติสุขภาพไม่ต้องกระจัดกระจายอยู่ตามแต่ละคลินิก`
+        : `The Services menu puts online consultations and your health record side by side: no travel, no queue, and no history scattered across clinics.`,
+      points: isTh
+        ? [
+            `ปรึกษาแพทย์ออนไลน์ (Telemedicine) ผ่านวิดีโอคอลได้ทันที ผ่านเว็บไซต์ Kitmeechai Health`,
+            `สมุดสุขภาพ Medport ผูกกับเบอร์โทรของคุณ เปิดดูได้ทุกที่ ใช้ประกอบการพบแพทย์ หรือแชร์ให้ครอบครัว`,
+          ]
+        : [
+            `Online consultations (telemedicine) by video call straight away, through the Kitmeechai Health website`,
+            `Medport health record, tied to your phone number: open it anywhere, bring it to appointments or share it with family`,
+          ],
+      links: [
+        { to: `/services/telemedicine`, label: isTh ? `ดูบริการ Telemedicine` : `About telemedicine` },
+        { to: `/services/health-monitoring`, label: isTh ? `โปรแกรมติดตามผลแล็บ (Lab + App)` : `Lab + App monitoring program`, quiet: true },
       ],
+    },
+    {
+      key: `missions`,
+      name: isTh ? `ภารกิจและรางวัล` : `Missions & rewards`,
+      short: isTh ? `สะสม EXP เลื่อนเลเวล` : `Earn EXP, level up`,
+      screenshot: `/images/apps/healthbook-missions.webp`,
+      kicker: `Gamification`,
+      title: isTh ? `สนุกกับการดูแลสุขภาพในสไตล์ของคุณ` : `Make looking after yourself fun`,
+      desc: isTh
+        ? `ทำภารกิจทั้งนับก้าว บันทึกอาหาร บันทึกอารมณ์ เพื่อสะสม EXP และ Points เลื่อนเลเวล รับรางวัล และแข่งขันกับเพื่อน ช่วยให้การดูแลสุขภาพไม่น่าเบื่อ`
+        : `Complete missions such as walking, logging meals and moods to earn EXP and Points, level up, win rewards and compete with friends.`,
+      points: isTh
+        ? [
+            `ภารกิจรายวัน เช่น เปิดแอป บันทึกอาหาร บันทึกอารมณ์ เดินครบเป้า`,
+            `ภารกิจพิเศษด้านออกกำลังกาย โภชนาการ และสุขภาพจิต ได้คะแนนมากกว่า`,
+            `9 เลเวล ตั้งแต่ “ก้าวแรก” (First Step) ถึง Health Legend`,
+            `นำ Points ไปแลกของรางวัล`,
+            `สำหรับองค์กร: ใส่รหัสเชิญจากบริษัทตอนสมัคร แล้ว HR ดูภาพรวมก้าวเดิน อาหาร และอารมณ์ได้ใน HR Dashboard`,
+          ]
+        : [
+            `Daily missions: open the app, log a meal, log your mood, hit your step goal`,
+            `Special missions in exercise, nutrition and mental health that pay more`,
+            `Nine levels, from First Step to Health Legend`,
+            `Trade Points for rewards`,
+            `For organisations: sign up with a company invite code and HR sees overall steps, nutrition and mood on the HR Dashboard`,
+          ],
+      links: stores,
     },
   ];
   const app = apps[active];
@@ -247,12 +300,25 @@ export default function HealthMonitoring() {
 
       {a.links && (
         <div className={`apps__links`}>
-          {a.links.map((l) => (
-            <Link key={l.to} to={l.to} className={l.quiet ? `apps__quiet` : `apps__cta`}>
-              {l.label}
-              {!l.quiet && <span aria-hidden={`true`}>{`→`}</span>}
-            </Link>
-          ))}
+          {a.links.map((l) => {
+            const inner = (
+              <>
+                {l.label}
+                {!l.quiet && <span aria-hidden={`true`}>{`→`}</span>}
+              </>
+            );
+            const cls = l.quiet ? `apps__quiet` : `apps__cta`;
+            // store links leave the site; everything else is an in-app route
+            return l.href ? (
+              <a key={l.href} href={l.href} className={cls} target={`_blank`} rel={`noopener noreferrer`}>
+                {inner}
+              </a>
+            ) : (
+              <Link key={l.to} to={l.to} className={cls}>
+                {inner}
+              </Link>
+            );
+          })}
         </div>
       )}
       </>
@@ -266,12 +332,12 @@ export default function HealthMonitoring() {
         <div className={`mx-auto max-w-6xl px-6 apps__inner`}>
           <div className={`apps__head`}>
             <p className={`font-display uppercase tracking-[0.3em] text-sm text-kmc-primary mb-3`}>
-              {isTh ? `ดิจิทัลเฮลท์` : `Digital health`}
+              Popmed Health Book
             </p>
             <AnimatedHeading
               as={`h2`}
               className={`font-display text-2xl sm:text-3xl font-semibold text-white`}
-              text={isTh ? `บริการสุขภาพดิจิทัล` : `Digital health services`}
+              text={isTh ? `แอปเดียว ดูแลสุขภาพครบในที่เดียว` : `One app for your everyday health`}
             />
           </div>
 
@@ -347,8 +413,8 @@ export default function HealthMonitoring() {
             </div>
           </div>
 
-          {/* app switcher: icon, English name, one-line description; the current app's tile is lit */}
-          <nav className={`apps__dock`} aria-label={isTh ? `แอปของเรา` : `Our apps`}>
+          {/* feature switcher: icon, name, one-line description; the current feature's tile is lit */}
+          <nav className={`apps__dock`} aria-label={isTh ? `ฟีเจอร์ในแอป` : `App features`}>
             {apps.map((a, i) => (
               <button
                 key={a.key}
